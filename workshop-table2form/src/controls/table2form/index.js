@@ -715,4 +715,5 @@ const labelColStyle = {
   paddingRight: '12px',
   fontSize: '12px',
   minWidth: '130px',
+  marginBottom: '12px',
 }
