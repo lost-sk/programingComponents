@@ -1,0 +1,211 @@
+[
+    {
+        "name": "document",
+        "displayName": "使用说明",
+        "resource": "document.js"
+    },
+    {
+        "name": "environmentUrl",
+        "displayName": "环境贴图链接",
+        "placeholder": "http://XX/resource/XX/models/XX",
+        "inputType": "Input"
+    },{
+        "name": "environmentExposure",
+        "displayName": "环境曝光度",
+        "placeholder": 1,
+        "inputType": "Input"
+    },
+    {
+        "name": "fileType",
+        "displayName": "模型文件类型",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": "gltf",
+                "label": "GLTF/GLB"
+            },
+            {
+                "value": "obj",
+                "label": "OBJ"
+            }
+        ],
+        "defaultValue": "gltf"
+    },
+    {
+        "name": "modelUrl",
+        "displayName": "模型链接",
+        "placeholder": "http://XX/resource/XX/models/XX",
+        "inputType": "Input"
+    },{
+        "name": "materialUrl",
+        "displayName": "材质链接",
+        "placeholder": "http://XX/resource/XX/models/XX",
+        "inputType": "Input"
+    },{
+        "name": "lightStyle",
+        "displayName": "光照风格",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": "style1",
+                "label": "高亮光"
+            },
+            {
+                "value": "style2",
+                "label": "产品展示"
+            },{
+                "value": "style3",
+                "label": "模型内置光"
+            }
+        ],
+        "defaultValue": "style1"
+    },{
+        "name": "luminance",
+        "displayName": "光照亮度",
+        "placeholder": 1,
+        "inputType": "Input"
+    },
+    {
+        "name": "zoomRatio",
+        "displayName": "缩放比例",
+        "placeholder": 1,
+        "inputType": "Input"
+    },
+    {
+        "name": "positionX",
+        "displayName": "模型位置X轴",
+        "placeholder": 0,
+        "inputType": "Input"
+    },
+    {
+        "name": "positionY",
+        "displayName": "模型位置Y轴",
+        "placeholder": 0,
+        "inputType": "Input"
+    },
+    {
+        "name": "positionZ",
+        "displayName": "模型位置Z轴",
+        "placeholder": 0,
+        "inputType": "Input"
+    },{
+        "name": "ratioX",
+        "displayName": "模型角度X轴",
+        "placeholder": 0,
+        "inputType": "Input"
+    },
+    {
+        "name": "ratioY",
+        "displayName": "模型角度Y轴",
+        "placeholder": 0,
+        "inputType": "Input"
+    },
+    {
+        "name": "ratioZ",
+        "displayName": "模型角度Z轴",
+        "placeholder": 0,
+        "inputType": "Input"
+    },
+    {
+        "name": "isControl",
+        "displayName": "是否可控",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": false,
+                "label": "禁止"
+            },
+            {
+                "value": true,
+                "label": "可控"
+            }
+        ],
+        "defaultValue": false
+    },
+    {
+        "name": "enableZoom",
+        "displayName": "滚轮缩放",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": false,
+                "label": "禁止"
+            },
+            {
+                "value": true,
+                "label": "开启"
+            }
+        ],
+        "defaultValue": false
+    },{
+        "name": "enableKeys",
+        "displayName": "键盘控制",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": false,
+                "label": "禁止"
+            },
+            {
+                "value": true,
+                "label": "开启"
+            }
+        ],
+        "defaultValue": false
+    },{
+        "name": "enableDamping",
+        "displayName": "启用阻尼",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": false,
+                "label": "禁止"
+            },
+            {
+                "value": true,
+                "label": "开启"
+            }
+        ],
+        "defaultValue": false
+    },
+    {
+        "name": "dampingFactor",
+        "displayName": "阻尼系数",
+        "placeholder": 0.1,
+        "inputType": "Input"
+    },
+    {
+        "name": "isAnimation",
+        "displayName": "动画效果",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": false,
+                "label": "关闭"
+            },
+            {
+                "value": true,
+                "label": "开启"
+            }
+        ],
+        "defaultValue": false
+    },
+    {
+        "name": "animationSpeedX",
+        "displayName": "X轴动画速度",
+        "placeholder": 0,
+        "inputType": "Input"
+    },
+    {
+        "name": "animationSpeedY",
+        "displayName": "Y轴动画速度",
+        "placeholder": 0,
+        "inputType": "Input"
+    },
+    {
+        "name": "animationSpeedZ",
+        "displayName": "Z轴动画速度",
+        "placeholder": 0,
+        "inputType": "Input"
+    }
+]

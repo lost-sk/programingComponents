@@ -1,0 +1,108 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "fontSize",
+    "displayName": "标题大小",
+    "restore": false,
+    "placeholder": "14px",
+    "inputType": "Input"
+  },
+  {
+    "name": "fontFamily",
+    "displayName": "标题字体",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "微软雅黑",
+        "value": "微软雅黑"
+      },
+      {
+        "label": "黑体",
+        "value": "黑体"
+      },
+      {
+        "label": "楷体",
+        "value": "楷体"
+      },
+      {
+        "label": "隶书",
+        "value": "隶书"
+      },
+      {
+        "label": "幼圆",
+        "value": "幼圆"
+      },
+      {
+        "label": "宋体",
+        "value": "宋体"
+      }
+    ],
+    "defaultValue": "微软雅黑"
+  },
+  {
+    "name": "fontBorder",
+    "displayName": "字体加粗",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "默认",
+        "value": "normal"
+      },
+      {
+        "label": "加粗",
+        "value": "bolder"
+      }
+    ],
+    "defaultValue": "normal"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "标题颜色",
+    "restore": false,
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "headHeight",
+    "displayName": "表头高度",
+    "inputType": "Input",
+    "placeholder": "55px"
+  },
+  {
+    "name": "showBorder",
+    "displayName": "是否显示边框",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "显示",
+        "value": "true"
+      },
+      {
+        "label": "隐藏",
+        "value": "false"
+      }
+    ],
+    "defaultValue": "true"
+  },
+  {
+    "name": "borderColor",
+    "displayName": "边框颜色",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "object",
+    "displayName": "数据源",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "htmlDetail",
+    "resource": "html.js"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

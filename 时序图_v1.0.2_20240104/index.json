@@ -1,0 +1,176 @@
+[
+    {
+        "name": "document",
+        "displayName": "使用说明",
+        "resource": "document.js"
+    },
+    {
+        "name": "object",
+        "displayName": "数据源",
+        "inputType": "ObjectInput"
+    },
+    {
+        "name": "theme",
+        "displayName": "主题配色",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": "blue",
+                "label": "蓝色系"
+            },
+            {
+                "value": "teal",
+                "label": "蓝绿色系"
+            },
+            {
+                "value": "green",
+                "label": "绿色系"
+            },
+            {
+                "value": "yellow",
+                "label": "黄色系"
+            },
+            {
+                "value": "orange",
+                "label": "橘色系"
+            }
+        ],
+        "defaultValue": "blue"
+    },
+    {
+        "name": "chartTitle",
+        "displayName": "标题",
+        "placeholder": "时序图",
+        "inputType": "Input"
+    },
+    {
+        "name": "titleFontColor",
+        "displayName": "标题文字颜色",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "subTitle",
+        "displayName": "副标题",
+        "placeholder": "时序图副标题",
+        "inputType": "Input"
+    },
+    {
+        "name": "subTitleFontColor",
+        "displayName": "副标题文字颜色",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "inverted",
+        "displayName": "是否反转图表",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": "false",
+                "label": "横向显示"
+            },
+            {
+                "value": "true",
+                "label": "纵向显示"
+            }
+        ],
+        "defaultValue": "false"
+    },
+    {
+        "name": "backgroundColor",
+        "displayName": "背景颜色",
+        "placeholder": "",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "labelColor",
+        "displayName": "内容文字颜色",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "borderColor",
+        "displayName": "卡片边框颜色",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "setColors",
+        "displayName": "颜色序列",
+        "resource": "setColors.js"
+    },
+    {
+        "name": "toolTip",
+        "displayName": "提示框显示",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": "false",
+                "label": "否"
+            },
+            {
+                "value": "true",
+                "label": "显示"
+            }
+        ],
+        "defaultValue": "true"
+    },
+    {
+        "name": "toolTipBackgroundColor",
+        "displayName": "提示框背景颜色",
+        "placeholder": "",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "toolTipBorderColor",
+        "displayName": "提示框边框颜色",
+        "placeholder": "",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "toolTipFontColor",
+        "displayName": "提示框文字颜色",
+        "placeholder": "",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "toolTipBorderRadius",
+        "displayName": "提示框边框圆角",
+        "inputType": "InputNumber"
+    },
+    {
+        "name": "toolTipBorderWidth",
+        "displayName": "提示框边框宽度",
+        "placeholder": "内容文字大小",
+        "inputType": "InputNumber"
+    },
+    {
+        "name": "toolTipShadow",
+        "displayName": "提示框阴影显示",
+        "resource": "select.js",
+        "options": [
+            {
+                "value": "false",
+                "label": "不显示"
+            },
+            {
+                "value": "true",
+                "label": "显示"
+            }
+        ],
+        "defaultValue": "true"
+    },
+    {
+        "name": "events",
+        "displayName": "交互事件",
+        "resource": "events.js",
+        "eventList": [
+            {
+                "name": "内容加载",
+                "value": "componentDidMount"
+            },
+            {
+                "name": "单击",
+                "value": "onClick"
+            }
+        ]
+    }
+
+]

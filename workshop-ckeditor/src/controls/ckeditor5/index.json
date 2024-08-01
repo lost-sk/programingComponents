@@ -1,0 +1,20 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "object",
+    "displayName": "点位数据",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "htmlDetail",
+    "resource": "ckeditor5.js"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

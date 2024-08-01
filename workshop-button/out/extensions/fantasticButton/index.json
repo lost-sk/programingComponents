@@ -1,0 +1,87 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "字体颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "fontSize",
+    "displayName": "字体大小（px）",
+    "placeholder": "16",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "text",
+    "displayName": "按钮文案",
+    "placeholder": "确定",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "style",
+    "displayName": "按钮样式",
+    "resource": "select.js",
+    "defaultValue": "1",
+    "options": [
+      {
+        "label": "沉默蓝",
+        "value": "1"
+      },
+      {
+        "label": "高贵紫",
+        "value": "2"
+      },
+      {
+        "label": "淡雅蓝",
+        "value": "3"
+      },
+      {
+        "label": "清新绿",
+        "value": "4"
+      },
+      {
+        "label": "梦幻粉",
+        "value": "6"
+      },
+      {
+        "label": "炙热橘",
+        "value": "7"
+      },
+      {
+        "label": "素雅紫",
+        "value": "8"
+      },
+      {
+        "label": "梦幻蓝",
+        "value": "9"
+      },
+      {
+        "label": "深沉蓝",
+        "value": "10"
+      },
+      {
+        "label": "翻滚蓝",
+        "value": "12"
+      },
+      {
+        "label": "素雅绿",
+        "value": "13"
+      },
+      {
+        "label": "热情黄",
+        "value": "14"
+      },
+      {
+        "label": "亮紫粉",
+        "value": "15"
+      }
+    ]
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

@@ -1,0 +1,104 @@
+.folderLayer {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1;
+    .displayName {
+        text-align: center;
+        font-size: 28px;
+        position: relative;
+        z-index: 1;
+        margin: 0 auto;
+        top: 100px;
+        color: white;
+    }
+
+    .displayNameInput {
+        width: 220px;
+        margin: 0 auto;
+    }
+    .folderLayerContentGust {
+        width: 900px;
+        height: 780px;
+        position: absolute;
+        left: 0;
+        top: 100px;
+        right: 0;
+        bottom: 0;
+        margin: 0 auto;
+    }
+    .folderLayerContent {
+        width: 762px;
+        min-width: 660px;
+        position: relative;
+        padding: 20px 16px;
+        top: 120px;
+        overflow-y: auto;
+        margin: 0 auto;
+        height: 640px;
+        color: #fff;
+        background-color: rgba(34, 34, 42, 0.9);
+        border: 1px solid #4b4b4b;
+        border-radius: 12px;
+    }
+    .appItem {
+        position: relative;
+        width: 93px;
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 6px;
+        margin: 6px 5px;
+        text-align: center;
+        cursor: pointer;
+        &.active:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            pointer-events: none;
+          }
+    }
+    .appItemDisplayName {
+        font-size: 14px;
+        color: #fff;
+        padding: 8px 4px 0 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        height: 50px;
+    }
+    .dropBox {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.2);
+        line-height: 100px;
+        text-align: center;
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.5);
+        &.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+    .userAppItemCover {
+        width: 0px;
+        height: 0px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+}

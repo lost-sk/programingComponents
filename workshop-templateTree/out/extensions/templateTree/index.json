@@ -1,0 +1,12 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "filterString",
+    "displayName": "剔除模型",
+    "placeholder": "Template_128,Template_32",
+    "inputType": "BaseInput"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "组件背景",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "字体颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "fontSize",
+    "displayName": "字体大小（px）",
+    "placeholder": "16",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "text",
+    "displayName": "按钮文案",
+    "placeholder": "确定",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "mainColor",
+    "displayName": "闪光色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

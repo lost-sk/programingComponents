@@ -1,0 +1,27 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "背景色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "object",
+    "displayName": "词典",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "interval",
+    "displayName": "定时刷新（秒）",
+    "placeholder": "0表示不刷新",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

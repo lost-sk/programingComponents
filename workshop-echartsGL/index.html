@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Supos</title>
+  </head>
+  <body>
+    <div id="app" style="width: 500px; height: 500px"></div>
+    <script>
+      setTimeout(() => {
+        var chart = echarts.init(document.getElementById('app'))
+        chart.setOption({
+          grid3D: {},
+          xAxis3D: {},
+          yAxis3D: {},
+          zAxis3D: {},
+          series: [
+            {
+              type: 'scatter3D',
+              symbolSize: 50,
+              data: [
+                [-1, -1, -1],
+                [0, 0, 0],
+                [1, 1, 1],
+              ],
+              itemStyle: {
+                opacity: 1,
+              },
+            },
+          ],
+        })
+      }, 1000)
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+  </body>
+</html>

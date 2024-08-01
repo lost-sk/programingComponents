@@ -1,0 +1,152 @@
+.header {
+  width: 100%;
+  height: 32px;
+  color: #fff;
+  padding-left: 14px;
+  font-size: 14px;
+  line-height: 32px;
+  background: rgba(25, 25, 25, 0.78);
+  border-bottom: 1px solid rgba(25, 25, 25, 0.78);
+  display: block;
+  position: relative;
+  .headerLeft {
+    float: left;
+    display: flex;
+  }
+  .logoWrapper {
+    position: relative;
+    padding: 6px 12px 6px 10px;
+    height: 28px;
+    cursor: pointer;
+    .customLogo {
+      vertical-align: top;
+      height: 20px;
+    }
+  }
+
+  .headerRight {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .weather {
+    width: 220px;
+    height: 22px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 5px 16px;
+    iframe {
+      border: none;
+      margin-top:-4px;
+    }
+  }
+  .notice {
+    padding: 0 6px;
+    background-color: rgba(229, 31, 32, 1);
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .noticeIcon {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .message {
+    position: relative;
+    margin-right: 24px;
+    cursor: pointer;
+  }
+  .messageText {
+    position: absolute;
+    top: 3px;
+    line-height: 14px;
+    color: #fff;
+    background: rgba(229, 31, 32, 1);
+    border-radius: 8px;
+    padding: 2px 4px;
+    transform: scale(0.7);
+    left: 6px;
+  }
+  .messageIcon {
+    display: inline-block;
+    width: 20px;
+    background: url(./images/selfstationletter.png);
+    height: 20px;
+    background-size: contain;
+    margin: -6px 6px -6px 0;
+  }
+  .dateTime {
+    margin: 0px 16px;
+    font-size: 12px;
+  }
+}
+
+.headerMenu {
+  background: rgba(34, 34, 34, 0.8) !important;
+  border-radius: 0 0 5px 5px !important;
+  padding: 6px 0 8px !important;
+  border-right: none !important;
+}
+.headerMenuItem {
+  padding: 0 20px !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+  margin: 0 !important;
+  a {
+    color: #fff;
+  }
+}
+
+.dropDownMenu {
+  width: 150px;
+  @at-root {
+    .ant-dropdown-menu-item:hover {
+      background-color: red;
+    }
+  }
+}
+.showCompany {
+  padding: 6px 12px 6px 18px;
+  height: 28px;
+  line-height: 22px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.companySelect {
+  position: relative;
+}
+
+.companySelectItem {
+  padding: 0 20px;
+  color: #fff;
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  margin: 0;
+}
+.downIcon {
+  border-width: 4px 4px 0 4px;
+  border-style: solid;
+  border-color: #fff transparent;
+  margin-left: 8px;
+  position: absolute;
+  right: 0;
+  top: 14px;
+}
+
+.logoBase {
+  vertical-align: top;
+  height: 18px;
+  width: 56px;
+  margin-left: 10px;
+}

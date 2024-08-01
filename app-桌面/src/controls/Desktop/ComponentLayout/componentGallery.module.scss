@@ -1,0 +1,107 @@
+.componentGallery {
+    border-bottom: 1px solid rgba(216, 216, 216, 0.6);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.componentGallery .header {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+}
+.componentTagList {
+    display: table;
+    border-spacing: 8px 0;
+    margin-left: 46px;
+}
+
+.componentTagListItem {
+    display: table-cell;
+    width: 72px;
+    height: 24px;
+    color: #fff;
+    line-height: 24px;
+    background: rgba(58, 59, 61, 1);
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.componentTagListItem.active {
+    background: linear-gradient(360deg, #1670f9 0%, #00a0e2 100%);
+}
+
+.componentGallery .header.headerTitleRight {
+    margin-left: 40px;
+}
+
+.componentTagList {
+    display: table;
+    border-spacing: 8px 0;
+    margin-left: 46px;
+}
+
+.componentsList {
+    margin: 14px 70px 0;
+    position: relative;
+}
+
+.componentsList .scrollLeft {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 52px;
+    left: -40px;
+    top: 50px;
+    background: url("../images/left-arrow.png");
+}
+
+.componentsList .scrollRight {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 52px;
+    right: -40px;
+    top: 50px;
+    background: url("../images/right-arrow.png");
+}
+
+.componentsListScrollWrapper {
+    overflow: hidden;
+}
+
+.componentSelectList {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.componentSelectList .componentSelectListItem {
+    width: 280px;
+    display: inline-block;
+    margin: 0 22px;
+}
+
+.componentSelectList .componentSelectListItem .componentCover {
+    display: block;
+    width: 280px;
+    height: 160px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    background-size: 100% 100%;
+}
+.componentSelectList .componentSelectListItem .componentName {
+    color: #e3e3e3;
+    font-size: 14px;
+    margin-top: -10px;
+}
+.emptyComponentList {
+    flex:1;
+    text-align: center;
+    font-size: 30px;
+    color: #787878;
+    line-height: 185px;
+    height: 185px;
+}

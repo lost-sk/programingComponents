@@ -1,0 +1,177 @@
+.layoutModalWrapper {
+  width: 100%;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: 3;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(4px);
+  transition: background 0.75s linear;
+  &.active {
+    background: #000618;
+  }
+  .mask {
+    position: absolute;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(4px);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  .layoutModalScale {
+    width: 1920px;
+    position: relative;
+    background: #fff;
+    margin: auto;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.1);
+    transform-origin: left top;
+  }
+  .layoutModalContainer {
+    margin-top: 16px;
+    margin-left: 70px;
+    margin-right: 70px;
+  }
+  .layoutModalHeader {
+    border-bottom: 1px solid rgba(216, 216, 216, 0.6);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+  .headerTitle {
+    color: #fff;
+    font-size: 20px;
+    margin-right: auto;
+  }
+  .layoutStage {
+    height: 610px;
+    margin-top: 14px;
+    position: relative;
+  }
+  .layoutPlanList {
+    width: 240px;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    &.left {
+      left: 20px;
+    }
+    &.right {
+      right: 20px;
+    }
+  }
+  .centerLayout {
+    position: absolute;
+    left: 380px;
+    right: 380px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .centerLayoutContainer {
+    width: 1920px;
+    height: 1080px;
+    transform: scale(0.527083);
+    transform-origin: left top;
+  }
+  .designCoverImage {
+    position: absolute;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  .blockSizeType {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    width: 82px;
+    text-align: center;
+    height: 82px;
+    background: rgba(0, 0, 0, 0.3);
+    line-height: 86px;
+    border-radius: 8px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .deleteComponentIcon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(226, 70, 64, 1);
+    border-radius: 50%;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+  }
+
+  .deleteComponentIcon:after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: #fff;
+    top: 14px;
+    left: 7px;
+  }
+
+  .componentBlockWrapper .dropArea {
+    position: absolute;
+    line-height: 86px;
+    border-radius: 8px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+  }
+  .buttonGroup {
+    display: table;
+    margin: 20px auto;
+    border-spacing: 60px 30px;
+  }
+  .buttonGroup .buttonItem {
+    display: table-cell;
+    margin: 0 60px;
+    width: 120px;
+    height: 30px;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  .buttonGroup .buttonItem.confirm {
+    background: rgba(42, 203, 66, 1);
+  }
+  .buttonGroup .buttonItem.cancel {
+    background: rgba(58, 59, 61, 1);
+  }
+  .deskAdminMode {
+    color: #fff;
+    font-size: 16px;
+    background: #c16827;
+    padding: 2px 18px;
+    border: 1px solid #622000;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 10px;
+    &.active {
+      background: rgba(42, 203, 66, 1);
+      border: 1px solid #00505b;
+    }
+  }
+}

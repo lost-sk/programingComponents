@@ -1,0 +1,26 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "borderColor",
+    "displayName": "边框颜色",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "object",
+    "displayName": "数据源",
+    "inputType": "ObjectInput"
+  },
+  {
+    "name": "BindingTableHeader",
+    "resource": "FBindingTableHeader.js",
+    "reRenderFunctionName": "fetchSelectServiceData"
+  },
+  {
+    "name": "addButton",
+    "resource": "addButton.js",
+    "reRenderFunctionName": "addButtonData"
+  }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "name": "title",
+        "displayName": "标题",
+        "inputType": "Input"
+    },
+    {
+        "name": "isLegend",
+        "displayName": "图例开关",
+        "resource": "LegendSelect.js"
+    },
+    {
+        "name": "reloadTime",
+        "displayName": "定时刷新",
+        "resource": "ReloadTime.js"
+    },
+    {
+        "name": "id",
+        "displayName": "组件别名",
+        "inputType": "Input"
+    },
+    {
+        "name": "dataSelect",
+        "displayName": "数据源",
+        "resource": "DataSelect.js"
+    }
+]

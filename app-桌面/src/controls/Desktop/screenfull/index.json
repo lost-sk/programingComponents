@@ -1,0 +1,39 @@
+[
+    {
+        "name": "showSupOSLogo",
+        "displayName": "是否显示产品LOGO",
+        "resource": "SwitchProcLogo.js",
+        "defaultValue":false
+    },
+    {
+        "name": "isSSO",
+        "displayName": "启用单点登陆验证",
+        "resource": "SwitchCheckSSO.js",
+        "defaultValue":false
+    },
+    {
+        "name": "isIconWithRightClickInteractive",
+        "displayName": "是否在图标上使用右键交互",
+        "resource": "SwitchIconWithRightClickInteractive.js",
+        "defaultValue":false
+    },
+    {
+        "name": "isDeskAdminMode",
+        "displayName": "是否使用桌面管理员模式",
+        "resource": "SwitchDeskAdmin.js",
+        "defaultValue":false
+    },
+    {
+        "name": "showWeather",
+        "displayName": "是否显示天气",
+        "resource": "SwitchWeather.js",
+        "defaultValue":false
+    },
+    {
+        "name": "autoHideTask",
+        "displayName": "是否自动隐藏任务栏",
+        "resource": "AutoHideTask.js",
+        "defaultValue":false
+
+    }
+]

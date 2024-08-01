@@ -1,0 +1,47 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "外围背景",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "object",
+    "displayName": "服务",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "interval",
+    "displayName": "定时刷新（秒）",
+    "placeholder": "0表示不刷新",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "trigger",
+    "displayName": "触发详情",
+    "resource": "select.js",
+    "defaultValue": "click",
+    "options": [
+      {
+        "label": "点击",
+        "value": "click"
+      },
+      {
+        "label": "悬停",
+        "value": "mousemove"
+      },
+      {
+        "label": "无",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

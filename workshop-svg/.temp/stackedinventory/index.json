@@ -1,0 +1,85 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "fontSize",
+    "displayName": "文字大小",
+    "placeholder": "14px",
+    "inputType": "Input"
+  },
+  {
+    "name": "fontFamily",
+    "displayName": "文字字体",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "微软雅黑",
+        "value": "微软雅黑"
+      },
+      {
+        "label": "黑体",
+        "value": "黑体"
+      },
+      {
+        "label": "楷体",
+        "value": "楷体"
+      },
+      {
+        "label": "隶书",
+        "value": "隶书"
+      },
+      {
+        "label": "幼圆",
+        "value": "幼圆"
+      },
+      {
+        "label": "宋体",
+        "value": "宋体"
+      }
+    ],
+    "defaultValue": "微软雅黑"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "文字颜色",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "showText",
+    "displayName": "是否显示数值",
+    "resource": "select.js",
+    "defaultValue": "true",
+    "options": [
+      {
+        "label": "显示",
+        "value": "true"
+      },
+      {
+        "label": "隐藏",
+        "value": "false"
+      }
+    ]
+  },
+  {
+    "name": "object",
+    "displayName": "数量",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "squareColor",
+    "displayName": "方块颜色",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "squareBoldColor",
+    "displayName": "方块边框颜色",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

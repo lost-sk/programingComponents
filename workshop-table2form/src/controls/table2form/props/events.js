@@ -1,0 +1,123 @@
+import React, { Component } from 'react';
+import { Select, Icon, Button, Modal, Input } from 'antd';
+const { TextArea } = Input;
+
+class CustomComp extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			visible: false,
+			detail: '',
+			index: '0',
+			formList: !_.isEmpty(props.getInfo()) ? props.getInfo() : [],
+			eventList: []
+		}
+
+	}
+
+	componentDidMount() {
+		let url = `/resource/${this.props.appId}/extensions/${this.props.editComponent.props.data.getAttrObject().componentName
+			}/index.json`
+		if (this.props.editComponent?.commonPath?.includes('fileName=resources/plugin')) {
+			url = `${this.props.editComponent.commonPath}/index.json`
+		}
+		fetch(url)
+			.then((item) => {
+				return item.json();
+			})
+			.then((data) => {
+				const r = data.find((element) => {
+					return element.resource === "events.js" && element.name === this._reactInternalFiber.key;
+				});
+				this.setState({
+					eventList: r.eventList
+					// options: r.options,
+					// defaultValue: r.defaultValue,
+					// title: r.displayName
+				})
+			});
+	}
+
+	// 新增交互事件 
+	addItem = () => {
+		const list = [...this.state.formList,
+		{ id: new Date().valueOf(), content: '', detail: '' }
+		]
+		this.setState({ formList: list })
+		this.props.edit(list)
+	}
+	// 删除事件
+	deleteItem = (index) => {
+		const list = this.state.formList
+		list.splice(index, 1)
+		this.setState({ formList: list })
+		this.props.edit(list)
+	}
+	// 编辑事件脚本确认
+	handleOk = e => {
+		const list = this.state.formList
+		list[this.state.index].detail = this.state.detail
+		this.setState({ visible: false, formList: list });
+		this.props.edit(list)
+	};
+	// 关闭编辑脚本弹窗
+	handleCancel = e => {
+		this.setState({ visible: false });
+	};
+	// 选择事件类型
+	handChange = (e, index) => {
+		const list = this.state.formList
+		list[e].content = index
+		this.setState({ formList: list })
+		this.props.edit(list)
+	}
+	// 打开脚本编辑弹窗
+	showModal = (e, index) => {
+		const data = this.state.formList[e].detail
+		this.setState({ detail: data, index: e, visible: true, });
+	};
+
+	// 脚本内容改变
+	textChange = e => {
+		this.setState({ detail: e.target.value })
+	}
+
+	render() {
+		const { visible, detail, formList, eventList } = this.state;
+		return (
+			<div style={{ width: '250px', padding: '5px', marginTop: '20px' }}>
+				{formList.map((item, index) => {
+					return <div key={item.id} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+						<Select defaultValue={item.content} style={{ width: '55%' }} onChange={this.handChange.bind(this, index)} size='small'>
+							{
+								eventList.map(it => (
+									<Option key={it.name} value={it.value}>{it.name}</Option>
+								))
+							}
+						</Select>
+						<Button type="primary" style={{ width: '20%' }} size='small' onClick={this.showModal.bind(this, index)}>设置</Button>
+						<Button style={{ width: '20%' }} size='small' onClick={this.deleteItem.bind(this, index)}>删除</Button>
+					</div>
+				})}
+
+				<div  >
+					<Button type="dashed" style={{ width: '100%' }} onClick={this.addItem}>
+						<Icon type="plus" /> 新增交互事件
+					</Button>
+				</div>
+
+				<Modal
+					title="事件编辑"
+					visible={visible}
+					maskClosable={false}
+					onOk={this.handleOk}
+					onCancel={this.handleCancel}
+				>
+					<TextArea value={detail || ''} onChange={this.textChange} rows={25} />
+				</Modal>
+			</div>
+		);
+	}
+}
+
+export default CustomComp;

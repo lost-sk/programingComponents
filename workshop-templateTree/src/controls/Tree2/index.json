@@ -1,0 +1,49 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "选中背景",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "checkable",
+    "displayName": "启用复选框  ",
+    "inputType": "BaseRadio",
+    "options": [
+      { "label": "ON", "value": "on" },
+      { "label": "OFF", "value": "off" }
+    ]
+  },
+  {
+    "name": "deleteable",
+    "displayName": "删除功能  ",
+    "inputType": "BaseRadio",
+    "options": [
+      { "label": "ON", "value": "on" },
+      { "label": "OFF", "value": "off" }
+    ]
+  },
+  {
+    "name": "expendParent",
+    "displayName": "默认展开  ",
+    "inputType": "BaseRadio",
+    "options": [
+      { "label": "ON", "value": "on" },
+      { "label": "OFF", "value": "off" }
+    ]
+  },
+  {
+    "name": "defaultText",
+    "displayName": "空内容提示",
+    "placeholder": "暂无内容",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "events",
+    "displayName": "交互事件",
+    "resource": "event.js"
+  }
+]

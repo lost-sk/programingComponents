@@ -1,0 +1,81 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "背景色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "startColor",
+    "displayName": "起始色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "endColor",
+    "displayName": "终点色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "xAxisBars",
+    "displayName": "宽度(x)",
+    "placeholder": "150",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "yAxisBars",
+    "displayName": "深度(y)",
+    "placeholder": "250",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "zAxisBars",
+    "displayName": "高度(z)",
+    "placeholder": "20",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "htmlDetail",
+    "resource": "html.js"
+  },
+  {
+    "name": "object",
+    "displayName": "坐标点位",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "interval",
+    "displayName": "定时刷新（秒）",
+    "placeholder": "0表示不刷新",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "symbolSize",
+    "displayName": "图标大小",
+    "placeholder": "默认值 20",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "debugMode",
+    "displayName": "调试模式",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "是",
+        "value": "true"
+      },
+      {
+        "label": "否",
+        "value": "false"
+      }
+    ],
+    "defaultValue": "true"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

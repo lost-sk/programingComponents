@@ -1,0 +1,64 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "外围背景",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "cityColor",
+    "displayName": "名称颜色",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "zoom",
+    "displayName": "缩放比例",
+    "placeholder": "1.00~5.00",
+    "inputType": "Input"
+  },
+  {
+    "name": "topN",
+    "displayName": "Top",
+    "placeholder": "TopN",
+    "inputType": "Input"
+  },
+  {
+    "name": "object",
+    "displayName": "点位数据",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "interval",
+    "displayName": "定时刷新（秒）",
+    "placeholder": "0表示不刷新",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "trigger",
+    "displayName": "触发详情",
+    "inputType": "Selector",
+    "defaultValue": "none",
+    "options": [
+      {
+        "label": "点击",
+        "value": "click"
+      },
+      {
+        "label": "移动",
+        "value": "mousemove"
+      },
+      {
+        "label": "无",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

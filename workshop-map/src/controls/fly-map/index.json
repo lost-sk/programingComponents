@@ -1,0 +1,92 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "外围背景",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "areaColor",
+    "displayName": "区域背景",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "borderColor",
+    "displayName": "线条颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "cityColor",
+    "displayName": "名称颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "showCitizenName",
+    "displayName": "显示城市",
+    "resource": "select.js",
+    "defaultValue": "disable",
+    "options": [
+      {
+        "label": "所有城市",
+        "value": "enable"
+      },
+      {
+        "label": "连线城市",
+        "value": "disable"
+      }
+    ]
+  },
+  {
+    "name": "scale",
+    "displayName": "允许缩放",
+    "resource": "select.js",
+    "defaultValue": "enable",
+    "options": [
+      {
+        "label": "允许",
+        "value": "enable"
+      },
+      {
+        "label": "禁止",
+        "value": "disable"
+      }
+    ]
+  },
+  {
+    "name": "move",
+    "displayName": "允许移动",
+    "resource": "select.js",
+    "defaultValue": "enable",
+    "options": [
+      {
+        "label": "允许",
+        "value": "enable"
+      },
+      {
+        "label": "禁止",
+        "value": "disable"
+      }
+    ]
+  },
+  {
+    "name": "zoom",
+    "displayName": "缩放比例",
+    "placeholder": "1.00~5.00",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "flyObject",
+    "displayName": "飞线数据",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "center",
+    "displayName": "中心坐标",
+    "placeholder": "107.12,33.07",
+    "inputType": "BaseInput"
+  }
+]

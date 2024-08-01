@@ -1,0 +1,11 @@
+.loadingIcon {
+  width: 200px;
+  height: 200px;
+  margin: 200px auto;
+}
+
+:global {
+  #appPreviewWrapper .ant-spin-nested-loading .ant-spin-container {
+    overflow-y: hidden !important;
+  }
+}

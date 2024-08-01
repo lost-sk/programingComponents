@@ -1,0 +1,34 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "xAxisBars",
+    "displayName": "宽度(x)",
+    "placeholder": "100",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "yAxisBars",
+    "displayName": "深度(y)",
+    "placeholder": "100",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "zAxisBars",
+    "displayName": "高度(z)",
+    "placeholder": "20",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "object",
+    "displayName": "点位数据",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

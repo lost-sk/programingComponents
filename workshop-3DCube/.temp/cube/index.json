@@ -1,0 +1,23 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "object",
+    "displayName": "图像信息",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "interval",
+    "displayName": "定时刷新（秒）",
+    "placeholder": "0表示不刷新",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "背景色",
+    "inputType": "BaseColorPickerLabel"
+  }
+]

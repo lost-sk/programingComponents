@@ -1,0 +1,168 @@
+.designBoard {
+    transform-origin: left top;
+    width: 1920px;
+    height: 1080px;
+    background-size: cover;
+    position: relative;
+    border-radius: 26px;
+    overflow: hidden;
+}
+
+.designBoard .userCardTemplate {
+    position: absolute;
+    width: 280px;
+    height: 136px;
+    background: rgba(216, 216, 216, 0.5);
+    border-radius: 6px;
+    left: 40px;
+    top: 64px;
+}
+
+.designBoard .avatar {
+    float: left;
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    margin-left: 32px;
+    margin-top: 26px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.designBoard .avatar:after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(176, 176, 176, 1);
+    border-radius: 50%;
+    top: 25px;
+    left: 25px;
+}
+
+.designBoard .avatar:before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(176, 176, 176, 1);
+    border-radius: 50%;
+    top: 57px;
+    left: 15px;
+}
+.designBoard .userInfo {
+    display: table-cell;
+    padding-left: 20px;
+    padding-top: 24px;
+    color: #fff;
+}
+.designBoard .userInfo .userName {
+    font-size: 20px;
+}
+
+.designBoard .userInfo .infoItem {
+    margin-top: 6px;
+}
+
+.designBoard .appListTemplate {
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 40px;
+    top: 230px;
+}
+.appListTemplate .appItem {
+    width: 72px;
+    height: 120px;
+}
+.appListTemplate .appItem .itemIcon {
+    width: 72px;
+    height: 72px;
+    border-radius: 6px;
+    background: rgba(216, 216, 216, 0.7);
+}
+.appListTemplate .appItem .itemDesc {
+    color: #fff;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.designBoard .componentDesignStage {
+    width: 1506px;
+    height: 936px;
+    position: absolute;
+    left: 392px;
+    top: 56px;
+}
+
+.designBoard .componentDesignStage .designCoverImage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-size: 100% 100%;
+}
+
+.designBoard .componentDesignStage .blockSizeType {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    width: 82px;
+    text-align: center;
+    height: 82px;
+    background: rgba(0, 0, 0, 0.3);
+    line-height: 86px;
+    border-radius: 8px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.designBoard  .deleteComponentIcon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.layoutBlock {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.containerBlock {
+    position: relative;
+}
+
+.containerBlockWithStyle{
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    background: rgba(255,255,255,.4);
+    margin: auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.containerBlockWithRuntimeStyle {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    margin: auto;
+    border-radius: 12px;
+    overflow: hidden;
+}

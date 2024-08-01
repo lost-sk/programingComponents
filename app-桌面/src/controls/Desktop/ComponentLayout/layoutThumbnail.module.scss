@@ -1,0 +1,60 @@
+.layoutPlanListItem {
+    width: 240px;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.designBoardThumbnailWrapper {
+    width: 240px;
+    height: 135px;
+    position: relative;
+    cursor: pointer;
+}
+
+.designBoardThumbnail {
+    width: 1920px;
+    height: 1080px;
+    transform: scale(0.125);
+    transform-origin: left top;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.layoutInfo.iconSizeContainer {
+    justify-content: center;
+    margin-top: 10px;
+}
+.iconRadio {
+    text-align: center;
+    color: #fff;
+}
+
+.iconSizeContainer .iconRadio .iconSpanRadio {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid;
+    vertical-align: text-bottom;
+    position: relative;
+}
+
+.iconSizeContainer .iconRadio .iconSpanRadio.active {
+    background: rgba(42, 203, 66, 1);
+}
+
+.iconSizeContainer .iconRadio .iconSpanRadio.active:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 6px;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    left: 3px;
+    top: 1px;
+    transform: rotate(-45deg);
+}
+

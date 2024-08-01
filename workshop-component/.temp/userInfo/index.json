@@ -1,0 +1,51 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "字体颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "fontSize",
+    "displayName": "字体大小",
+    "placeholder": "16",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "fontWeight",
+    "displayName": "字体粗细",
+    "placeholder": "400(100~1000)",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "showType",
+    "displayName": "显示类型",
+    "resource": "select.js",
+    "defaultValue": "1",
+    "options": [
+      {
+        "label": "用户",
+        "value": "1"
+      },
+      {
+        "label": "部门",
+        "value": "2"
+      },
+      {
+        "label": "岗位",
+        "value": "3"
+      },
+      {
+        "label": "公司",
+        "value": "4"
+      },
+      {
+        "label": "角色",
+        "value": "5"
+      }
+    ]
+  }
+]

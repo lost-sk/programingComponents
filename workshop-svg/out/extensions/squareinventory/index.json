@@ -1,0 +1,132 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "fontSize",
+    "placeholder": "14px",
+    "inputType": "BaseInput",
+    "prefix": "文字大小",
+    "prefixWidth": "60px"
+  },
+  {
+    "name": "fontFamily",
+    "displayName": "文字字体",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "微软雅黑",
+        "value": "微软雅黑"
+      },
+      {
+        "label": "黑体",
+        "value": "黑体"
+      },
+      {
+        "label": "楷体",
+        "value": "楷体"
+      },
+      {
+        "label": "隶书",
+        "value": "隶书"
+      },
+      {
+        "label": "幼圆",
+        "value": "幼圆"
+      },
+      {
+        "label": "宋体",
+        "value": "宋体"
+      }
+    ],
+    "defaultValue": "微软雅黑"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "文字颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "squareHeight",
+    "placeholder": "14px",
+    "inputType": "BaseInput",
+    "prefix": "方块高度",
+    "prefixWidth": "60px"
+  },
+  {
+    "name": "squareWeight",
+    "placeholder": "14px",
+    "inputType": "BaseInput",
+    "prefix": "方块宽度",
+    "prefixWidth": "60px"
+  },
+  {
+    "name": "squareColor",
+    "displayName": "方块颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "squareBorderColor",
+    "displayName": "方块边框颜色",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "showText",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "显示",
+        "value": "true"
+      },
+      {
+        "label": "隐藏",
+        "value": "false"
+      }
+    ],
+    "displayName": "是否显示数值",
+    "defaultValue": "true"
+  },
+  {
+    "name": "showBorder",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "是",
+        "value": "true"
+      },
+      {
+        "label": "否",
+        "value": "false"
+      }
+    ],
+    "displayName": "是否显示方块边框",
+    "defaultValue": "true"
+  },
+  {
+    "name": "squareDirection",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "靠左",
+        "value": "left"
+      },
+      {
+        "label": "靠右",
+        "value": "right"
+      }
+    ],
+    "displayName": "方框方向",
+    "defaultValue": "left"
+  },
+  {
+    "name": "object",
+    "displayName": "数量",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

@@ -1,0 +1,153 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "外围背景",
+    "inputType": "ColorPickerLabel"
+  },
+  {
+    "name": "areaColor",
+    "displayName": "区域背景",
+    "inputType": "ColorPickerLabel"
+  },
+  {
+    "name": "borderColor",
+    "displayName": "线条颜色",
+    "inputType": "ColorPickerLabel"
+  },
+  {
+    "name": "cityColor",
+    "displayName": "名称颜色",
+    "inputType": "ColorPickerLabel"
+  },
+  {
+    "name": "normalColor",
+    "displayName": "正常状态",
+    "inputType": "ColorPickerLabel"
+  },
+  {
+    "name": "warnColor",
+    "displayName": "警告状态",
+    "inputType": "ColorPickerLabel"
+  },
+  {
+    "name": "errorColor",
+    "displayName": "异常状态",
+    "inputType": "ColorPickerLabel"
+  },
+  {
+    "name": "scale",
+    "displayName": "允许缩放",
+    "resource": "select.js",
+    "defaultValue": "enable",
+    "options": [
+      {
+        "label": "允许",
+        "value": "enable"
+      },
+      {
+        "label": "禁止",
+        "value": "disable"
+      }
+    ]
+  },
+  {
+    "name": "move",
+    "displayName": "允许移动",
+    "resource": "select.js",
+    "defaultValue": "enable",
+    "options": [
+      {
+        "label": "允许",
+        "value": "enable"
+      },
+      {
+        "label": "禁止",
+        "value": "disable"
+      }
+    ]
+  },
+  {
+    "name": "zoom",
+    "displayName": "缩放比例",
+    "placeholder": "1.00~5.00",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "showFly",
+    "displayName": "显示飞线图",
+    "resource": "select.js",
+    "defaultValue": "enable",
+    "options": [
+      {
+        "label": "是",
+        "value": "enable"
+      },
+      {
+        "label": "否",
+        "value": "disable"
+      }
+    ]
+  },
+  {
+    "name": "flyObject",
+    "displayName": "飞线数据",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "center",
+    "displayName": "中心坐标",
+    "placeholder": "107.12,33.07",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "object",
+    "displayName": "点位数据",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "symbolSize",
+    "displayName": "图标大小",
+    "placeholder": "默认值 20",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "interval",
+    "displayName": "定时刷新（秒）",
+    "placeholder": "0表示不刷新",
+    "inputType": "BaseInput"
+  },
+  {
+    "name": "trigger",
+    "displayName": "触发详情",
+    "resource": "select.js",
+    "defaultValue": "click",
+    "options": [
+      {
+        "label": "点击",
+        "value": "click"
+      },
+      {
+        "label": "悬停",
+        "value": "mousemove"
+      },
+      {
+        "label": "无",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "htmlDetail",
+    "resource": "html.js"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

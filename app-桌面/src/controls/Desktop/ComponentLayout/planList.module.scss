@@ -1,0 +1,22 @@
+.designPlan {
+    position: absolute;
+    right: 16px;
+    bottom: 46px;
+    display: table;
+    border-spacing: 8px;
+  }
+  
+  .designPlan .planItemButton {
+    display: table-cell;
+    width: 72px;
+    height: 24px;
+    background: #3A3B3D;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
+    cursor:pointer;    
+  }
+  .designPlan .planItemButton.active {
+    background: linear-gradient(360deg, #1670F9 0%, #00A0E2 100%);
+  }

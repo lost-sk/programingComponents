@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="html" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+
+<body class="body"></body>
+<script>
+    function request(url, options) {
+        var defaultOptions = {
+            credentials: 'same-origin'
+        };
+        var newOptions = {
+            // ...defaultOptions,
+            ...options
+        };
+        newOptions.headers = {};
+        // 当文件上传时设置 fetchType="file"
+        if ((!newOptions.fetchType || newOptions.fetchType !== 'file') && (newOptions.method === 'POST' || newOptions
+                .method === 'PUT' || newOptions.method === 'DELETE')) {
+            newOptions.headers = {
+                Accept: 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
+                ...newOptions.headers
+
+            };
+            newOptions.body = JSON.stringify(newOptions.body);
+        }
+
+
+        var ticket = localStorage.getItem('ticket');
+        if (ticket) {
+            newOptions.headers.Authorization = `Bearer ${ticket}`;
+            newOptions.headers['Accept-Language'] = localStorage.getItem('language') || 'zh-cn';
+        }
+        if (newOptions.method !== 'OPTIONS') {
+            var result = {}; // 最终返回的结果
+            return fetch(url, newOptions)
+                .then((response) => {
+                    // 如果HTTP400以上的返回信息中有message，优先采用返回response的message，如果没有，则采用自定义的status状态信息
+                    if (response.status >= 400) {
+                        response.message = response.message || messages[`request${response.status}`] || response
+                            .statusText;
+                    }
+                    return response;
+                })
+                .then((response) => {
+                    var {
+                        status,
+                        message
+                    } = response;
+                    result.code = `${status}`;
+                    result.message = message;
+
+                    // delete的时候没有返回信息 code==204 为删除成功
+                    if ((newOptions.method === 'DELETE' || newOptions.method === 'POST') && status === 204) {
+                        return {
+                            code: `${status}`
+                        };
+                    }
+                    // status为404是不可以用response.json(), 统一处理404错误
+                    if (status === 404) {
+                        return {
+                            code: `${status}`,
+                            message: messages.requestNotFound
+                        };
+                    }
+                    // noNext不用处理下一个then
+                    if (status < 400) {
+                        result.noNext = true;
+                    } else {
+                        result.noNext = false;
+                    }
+
+                    return response.json();
+                })
+                .then((response) => {
+                    var res = Object.assign({}, result, response);
+                    if (result.noNext) {
+                        return res;
+                    }
+
+                    if (Number(res.code) === 401) {
+                        if (window !== window.top) {
+                            window.parent.postMessage('timeout', '*');
+                        }
+                        return res;
+                    }
+                    // 演示版本暂时不出现右上角的错误提示框 zhangshunjin 2018-06-24 11:00  --- 出现 wzd 2018-07-19
+
+                    if (Number(res.code) === 425) {
+                        if (window.parent) {
+                            window.parent.postMessage('backup', '*');
+                        }
+                        return res;
+                    }
+
+                    if (Number(res.code) >= 400) {
+                        getMessage({
+                            type: 'error',
+                            message: res.code,
+                            description: res.message || response.error || messages.retryAgain
+                        });
+                    }
+
+                    return res;
+                })
+                .catch(() => {});
+        }
+    }
+
+    window.onload = function () {
+        var origin = window.location.origin;
+        var search = window.location.search.substr(1).split(/&/g);
+        var query = {}
+        for(var i=0;i<search.length;i++){
+            var p = search[i].split('=');
+            query[p[0]] = p[1];
+        }
+
+        var url = '/inter-api/auth/login';
+        var param = {
+            method: 'POST',
+            body: {
+                autoLogin: false,
+                clientId: "ms-content-sample",
+                password: query.password,
+                userName: query.username
+            }
+        }
+
+        function setCookie(key, value, time) {
+            var now = new Date();
+            now.setTime(now.getTime() + time);
+            var expires = `expires=${now.toGMTString()}`;
+            document.cookie = `${key}=${value}${time ? `; ${expires}` : ''}; path=/`;
+        }
+
+        request(url, param).then(res => {
+            window.localStorage.setItem('loginMsg', JSON.stringify(res))
+            window.localStorage.setItem('ticket', res.ticket || '');
+            window.localStorage.setItem('antd-pro-authority', 'admin');
+            setCookie('suposTicket', res.ticket, 60 * 24 * 3 * 1000);
+			setTimeout(function () { window.location.href = decodeURIComponent(query.redirect);}, 300)
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "backgroundColor",
+    "displayName": "选中背景",
+    "inputType": "BaseColorPickerLabel"
+  },
+  {
+    "name": "checkable",
+    "displayName": "启用复选框  ",
+    "inputType": "BaseRadio",
+    "options": [
+      { "label": "ON", "value": "on" },
+      { "label": "OFF", "value": "off" }
+    ]
+  },
+  {
+    "name": "deleteable",
+    "displayName": "删除功能  ",
+    "inputType": "BaseRadio",
+    "options": [
+      { "label": "ON", "value": "on" },
+      { "label": "OFF", "value": "off" }
+    ]
+  },
+  {
+    "name": "expendParent",
+    "displayName": "默认展开  ",
+    "inputType": "BaseRadio",
+    "options": [
+      { "label": "ON", "value": "on" },
+      { "label": "OFF", "value": "off" }
+    ]
+  },
+  {
+    "name": "events",
+    "displayName": "交互事件",
+    "inputType": "ActionSelector",
+    "options": [
+      { "label": "内容加载", "value": "componentDidMount" },
+      { "label": "删除", "value": "onDelete" },
+      { "label": "选中", "value": "onSelect" }
+    ]
+  }
+]

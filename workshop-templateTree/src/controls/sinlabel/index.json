@@ -1,0 +1,98 @@
+[
+  {
+    "name": "document",
+    "displayName": "使用说明",
+    "resource": "document.js"
+  },
+  {
+    "name": "labelcon",
+    "displayName": "标签内容",
+    "inputType": "BaseInput",
+    "placeholder": "标签"
+  },
+  {
+    "name": "textsize",
+    "displayName": "字体大小",
+    "inputType": "InputNumber",
+    "placeholder": "请输入",
+    "defaultValue": "12"
+  },
+  {
+    "name": "style",
+    "displayName": "预设样式",
+    "resource": "select.js",
+    "options": [
+      {
+        "value": "magenta",
+        "label": "品红色"
+      },
+      {
+        "value": "red",
+        "label": "红色"
+      },
+      {
+        "value": "volcano",
+        "label": "火山红"
+      },
+      {
+        "value": "orange",
+        "label": "橙色"
+      },
+      {
+        "value": "gold",
+        "label": "金色"
+      },
+      {
+        "value": "lime",
+        "label": "石灰色"
+      },
+      {
+        "value": "green",
+        "label": "绿色"
+      },
+      {
+        "value": "cyan",
+        "label": "青色"
+      },
+      {
+        "value": "blue",
+        "label": "蓝色"
+      },
+      {
+        "value": "geekblue",
+        "label": "深蓝色"
+      },
+      {
+        "value": "purple",
+        "label": "紫色"
+      }
+    ],
+    "defaultValue": "magenta"
+  },
+  {
+    "name": "usediy",
+    "displayName": "使用自定义",
+    "resource": "select.js",
+    "options": [
+      {
+        "value": "false",
+        "label": "否"
+      },
+      {
+        "value": "true",
+        "label": "是"
+      }
+    ],
+    "defaultValue": "false"
+  },
+  {
+    "name": "diycolor",
+    "displayName": "自定义颜色",
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "event",
+    "displayName": "交互事件",
+    "resource": "event.js"
+  }
+]

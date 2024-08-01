@@ -1,0 +1,186 @@
+.settingModal {
+  position: absolute;
+  width: 528px;
+  height: 302px;
+  top: 290px;
+  left: calc(50% - 264px);
+  border: 1px solid rgba(35, 35, 35, 0.95);
+  border-radius: 4px;
+
+  .modalContainer {
+    height: 258px;
+  }
+  .containerLeft {
+    width: 124px;
+    background: rgba(35, 35, 35, 0.95);
+    height: 258px;
+    float: left;
+    border-right: 1px solid rgba(18, 18, 18, 1);
+    padding-top: 6px;
+  }
+  .settingMenu {
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 1px;
+    padding: 0;
+    margin: 0;
+    .settingItem {
+      list-style: none;
+      height: 28px;
+      line-height: 27px;
+      padding-left: 12px;
+      margin: 5px 0;
+      &.active {
+        background: rgba(1, 88, 208, 1);
+      }
+    }
+  }
+  .containerRight {
+    height: 258px;
+    background: rgba(35, 35, 35, 0.95);
+    display: table-cell;
+    width: 9999px;
+
+    .userInfo {
+      padding-top: 10px;
+      height: 100%;
+      :global {
+        .ant-upload-picture-card-wrapper {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          float: left;
+          margin-left: 24px;
+        }
+        .ant-upload.ant-upload-select-picture-card {
+          width: auto !important;
+          height: auto !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          background-color: transparent !important;
+          border: none;
+          float: left;
+          .ant-upload {
+            padding: 0;
+          }
+        }
+      }
+    }
+    .userAvatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      float: left;
+      margin-left: 24px;
+    }
+    .userInfoNameItem {
+      font-size: 20px;
+    }
+    .userTypeItem {
+      font-size: 12px;
+      color: #6d6d6d;
+      margin-top: 18px;
+    }
+    .userInfoItem {
+      font-size: 14px;
+      margin: 4px 0;
+      color: #fff;
+    }
+    .userInfoContainer {
+      display: table-cell;
+      padding-left: 24px;
+      width: 9997px;
+      color: #fff;
+    }
+  }
+  .userSettingBackgroundWrapper {
+    .userSettingBackgroundList {
+      padding-top: 10px;
+      padding-left: 40px;
+    }
+    .userSettingBackgroundItem {
+      display: inline-block;
+      width: 153px;
+      height: 86.4px;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      background-size: cover;
+    }
+    .uploadBtnWrapper {
+      display: block;
+      width: 140px;
+      margin: 0 auto;
+    }
+  }
+  .iconSizeContainer,.appListLayoutContainer {
+    display: flex;
+    margin: 0 50px;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-top: 20px;
+  }
+  .iconWrapper {
+    width: 72px;
+    .iconSizeItem {
+      width: 72px;
+      height: 72px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+    .iconPic {
+      background: url(./images/appIcon.png);
+      border-radius: 4px;
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      background-size: contain;
+      left: 0;
+      top: 0;
+      right: 0;
+      margin: auto;
+      &.large {
+        width: 72px;
+        height: 72px;
+      }
+      &.normal {
+        width: 64px;
+        height: 64px;
+      }
+      &.small {
+        width: 52px;
+        height: 52px;
+      }
+    }
+    .iconRadio {
+      text-align: center;
+      color: #fff;
+    }
+    .iconSpanRadio {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid;
+      vertical-align: text-bottom;
+      position: relative;
+      &.active {
+        background: rgba(42, 203, 66, 1);
+      }
+      &.active::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 6px;
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        left: 3px;
+        top: 1px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .iconWrapperLarge {
+    width: 90px;
+  }
+}

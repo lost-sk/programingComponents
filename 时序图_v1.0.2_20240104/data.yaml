@@ -1,0 +1,22 @@
+name: '时序图'
+resourceId: Timeline_gdlGBkWo3h
+componentId: 1742427534907170816
+version: '1.0.2'
+description: '通过服务的方式获取时序信息绑定到控件上，按照数组顺序进行前后序列的自动展开，添加单击事件后，进行单击卡片操作，可通过脚本获取该卡片信息，自定义实现弹出窗口或者跳转页面等操作。'
+category:
+  code: ide
+  name: X-IDE
+childCategory:
+  code: ide_page_control
+  name: 页面控件
+resource:
+  path: 'resources/dist.zip'
+instruction:
+  content: '通过服务的方式获取时序信息绑定到控件上，按照数组顺序进行前后序列的自动展开，添加单击事件后，进行单击卡片操作，可通过脚本获取该卡片信息，自定义实现弹出窗口或者跳转页面等操作。'
+icon:
+  path: 'statics/icons/timeline.png'
+previews:
+  - path: 'statics/previews/1.png'
+couldUpdateDisable: false
+versionUpdateDisable: false
+dataVersion: 1.0.0

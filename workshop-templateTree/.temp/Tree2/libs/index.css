@@ -1,0 +1,32 @@
+.treeContainer_jsyq {
+  .ant-tree-node-content-wrapper {
+    display: inline-block;
+    width: calc(100% - 24px);
+  }
+  .ant-tree-title {
+    width: 100%;
+  }
+  .instanceTitle {
+    display: flex;
+    align-items: center;
+  }
+
+  .instanceTitle span {
+    /* display: inline-block; */
+    width: calc(100% - 20px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .instanceTitle:hover {
+    .instanceIcon {
+      display: inline-block;
+    }
+  }
+  .instanceIcon {
+    display: none;
+    height: '16px';
+    width: '16px';
+    color: '#fff';
+  }
+}

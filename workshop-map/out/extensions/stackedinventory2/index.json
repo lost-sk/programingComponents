@@ -1,0 +1,57 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "fontSize",
+    "displayName": "文字大小",
+    "restore": false,
+    "placeholder": "14px",
+    "inputType": "Input"
+  },
+  {
+    "name": "fontFamily",
+    "displayName": "文字字体",
+    "restore": false,
+    "placeholder": "sans-serif",
+    "inputType": "Input"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "文字颜色",
+    "restore": false,
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "showText",
+    "displayName": "是否显示数值",
+    "inputType": "BaseSelector",
+    "options": [
+      {
+        "label": "显示",
+        "value": "true"
+      },
+      {
+        "label": "隐藏",
+        "value": "false"
+      }
+    ]
+  },
+  {
+    "name": "object",
+    "displayName": "数量",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "squareColor",
+    "displayName": "方块颜色",
+    "restore": false,
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

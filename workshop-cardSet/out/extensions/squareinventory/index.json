@@ -1,0 +1,101 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "fontSize",
+    "displayName": "文字大小",
+    "restore": false,
+    "placeholder": "14px",
+    "inputType": "Input"
+  },
+  {
+    "name": "fontFamily",
+    "displayName": "文字字体",
+    "restore": false,
+    "placeholder": "sans-serif",
+    "inputType": "Input"
+  },
+  {
+    "name": "fontColor",
+    "displayName": "文字颜色",
+    "restore": false,
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "object",
+    "displayName": "数量",
+    "inputType": "ObjectInput",
+    "showCopyIcon": false
+  },
+  {
+    "name": "squareHeight",
+    "displayName": "方块高度",
+    "restore": false,
+    "placeholder": "14px",
+    "inputType": "Input"
+  },
+  {
+    "name": "squareWeight",
+    "displayName": "方块宽度",
+    "restore": false,
+    "placeholder": "14px",
+    "inputType": "Input"
+  },
+  {
+    "name": "squareColor",
+    "displayName": "方块颜色",
+    "restore": false,
+    "inputType": "ColorPicker"
+  },
+  {
+    "name": "showText",
+    "displayName": "是否显示数值",
+    "inputType": "BaseSelector",
+    "options": [
+      {
+        "label": "显示",
+        "value": "true"
+      },
+      {
+        "label": "隐藏",
+        "value": "false"
+      }
+    ]
+  },
+  {
+    "name": "showBorder",
+    "displayName": "是否显示方块边框",
+    "inputType": "BaseSelector",
+    "options": [
+      {
+        "label": "是",
+        "value": "true"
+      },
+      {
+        "label": "否",
+        "value": "false"
+      }
+    ]
+  },
+  {
+    "name": "squareDirection",
+    "displayName": "方框方向",
+    "inputType": "BaseSelector",
+    "options": [
+      {
+        "label": "靠左",
+        "value": "left"
+      },
+      {
+        "label": "靠右",
+        "value": "right"
+      }
+    ]
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]

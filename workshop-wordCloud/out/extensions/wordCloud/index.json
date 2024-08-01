@@ -1,0 +1,41 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "starCounts",
+    "displayName": "star总数",
+    "restore": false,
+    "placeholder": "请输入star总数",
+    "inputType": "Input"
+  },
+  {
+    "name": "defaultValue",
+    "displayName": "默认值",
+    "restore": false,
+    "placeholder": "请输入默认值",
+    "inputType": "Input"
+  },
+  {
+    "name": "allowHalf",
+    "displayName": "允许半选",
+    "restore": false,
+    "inputType": "Selector",
+    "defaultValue": "false",
+    "options": [
+      {
+        "label": "拒绝",
+        "value": "false"
+      },
+      {
+        "label": "允许",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "events",
+    "resource": "events.js"
+  }
+]
