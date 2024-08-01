@@ -4,6 +4,7 @@ node_modules/
 package/
 *.zip
 *.7z
+.temp/
 # Logs
 logs
 *.log
