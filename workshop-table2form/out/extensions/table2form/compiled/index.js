@@ -694,7 +694,11 @@ var EditableTable = /*#__PURE__*/function (_Component) {
           reset: true,
           save: true
         }
-      } : _$get5$addButton;
+      } : _$get5$addButton,
+          _$get5$styleType = _$get5.styleType,
+          styleType = _$get5$styleType === void 0 ? {
+        value: 'style1'
+      } : _$get5$styleType;
 
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_antd.Form, null, /*#__PURE__*/_react.default.createElement("div", {
         style: {
@@ -705,15 +709,12 @@ var EditableTable = /*#__PURE__*/function (_Component) {
         if (column.dataIndex == 'operation') return null;
         return /*#__PURE__*/_react.default.createElement("div", {
           style: {
-            display: 'flex'
-          }
-        }, /*#__PURE__*/_react.default.createElement("span", {
-          style: labelColStyle
-        }, column.title, ":"), /*#__PURE__*/_react.default.createElement("div", {
-          style: {
+            display: 'flex',
             marginRight: '20px'
           }
-        }, _this2.parseItem(column)));
+        }, /*#__PURE__*/_react.default.createElement("span", {
+          style: styleType.value === 'style1' ? labelColStyle : labelColStyle2
+        }, column.title, ":"), _this2.parseItem(column));
       })), /*#__PURE__*/_react.default.createElement(_antd.Row, null, /*#__PURE__*/_react.default.createElement(_antd.Col, {
         span: 24
       }, addButton.value.save && /*#__PURE__*/_react.default.createElement(_antd.Button, {
@@ -742,5 +743,18 @@ var labelColStyle = {
   textAlign: 'right',
   paddingRight: '12px',
   fontSize: '12px',
-  minWidth: '130px'
+  minWidth: '130px',
+  marginBottom: '12px'
+};
+var labelColStyle2 = {
+  lineHeight: '26px',
+  textAlign: 'center',
+  height: '26px',
+  fontSize: '12px',
+  minWidth: '130px',
+  marginBottom: '12px',
+  marginTop: '2px',
+  border: '1px solid #d9d9d9',
+  borderRadius: '4px',
+  background: '#efefef'
 };

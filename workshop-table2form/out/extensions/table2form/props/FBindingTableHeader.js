@@ -426,9 +426,9 @@ class HeaderSelect extends Component {
                           <Option
                             key={item.__optionValue}
                             value={item.__optionValue}
-                            disabled={tableHeaderSource.find(
-                              (r) => r.dataIndex === item.__optionValue
-                            )}
+                            // disabled={tableHeaderSource.find(
+                            //   (r) => r.dataIndex === item.__optionValue
+                            // )}
                           >
                             {item.__optionName}
                           </Option>

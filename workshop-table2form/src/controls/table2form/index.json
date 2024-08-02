@@ -9,6 +9,22 @@
     "inputType": "ColorPicker"
   },
   {
+    "name": "styleType",
+    "displayName": "样式",
+    "resource": "select.js",
+    "options": [
+      {
+        "value": "style1",
+        "label": "默认"
+      },
+      {
+        "value": "style2",
+        "label": "样式2"
+      }
+    ],
+    "defaultValue": "style1"
+  },
+  {
     "name": "object",
     "displayName": "数据源",
     "inputType": "ObjectInput"

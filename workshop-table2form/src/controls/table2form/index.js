@@ -655,11 +655,9 @@ class EditableTable extends Component {
   render() {
     const { columns } = this.state
 
-    const { addButton = { value: { reset: true, save: true } } } = _.get(
-      this.props,
-      'data._attrObject.data',
-      {}
-    )
+    const { addButton = { value: { reset: true, save: true } }, styleType = { value: 'style1' } } =
+      _.get(this.props, 'data._attrObject.data', {})
+
     return (
       <div>
         <Form>
@@ -680,9 +678,11 @@ class EditableTable extends Component {
             {columns.map((column) => {
               if (column.dataIndex == 'operation') return null
               return (
-                <div style={{ display: 'flex' }}>
-                  <span style={labelColStyle}>{column.title}:</span>
-                  <div style={{ marginRight: '20px' }}>{this.parseItem(column)}</div>
+                <div style={{ display: 'flex', marginRight: '20px' }}>
+                  <span style={styleType.value === 'style1' ? labelColStyle : labelColStyle2}>
+                    {column.title}:
+                  </span>
+                  {this.parseItem(column)}
                 </div>
               )
             })}
@@ -716,4 +716,17 @@ const labelColStyle = {
   fontSize: '12px',
   minWidth: '130px',
   marginBottom: '12px',
+}
+
+const labelColStyle2 = {
+  lineHeight: '26px',
+  textAlign: 'center',
+  height: '26px',
+  fontSize: '12px',
+  minWidth: '130px',
+  marginBottom: '12px',
+  marginTop: '2px',
+  border: '1px solid #d9d9d9',
+  borderRadius: '4px',
+  background: '#efefef',
 }

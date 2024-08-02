@@ -145,4 +145,13 @@ const docList = [
 			console.log(data)
 		`,
   },
+  {
+    functionName: 'setFormData',
+    description: '设置表单数据',
+    code: `
+      //可先通过getFormData获取当前表单字段结构
+			var from = scriptUtil.getRegisterReactDom('组件id')
+      from.setFormData({'attr1':value1,'attr12':value2});
+		`,
+  },
 ]
