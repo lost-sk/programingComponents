@@ -1,0 +1,99 @@
+[
+    {
+        "name": "document",
+        "displayName": "使用说明",
+        "resource": "document.js"
+    },
+    {
+        "name": "object",
+        "displayName": "数据源",
+        "inputType": "ObjectInput",
+        "showCopyIcon": false
+    },
+    {
+        "name": "events",
+        "displayName": "交互事件",
+        "resource": "events.js"
+    },
+    {
+        "name": "backgroundColor",
+        "displayName": "底部背景色",
+        "defaultValue": "#ffffff",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "chooseColor",
+        "displayName": "选中项颜色",
+        "defaultValue": "#e6f7ff",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "color",
+        "displayName": "文字颜色",
+        "defaultValue": "#1890ff",
+        "inputType": "ColorPicker"
+    },
+    {
+        "name": "mode",
+        "displayName": "菜单类型",
+        "restore": false,
+        "resource": "select.js",
+        "options": [
+            {
+                "label": "内嵌",
+                "value": "inline"
+            },
+            {
+                "label": "水平",
+                "value": "horizontal"
+            },
+            {
+                "label": "垂直",
+                "value": "vertical"
+            }
+        ],
+        "defaultValue": "inline"
+    },
+    {
+        "name": "icon",
+        "displayName": "根节点图标",
+        "restore": false,
+        "resource": "select.js",
+        "options": [
+            {
+                "label": "商店",
+                "value": "appstore"
+            },
+            {
+                "label": "饼图",
+                "value": "pie-chart"
+            },
+            {
+                "label": "桌面",
+                "value": "desktop"
+            },
+            {
+                "label": "设置",
+                "value": "setting"
+            }
+        ],
+        "defaultValue": "appstore"
+    },
+    {
+        "name": "open",
+        "displayName": "是否全部展开",
+        "restore": false,
+        "resource": "select.js",
+        "options": [
+            {
+                "label": "否",
+                "value": "0"
+            },
+            {
+                "label": "是",
+                "value": "1"
+            }
+        ],
+        "defaultValue": "1"
+    }
+]

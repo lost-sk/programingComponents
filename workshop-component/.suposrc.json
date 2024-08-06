@@ -1,9 +1,9 @@
 {
   "information": {
-    "server": "https://eco-p5um.beta010.devcloud.supos.net/",
+    "server": "https://supos02.demo.devcloud.supos.net/",
     "username": "admin",
     "password": "Supos1304@",
-    "app": "App_91b1ad3b4b728cfd00ab8e3432eb19e6"
+    "app": "App_e4b6905dadf3dfb3c294c42846ec623a"
   },
   "dependencies": {}
 }
