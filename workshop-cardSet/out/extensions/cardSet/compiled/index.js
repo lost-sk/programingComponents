@@ -19,6 +19,12 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -77,7 +83,9 @@ var CustomComp = /*#__PURE__*/function (_Component) {
     };
 
     _this2.getServiceData = function () {
-      var service = _this2.state.service;
+      var _this2$state = _this2.state,
+          service = _this2$state.service,
+          draggable = _this2$state.draggable;
       var objName = '';
       var serviceName = '';
       var params = {};
@@ -107,8 +115,18 @@ var CustomComp = /*#__PURE__*/function (_Component) {
         version: 'V2',
         // 回调函数
         cb: function cb(res) {
+          var tempList = res?.data?.list || []; // 允许拖动又没有sort字段则自动添加
+
+          if (tempList.length && draggable === 'true' && !Object(tempList[0], 'sort')) {
+            tempList.forEach(function (v, i) {
+              v = _objectSpread(_objectSpread({}, v), {}, {
+                sort: i
+              });
+            });
+          }
+
           _this2.setState({
-            valueList: res?.data?.list || []
+            valueList: tempList
           });
         }
       });
@@ -133,14 +151,57 @@ var CustomComp = /*#__PURE__*/function (_Component) {
       return replacedStr;
     };
 
+    _this2.handleDragStart = function (dragEvent, dragNode) {
+      dragEvent.preventDefault();
+
+      _this2.setState({
+        dragState: _objectSpread(_objectSpread({}, _this2.state.dragState), {}, {
+          draggingNode: dragNode
+        })
+      });
+    };
+
+    _this2.handleDragOver = function (dragEvent, overNode) {
+      dragEvent.preventDefault();
+
+      _this2.setState({
+        dragState: _objectSpread(_objectSpread({}, _this2.state.dragState), {}, {
+          dropNode: overNode
+        })
+      });
+    };
+
+    _this2.handleDragEnd = function (dragEvent) {
+      var _this2$state2 = _this2.state,
+          _this2$state2$dragSta = _this2$state2.dragState,
+          draggingNode = _this2$state2$dragSta.draggingNode,
+          dropNode = _this2$state2$dragSta.dropNode,
+          valueList = _this2$state2.valueList;
+      dragEvent.preventDefault();
+      if (draggingNode.sort === dropNode.sort) return; // 交互两个卡片的sort
+
+      var dragIndex = valueList.findIndex(function (v) {
+        return v.id === draggingNode.id;
+      });
+      var dropIndex = valueList.findIndex(function (v) {
+        return v.id === dropNode.id;
+      });
+
+      if (dragIndex !== -1 && dropIndex !== -1) {
+        var tSort = [dropNode.sort, draggingNode.sort];
+        valueList[dragIndex].sort = tSort[0];
+        valueList[dropIndex].sort = tSort[1];
+      }
+
+      _this2.setState({
+        valueList: valueList
+      });
+    };
+
     console.log('card this.props config', props?.data?._attrObject.data);
     var config = props?.data?._attrObject.data || {};
     _this2.state = {
-      valueList: [{
-        title: 'default title'
-      }, {
-        title: 'default title'
-      }],
+      valueList: [],
       fontSize: config?.fontSize?.value || '14px',
       fontFamily: config?.fontFamily?.value || 'sans-serif',
       fontColor: config?.fontColor?.color || '#000',
@@ -153,9 +214,14 @@ var CustomComp = /*#__PURE__*/function (_Component) {
       innerHtml: config?.htmlDetail || '<div>default body</div>',
       direction: config?.direction?.value || 'row',
       showBorder: config?.showBorder?.value || 'true',
+      draggable: config?.draggable?.value || 'false',
       borderColor: config?.borderColor?.color || '#e8e8e8',
       service: config?.object?.dynamicDataSource || {},
-      events: config?.events || []
+      events: config?.events || [],
+      dragState: {
+        draggingNode: null,
+        dropNode: null
+      }
     };
     return _this2;
   }
@@ -191,7 +257,12 @@ var CustomComp = /*#__PURE__*/function (_Component) {
           headHeight = _this$state.headHeight,
           headBackground = _this$state.headBackground,
           bodyBackground = _this$state.bodyBackground,
-          direction = _this$state.direction;
+          direction = _this$state.direction,
+          propDraggable = _this$state.draggable;
+      var draggable = propDraggable === 'true' ? true : false;
+      var sortList = valueList.sort(function (a, b) {
+        if (Object.hasOwn(a, 'sort')) return a.sort > b.sort ? 0 : -1;else return 0;
+      });
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "cardSet",
         style: {
@@ -202,7 +273,7 @@ var CustomComp = /*#__PURE__*/function (_Component) {
           flexWrap: 'wrap',
           overflow: 'auto'
         }
-      }, valueList.map(function (v) {
+      }, sortList.map(function (v) {
         var htmlStr = {
           __html: _this3.transHtml(v)
         };
@@ -228,6 +299,16 @@ var CustomComp = /*#__PURE__*/function (_Component) {
             border: "1px solid ".concat(borderColor),
             minWidth: cardWidth,
             margin: cardMargin
+          },
+          draggable: draggable,
+          onDragStart: function onDragStart(event) {
+            _this3.handleDragStart(event, v);
+          },
+          onDragOver: function onDragOver(event) {
+            _this3.handleDragOver(event, v);
+          },
+          onDragEnd: function onDragEnd(event) {
+            _this3.handleDragEnd(event);
           }
         }, /*#__PURE__*/_react.default.createElement("div", {
           dangerouslySetInnerHTML: htmlStr

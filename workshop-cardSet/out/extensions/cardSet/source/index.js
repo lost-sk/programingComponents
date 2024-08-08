@@ -9,7 +9,7 @@ class CustomComp extends Component {
     console.log('card this.props config', props?.data?._attrObject.data)
     const config = props?.data?._attrObject.data || {}
     this.state = {
-      valueList: [{ title: 'default title' }, { title: 'default title' }],
+      valueList: [],
       fontSize: config?.fontSize?.value || '14px',
       fontFamily: config?.fontFamily?.value || 'sans-serif',
       fontColor: config?.fontColor?.color || '#000',
@@ -22,9 +22,14 @@ class CustomComp extends Component {
       innerHtml: config?.htmlDetail || '<div>default body</div>',
       direction: config?.direction?.value || 'row',
       showBorder: config?.showBorder?.value || 'true',
+      draggable: config?.draggable?.value || 'false',
       borderColor: config?.borderColor?.color || '#e8e8e8',
       service: config?.object?.dynamicDataSource || {},
       events: config?.events || [],
+      dragState: {
+        draggingNode: null,
+        dropNode: null,
+      },
     }
   }
   componentDidMount() {
@@ -61,7 +66,7 @@ class CustomComp extends Component {
   }
 
   getServiceData = () => {
-    const { service } = this.state
+    const { service, draggable } = this.state
 
     var objName = ''
     var serviceName = ''
@@ -94,8 +99,16 @@ class CustomComp extends Component {
       version: 'V2',
       // 回调函数
       cb: (res) => {
+        const tempList = res?.data?.list || []
+        // 允许拖动又没有sort字段则自动添加
+        if (tempList.length && draggable === 'true' && !Object(tempList[0], 'sort')) {
+          tempList.forEach((v, i) => {
+            v = { ...v, sort: i }
+          })
+        }
+
         this.setState({
-          valueList: res?.data?.list || [],
+          valueList: tempList,
         })
       },
     })
@@ -118,6 +131,47 @@ class CustomComp extends Component {
     return replacedStr
   }
 
+  handleDragStart = (dragEvent, dragNode) => {
+    dragEvent.preventDefault()
+    this.setState({
+      dragState: {
+        ...this.state.dragState,
+        draggingNode: dragNode,
+      },
+    })
+  }
+
+  handleDragOver = (dragEvent, overNode) => {
+    dragEvent.preventDefault()
+    this.setState({
+      dragState: {
+        ...this.state.dragState,
+        dropNode: overNode,
+      },
+    })
+  }
+
+  handleDragEnd = (dragEvent) => {
+    const {
+      dragState: { draggingNode, dropNode },
+      valueList,
+    } = this.state
+    dragEvent.preventDefault()
+    if (draggingNode.sort === dropNode.sort) return
+    // 交互两个卡片的sort
+    const dragIndex = valueList.findIndex((v) => v.id === draggingNode.id)
+    const dropIndex = valueList.findIndex((v) => v.id === dropNode.id)
+    if (dragIndex !== -1 && dropIndex !== -1) {
+      const tSort = [dropNode.sort, draggingNode.sort]
+      valueList[dragIndex].sort = tSort[0]
+      valueList[dropIndex].sort = tSort[1]
+    }
+
+    this.setState({
+      valueList,
+    })
+  }
+
   render() {
     const {
       valueList,
@@ -133,8 +187,14 @@ class CustomComp extends Component {
       headBackground,
       bodyBackground,
       direction,
+      draggable: propDraggable,
     } = this.state
 
+    const draggable = propDraggable === 'true' ? true : false
+    const sortList = valueList.sort((a, b) => {
+      if (Object.hasOwn(a, 'sort')) return a.sort > b.sort ? 0 : -1
+      else return 0
+    })
     return (
       <div
         className="cardSet"
@@ -147,7 +207,7 @@ class CustomComp extends Component {
           overflow: 'auto',
         }}
       >
-        {valueList.map((v) => {
+        {sortList.map((v) => {
           const htmlStr = { __html: this.transHtml(v) }
           return (
             <Card
@@ -172,6 +232,16 @@ class CustomComp extends Component {
                 border: `1px solid ${borderColor}`,
                 minWidth: cardWidth,
                 margin: cardMargin,
+              }}
+              draggable={draggable}
+              onDragStart={(event) => {
+                this.handleDragStart(event, v)
+              }}
+              onDragOver={(event) => {
+                this.handleDragOver(event, v)
+              }}
+              onDragEnd={(event) => {
+                this.handleDragEnd(event)
               }}
             >
               <div dangerouslySetInnerHTML={htmlStr}></div>

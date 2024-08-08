@@ -132,6 +132,22 @@
     "inputType": "ColorPicker"
   },
   {
+    "name": "draggable",
+    "displayName": "允许拖动排序",
+    "resource": "select.js",
+    "options": [
+      {
+        "label": "允许",
+        "value": "true"
+      },
+      {
+        "label": "禁止",
+        "value": "false"
+      }
+    ],
+    "defaultValue": "false"
+  },
+  {
     "name": "object",
     "displayName": "数据源",
     "inputType": "ObjectInput",

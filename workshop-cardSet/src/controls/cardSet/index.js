@@ -9,7 +9,7 @@ class CustomComp extends Component {
     console.log('card this.props config', props?.data?._attrObject.data)
     const config = props?.data?._attrObject.data || {}
     this.state = {
-      valueList: [{ title: 'default title' }, { title: 'default title' }],
+      valueList: [],
       fontSize: config?.fontSize?.value || '14px',
       fontFamily: config?.fontFamily?.value || 'sans-serif',
       fontColor: config?.fontColor?.color || '#000',

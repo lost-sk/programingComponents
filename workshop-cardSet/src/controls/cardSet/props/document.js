@@ -71,9 +71,9 @@ const docList = [
       自定义卡片数据结构，通过解析HTML自动生成单张数据卡片，适合做员工名片、工艺卡片等。
 			在交互脚本中，可通过_this获取当前可编程组件实例
       卡片内容：输入html字符串，模型服务中的返回的内容可通过\${propName}的方式动态替换
-      服务返回数据格式：{ title:'titleName',prop1:''...} 其中title必须，prop1...等用于卡片内容html动态变量替换
+      服务返回数据格式：{list:[{ title:'titleName',prop1:''...}]} 其中title必须，prop1...等用于卡片内容html动态变量替换
       例如编写服务getData，返回数据结构如下：
-      {'title':'人员信息','name':'zhangsan','age':'22'}
+      {list:[{'title':'人员信息','name':'zhangsan','age':'22'}]}
       再在"编辑HTML"中写入
       <ul style='position:relatvie'>
           <li>姓名：</li><li style='color:red;font-weight:bold;position:absolute;top:70px;right:10px'>\${name}</li>
