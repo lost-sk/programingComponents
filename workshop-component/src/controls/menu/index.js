@@ -157,13 +157,18 @@ class CustomComp extends Component {
   }
   saveChoosed = (val) => {
     const data = val.item.props
+    const newData = {
+      label: data.children,
+      value: data.eventKey,
+      level: data.level,
+    }
     this.setState({
       choose: {
         key: data.eventKey,
         value: data.children,
       },
     })
-    this.runCode('onSelect', '内容加载事件脚本错误,请打开控制台查看错误信息', data)
+    this.runCode('onSelect', '内容加载事件脚本错误,请打开控制台查看错误信息', newData)
     // console.log(thi.state.choose)
   }
   getValue = () => {
