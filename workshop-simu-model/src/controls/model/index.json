@@ -1,0 +1,12 @@
+[
+  {
+    "name": "document",
+    "resource": "document.js"
+  },
+  {
+    "name": "model",
+    "displayName": "计算类型",
+    "inputType": "BaseColorPickerLabel",
+    "placeholder": "cyclone"
+  }
+]
