@@ -67,24 +67,28 @@ const docList = [
   {
     functionName: '',
     description: '基础说明',
+    code: ``,
+  },
+  {
+    functionName: 'getInputValue',
+    description: '获取输入参数',
     code: `
-			在其他组件内容加载事件中，不能通过scriptUtil.getRegisterReactDom来获取可编程组件的实例，其他事件中则不受次影响
-			在交互脚本中，可通过_this获取当前可编程组件实例
+			var inputValue = this.getInputValue();
+			console.log(inputValue)
 		`,
   },
   {
-    functionName: 'getValue',
-    description: '获取star数',
+    functionName: 'setInputValue',
+    description: '设置输入参数',
     code: `
-			var starValue = this.getValue();
-			console.log(starValue)
+			this.setInputValue(inputParams);
 		`,
   },
   {
-    functionName: 'setValue',
-    description: '设置star数',
+    functionName: 'setOutputValue',
+    description: '设置输出参数',
     code: `
-			this.setValue(num);
+			this.setOutputValue(outputParams);
 		`,
   },
 ]
