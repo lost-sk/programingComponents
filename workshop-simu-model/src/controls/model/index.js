@@ -343,23 +343,23 @@ class CustomComp extends Component {
         <h3>输出参数</h3>
         <div style={{ marginBottom: '16px' }}>
           <span className="outputSpan">循环符合</span>
-          <span className="paramOutput">{outputParams.cl}</span>
+          <span className="paramOutput">&nbsp;tParams.cl}</span>
           <span className="outputSpan">水分比</span>
-          <span className="paramOutput">{outputParams.rf}</span>
+          <span className="paramOutput">&nbsp;{outputParams.rf}</span>
           <span className="outputSpan">流量比</span>
-          <span className="paramOutput">{outputParams.rv}</span>
+          <span className="paramOutput">&nbsp;{outputParams.rv}</span>
           <span className="outputSpan">质效比</span>
-          <span className="paramOutput">{outputParams.quality}</span>
+          <span className="paramOutput">&nbsp;{outputParams.quality}</span>
         </div>
         <div>
           <span className="outputSpan">量效比</span>
-          <span className="paramOutput">{outputParams.quantitative}</span>
+          <span className="paramOutput">&nbsp;{outputParams.quantitative}</span>
           <span className="outputSpan">分离粒度</span>
-          <span className="paramOutput">{outputParams.d50c}</span>
+          <span className="paramOutput">&nbsp;{outputParams.d50c}</span>
           <span className="outputSpan">效率曲线α</span>
-          <span className="paramOutput">{outputParams.alpha}</span>
+          <span className="paramOutput">&nbsp;{outputParams.alpha}</span>
           <span className="outputSpan">效率曲线β</span>
-          <span className="paramOutput">{outputParams.beta}</span>
+          <span className="paramOutput">&nbsp;{outputParams.beta}</span>
         </div>
       </div>
     )
