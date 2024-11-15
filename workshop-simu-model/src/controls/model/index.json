@@ -6,7 +6,7 @@
   {
     "name": "model",
     "displayName": "计算类型",
-    "inputType": "BaseColorPickerLabel",
+    "inputType": "BaseInput",
     "placeholder": "cyclone"
   }
 ]
