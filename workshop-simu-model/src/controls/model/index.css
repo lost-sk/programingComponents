@@ -3,6 +3,16 @@
     background: #fafafa;
     padding: 6px 12px;
   }
+  .inputDiv {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .renderDiv {
+    display: inline-block;
+    width: 25%;
+    margin-bottom: 16px;
+  }
   .inputSpan {
     background-color: #fafafa;
     border: 1px solid #f2f2f2;

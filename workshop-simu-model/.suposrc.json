@@ -3,7 +3,9 @@
     "server": "https://supos02.demo.devcloud.supos.net/",
     "username": "admin",
     "password": "Supos1304@",
-    "app": "App_dc7c149c33e94b4e3186b8101e80bfe1"
+    "app": "App_dc7c149c33e94b4e3186b8101e80bfe1",
+    "secretkey": "f1655c0a53c44c0250aa0edbd254068f",
+    "accountkey": "7f4101457fa2a057990c0a3171d6f03c"
   },
   "dependencies": {}
 }
