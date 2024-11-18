@@ -2,14 +2,8 @@ import React, { Component } from 'react'
 import { Input, InputNumber, Switch, Table, Form, Button } from 'antd'
 //import _ from 'lodash'
 import './index.css'
-const modelList = {
-  cyclone: '旋流器计算',
-}
 
-const modelInputParamsArr = {
-  cyclone: ['ufDist', 'particleSize', 'ofDist', 'fdDist'],
-}
-
+let modelName = ''
 const modelInput_single = []
 const modelInput_multiple = []
 const modelOutput_single = []
@@ -62,47 +56,12 @@ class CustomComp extends Component {
     this.state = {
       model: config?.model?.value || 'cyclone',
       inputParams: {
-        // ufDist: [0.25, 0.13, 0.1, 0.03],
-        // fdDen: 0.57,
-        // fishhook: false,
-        // particleSize: [0.18, 0.095, 0.075, 0.038],
-        // ofDist: [0.95, 0.8, 0.6, 0.23],
-        // fdDist: [0.4, 0.3, 0.2, 0.07],
-        // ufDen: 0.73,
-        // ofDen: 0.3,
-        // acceptablePs: 0.075,
-        arrParams: [
-          // {
-          //   ufDist: 0.25,
-          //   particleSize: 0.18,
-          //   ofDist: 0.95,
-          //   fdDist: 0.4,
-          // },
-          // {
-          //   ufDist: 0.13,
-          //   particleSize: 0.095,
-          //   ofDist: 0.8,
-          //   fdDist: 0.3,
-          // },
-        ],
+        arrParams: [],
       },
-      outputParams: {
-        // alpha: 0.963,
-        // beta: 0.0,
-        // cl: 410.62,
-        // d50c: 0.0566,
-        // quality: 34.239999999999995,
-        // quantitative: 51.13999999999999,
-        // rf: 39.43,
-        // rv: 0.0,
-      },
+      outputParams: {},
       editingKey: '',
       selectedRowKeys: [],
       getServiceReady: false,
-      modelInput_single: [],
-      modelInput_multiple: [],
-      modelOutput_single: [],
-      modelOutput_multiple: [],
     }
   }
   componentDidMount() {
@@ -127,6 +86,7 @@ class CustomComp extends Component {
       // 回调函数 获取input参数和output参数
       cb: (res) => {
         const datalist = res.data.list
+        modelName = datalist[0]['os_simulation.simulation_model.name']
         datalist.forEach((obj) => {
           const objTemp = {
             valueName: obj['os_simulation.simulation_model.value_name'],
@@ -205,12 +165,6 @@ class CustomComp extends Component {
       newParams[obj.valueKey] = null
     })
     inputParams.arrParams.push(newParams)
-    // switch (model) {
-    //   case 'cyclone':
-    //     modelInputParamsArr['cyclone'].forEach((p) => (newParams[p] = null))
-    //     inputParams.arrParams.push(newParams)
-    //     break
-    // }
     this.setState({ inputParams })
   }
 
@@ -318,53 +272,6 @@ class CustomComp extends Component {
         )
       },
     })
-    // const cyclone_columns = [
-    //   {
-    //     title: '粒级',
-    //     dataIndex: 'particleSize',
-    //     editable: true,
-    //   },
-    //   {
-    //     title: '给矿分布',
-    //     dataIndex: 'fdDist',
-    //     editable: true,
-    //   },
-    //   {
-    //     title: '溢流分布',
-    //     dataIndex: 'ofDist',
-    //     editable: true,
-    //   },
-    //   {
-    //     title: '沉砂分布',
-    //     dataIndex: 'ufDist',
-    //     editable: true,
-    //   },
-    //   {
-    //     title: '操作',
-    //     dataIndex: 'operation',
-    //     render: (text, record) => {
-    //       const { editingKey } = this.state
-    //       const editable = this.isEditing(record)
-    //       return editable ? (
-    //         <span>
-    //           <EditableContext.Consumer>
-    //             {(form) => (
-    //               <a onClick={() => this.handleSave(form, record.key)} style={{ marginRight: 8 }}>
-    //                 确定
-    //               </a>
-    //             )}
-    //           </EditableContext.Consumer>
-
-    //           <a onClick={() => this.cancel(record.key)}>取消</a>
-    //         </span>
-    //       ) : (
-    //         <a disabled={editingKey !== ''} onClick={() => this.handleEdit(record.key)}>
-    //           编辑
-    //         </a>
-    //       )
-    //     },
-    //   },
-    // ]
 
     const components = {
       body: {
@@ -405,49 +312,14 @@ class CustomComp extends Component {
               <Input
                 className="paramInput"
                 style={{ width: '96px' }}
-                value={modelList[this.state.model]}
+                value={modelName}
                 disabled
               ></Input>
             </div>
-            {console.log('modelInput_single', modelInput_single, getServiceReady)}
+
             {modelInput_single.map((mos) => {
               return this.renderInputHtml(mos)
             })}
-            {/* <span className="inputSpan">给矿浓度</span>
-            <InputNumber
-              className="paramInput"
-              value={inputParams.fdDen}
-              onChange={(value) => this.setState({ inputParams: { ...inputParams, fdDen: value } })}
-            ></InputNumber>
-            <span className="inputSpan">溢流浓度</span>
-            <InputNumber
-              className="paramInput"
-              value={inputParams.ifDen}
-              onChange={(value) => this.setState({ inputParams: { ...inputParams, ifDen: value } })}
-            ></InputNumber>
-          </div>
-          <div style={{ marginTop: '12px', marginBottom: '10px' }}>
-            <span className="inputSpan">沉砂浓度</span>
-            <InputNumber
-              className="paramInput"
-              value={inputParams.ufDen}
-              onChange={(value) => this.setState({ inputParams: { ...inputParams, ufDen: value } })}
-            ></InputNumber>
-            <span className="inputSpan">合格粒度</span>
-            <InputNumber
-              className="paramInput"
-              value={inputParams.acceptablePs}
-              onChange={(value) =>
-                this.setState({ inputParams: { ...inputParams, acceptablePs: value } })
-              }
-            ></InputNumber>
-            <span className="inputSpan">鱼钩效应</span>
-            <Switch
-              checked={inputParams.fishhook}
-              onChange={(checked) =>
-                this.setState({ inputParams: { ...inputParams, fishhook: checked } })
-              }
-            ></Switch> */}
           </div>
           {modelInput_multiple.length > 0 && (
             <EditableContext.Provider value={this.props.form}>
@@ -484,26 +356,6 @@ class CustomComp extends Component {
         <div className="inputDiv">
           {modelOutput_single.map((mos) => this.renderOutputHtml(mos))}
         </div>
-        {/* <div style={{ marginBottom: '16px' }}>
-          <span className="outputSpan">循环负荷</span>
-          <span className="paramOutput">&nbsp;{outputParams.cl}</span>
-          <span className="outputSpan">水分比</span>
-          <span className="paramOutput">&nbsp;{outputParams.rf}</span>
-          <span className="outputSpan">流量比</span>
-          <span className="paramOutput">&nbsp;{outputParams.rv}</span>
-          <span className="outputSpan">质效比</span>
-          <span className="paramOutput">&nbsp;{outputParams.quality}</span>
-        </div>
-        <div>
-          <span className="outputSpan">量效比</span>
-          <span className="paramOutput">&nbsp;{outputParams.quantitative}</span>
-          <span className="outputSpan">分离粒度</span>
-          <span className="paramOutput">&nbsp;{outputParams.d50c}</span>
-          <span className="outputSpan">效率曲线α</span>
-          <span className="paramOutput">&nbsp;{outputParams.alpha}</span>
-          <span className="outputSpan">效率曲线β</span>
-          <span className="paramOutput">&nbsp;{outputParams.beta}</span>
-        </div> */}
       </div>
     )
   }
