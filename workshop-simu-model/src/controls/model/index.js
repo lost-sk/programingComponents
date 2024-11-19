@@ -3,7 +3,6 @@ import { Input, InputNumber, Switch, Table, Form, Button } from 'antd'
 //import _ from 'lodash'
 import './index.css'
 
-let modelName = ''
 const modelInput_single = []
 const modelInput_multiple = []
 const modelOutput_single = []
@@ -56,6 +55,7 @@ class CustomComp extends Component {
     this.state = {
       model: config?.model?.value || 'cyclone',
       inputParams: {
+        description: '',
         arrParams: [],
       },
       outputParams: {},
@@ -86,7 +86,7 @@ class CustomComp extends Component {
       // 回调函数 获取input参数和output参数
       cb: (res) => {
         const datalist = res.data.list
-        modelName = datalist[0]['os_simulation.simulation_model.name']
+
         datalist.forEach((obj) => {
           const objTemp = {
             valueName: obj['os_simulation.simulation_model.value_name'],
@@ -201,7 +201,6 @@ class CustomComp extends Component {
         <span className="inputSpan">{list.valueName}</span>
         {list.valueType === 'number' && (
           <InputNumber
-            className="paramInput"
             value={inputParams[list.valueKey]}
             onChange={(value) =>
               this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
@@ -210,7 +209,6 @@ class CustomComp extends Component {
         )}
         {list.valueType === 'string' && (
           <Input
-            className="paramInput"
             value={inputParams[list.valueKey]}
             onChange={(value) =>
               this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
@@ -310,10 +308,10 @@ class CustomComp extends Component {
             <div className="renderDiv">
               <span className="inputSpan">计算描述</span>
               <Input
-                className="paramInput"
-                style={{ width: '96px' }}
-                value={modelName}
-                disabled
+                value={inputParams.description}
+                onChange={(value) =>
+                  this.setState({ inputParams: { ...inputParams, description: value } })
+                }
               ></Input>
             </div>
 
