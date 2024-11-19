@@ -210,8 +210,10 @@ class CustomComp extends Component {
         {list.valueType === 'string' && (
           <Input
             value={inputParams[list.valueKey]}
-            onChange={(value) =>
-              this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
+            onChange={(event) =>
+              this.setState({
+                inputParams: { ...inputParams, [list.valueKey]: event.target.value },
+              })
             }
           ></Input>
         )}
@@ -309,8 +311,10 @@ class CustomComp extends Component {
               <span className="inputSpan">计算描述</span>
               <Input
                 value={inputParams.description}
-                onChange={(value) =>
-                  this.setState({ inputParams: { ...inputParams, description: value } })
+                onChange={(event) =>
+                  this.setState({
+                    inputParams: { ...inputParams, description: event.target.value },
+                  })
                 }
               ></Input>
             </div>
