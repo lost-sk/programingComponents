@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Input, InputNumber, Switch, Table, Form, Button } from 'antd'
 //import _ from 'lodash'
 import './index.css'
+const { TextArea } = Input
 
 const modelInput_single = []
 const modelInput_multiple = []
@@ -14,6 +15,9 @@ class EditableCell extends React.Component {
   getInput = () => {
     if (this.props.inputType === 'number') {
       return <InputNumber />
+    }
+    if (this.props.inputType === 'json') {
+      return <TextArea rows={2} />
     }
     return <Input />
   }
@@ -53,7 +57,8 @@ class CustomComp extends Component {
     const config = props?.data?._attrObject.data || {}
     console.log('simu props config', config)
     this.state = {
-      model: config?.model?.value || 'cyclone',
+      equipType: config?.type?.value || 'Ball',
+      modelType: config?.model?.value || 'PerfectMixing',
       inputParams: {
         description: '',
         arrParams: [],
@@ -66,9 +71,9 @@ class CustomComp extends Component {
   }
   componentDidMount() {
     scriptUtil.registerReactDom(this, this.props)
-    const { model } = this.state
+    const { equipType, modelType } = this.state
     if (modelInput_single.length === 0) {
-      this.getServiceData(model)
+      this.getServiceData(equipType, modelType)
     }
   }
 
@@ -76,13 +81,14 @@ class CustomComp extends Component {
 
   componentWillUnmount() {}
 
-  getServiceData = (model) => {
+  getServiceData = (equipType, modelType) => {
     scriptUtil.executeScriptService({
-      objName: 'os_simulation.simulation_model', // 模板 或者 实例
-      serviceName: 'os_simulation.get_simulation_model', // 服务的命名空间+服务别名
+      objName: 'os_simulation.processSimulationEquipModelTable', // 模板 或者 实例
+      serviceName: 'os_simulation.getEquipModeParams', // 服务的命名空间+服务别名
       // 入参
       params: {
-        alias: model,
+        equipType,
+        modelType,
       },
       version: 'V2',
       // 回调函数 获取input参数和output参数
@@ -91,19 +97,19 @@ class CustomComp extends Component {
 
         datalist.forEach((obj) => {
           const objTemp = {
-            valueName: obj['os_simulation.simulation_model.value_name'],
-            valueKey: obj['os_simulation.simulation_model.value_key'],
-            valueType: obj['os_simulation.simulation_model.value_type'],
+            valueName: obj['os_simulation.processSimulationEquipModelTable.value_name'],
+            valueKey: obj['os_simulation.processSimulationEquipModelTable.value_key'],
+            valueType: obj['os_simulation.processSimulationEquipModelTable.value_type'],
           }
-          if (obj['os_simulation.simulation_model.type'] === 'input') {
-            if (obj['os_simulation.simulation_model.value_isArray']) {
+          if (obj['os_simulation.processSimulationEquipModelTable.type'] === 'input') {
+            if (obj['os_simulation.processSimulationEquipModelTable.value_isArray']) {
               modelInput_multiple.push(objTemp)
             } else {
               modelInput_single.push(objTemp)
             }
           }
-          if (obj['os_simulation.simulation_model.type'] === 'output') {
-            if (obj['os_simulation.simulation_model.value_isArray']) {
+          if (obj['os_simulation.processSimulationEquipModelTable.type'] === 'output') {
+            if (obj['os_simulation.processSimulationEquipModelTable.value_isArray']) {
               modelOutput_multiple.push(objTemp)
             } else {
               modelOutput_single.push(objTemp)
