@@ -16,9 +16,6 @@ class EditableCell extends React.Component {
     if (this.props.inputType === 'number') {
       return <InputNumber />
     }
-    if (this.props.inputType === 'json') {
-      return <TextArea rows={2} />
-    }
     return <Input />
   }
 
@@ -167,7 +164,7 @@ class CustomComp extends Component {
 
   handleAdd = () => {
     //点击新增 插入一行空数据
-    const { model, inputParams } = this.state
+    const { inputParams } = this.state
     const newParams = {}
     modelInput_multiple.forEach((obj) => {
       newParams[obj.valueKey] = null
@@ -215,6 +212,15 @@ class CustomComp extends Component {
             }
           ></InputNumber>
         )}
+        {list.valueType === 'json' && (
+          <TextArea
+            rows={2}
+            value={inputParams[list.valueKey]}
+            onChange={(value) =>
+              this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
+            }
+          ></TextArea>
+        )}
         {list.valueType === 'string' && (
           <Input
             value={inputParams[list.valueKey]}
@@ -247,7 +253,7 @@ class CustomComp extends Component {
     )
   }
   /*********旋流器 输入，输出配置*************/
-  cycloneHtml = () => {
+  renderHtml = () => {
     const { inputParams, outputParams, selectedRowKeys, getServiceReady } = this.state
 
     const model_columns = modelInput_multiple.map((obj) => ({
@@ -315,7 +321,7 @@ class CustomComp extends Component {
         <h3>输入参数</h3>
         <div style={{ marginBottom: '12px' }}>
           <div className="inputDiv">
-            <div className="renderDiv">
+            {/* <div className="renderDiv">
               <span className="inputSpan">计算描述</span>
               <Input
                 value={inputParams.description}
@@ -325,7 +331,7 @@ class CustomComp extends Component {
                   })
                 }
               ></Input>
-            </div>
+            </div> */}
 
             {modelInput_single.map((mos) => {
               return this.renderInputHtml(mos)
@@ -371,7 +377,7 @@ class CustomComp extends Component {
   }
   render() {
     const { getServiceReady } = this.state
-    return <div className="modelContent">{getServiceReady && this.cycloneHtml()}</div>
+    return <div className="equipModelContent">{getServiceReady && this.renderHtml()}</div>
   }
 }
 
