@@ -6,6 +6,15 @@ const { TextArea } = Input
 
 const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
 
+const pulp_params = [
+  { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
+  { valueName: '矿浆流量', valueKey: 'flowRate', valueType: 'number' },
+  { valueName: '矿量', valueKey: 'ore', valueType: 'number' },
+  { valueName: '矿浆浓度', valueKey: 'percent', valueType: 'number' },
+  { valueName: '矿浆密度', valueKey: 'rhoP', valueType: 'number' },
+  { valueName: '水量', valueKey: 'water', valueType: 'number' },
+]
+
 const modelInput_single = [
   { valueName: '磨机直径', valueKey: 'diameter', valueType: 'number' },
   { valueName: '磨机长度', valueKey: 'length', valueType: 'number' },
@@ -18,7 +27,10 @@ const modelInput_single = [
   { valueName: '磨矿速率', valueKey: 'rate', valueType: 'json' },
 ]
 const modelInput_multiple = []
-const modelOutput_single = []
+const modelOutput_single = [
+  { valueName: '功率', valueKey: 'power', valueType: 'number' },
+  { valueName: '排矿（矿浆参数）', valueKey: 'product', valueType: 'pulp' },
+]
 const modelOutput_multiple = []
 
 const EditableContext = React.createContext()
@@ -84,7 +96,20 @@ class CustomComp extends Component {
           [4, 3],
         ],
       },
-      outputParams: {},
+      outputParams: {
+        power: 320.01940563705534, //功率
+        product: {
+          dist: [
+            0, 0.5566232079608417, 0.5639964704851527, 0.7757341026224694, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0,
+          ], //粒度分布
+          flowRate: 248.14814814814815, //矿浆流量
+          ore: 400, //矿量
+          percent: 0.8, //矿浆浓度
+          rhoP: 2.014925373134328, //矿浆密度
+          water: 100, //水量
+        }, //排矿(矿浆参数）
+      },
       editingKey: '',
       selectedRowKeys: [],
       getServiceReady: false,
@@ -273,15 +298,45 @@ class CustomComp extends Component {
       </div>
     )
   }
+
+  renderPulpHtml = (params) => {
+    return pulp_params.map((pulp) => {
+      return (
+        <div className="renderDiv" key={pulp.valueKey}>
+          <span className="outputSpan">{pulp.valueName}</span>
+          <span className="paramOutput">
+            &nbsp;
+            {pulp.valueType === 'json'
+              ? JSON.stringify(params[pulp.valueKey])
+              : params[pulp.valueKey]}
+          </span>
+        </div>
+      )
+    })
+  }
+
   renderOutputHtml = (list) => {
     const { outputParams } = this.state
-
-    return (
-      <div className="renderDiv">
-        <span className="outputSpan">{list.valueName}</span>
-        <span className="paramOutput">&nbsp;{outputParams[list.valueKey]}</span>
-      </div>
-    )
+    if (list.valueType !== 'pulp') {
+      return (
+        <div className="renderDiv" key={list.valueKey}>
+          <span className="outputSpan">{list.valueName}</span>
+          <span className="paramOutput">
+            &nbsp;
+            {list.valueType === 'json'
+              ? JSON.stringify(outputParams[list.valueKey])
+              : outputParams[list.valueKey]}
+          </span>
+        </div>
+      )
+    } else {
+      return (
+        <div key={list.valueKey}>
+          <h4>{list.valueName}</h4>
+          {this.renderPulpHtml(outputParams[list.valueKey])}
+        </div>
+      )
+    }
   }
 
   renderHtml = () => {
@@ -390,8 +445,9 @@ class CustomComp extends Component {
           )}
         </div>
         <h3>输出参数</h3>
-        <div className="inputDiv">
-          {modelOutput_single.map((mos) => this.renderOutputHtml(mos))}
+        <div>
+          {Object.keys(outputParams).length > 0 &&
+            modelOutput_single.map((mos) => this.renderOutputHtml(mos))}
         </div>
       </div>
     )
