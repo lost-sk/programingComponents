@@ -1,10 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Input, InputNumber, Switch, Table, Form, Button } from 'antd'
-//import _ from 'lodash'
+import _ from 'lodash'
 import './index.css'
 const { TextArea } = Input
 
-const modelInput_single = []
+const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
+
+const modelInput_single = [
+  { valueName: '磨机直径', valueKey: 'diameter', valueType: 'number' },
+  { valueName: '磨机长度', valueKey: 'length', valueType: 'number' },
+  { valueName: '转速', valueKey: 'speed', valueType: 'number' },
+  { valueName: '混合填充率', valueKey: 'jt', valueType: 'number' },
+  { valueName: '最大钢球直径', valueKey: 'db', valueType: 'number' },
+  { valueName: '钢球填充率', valueKey: 'jb', valueType: 'number' },
+  { valueName: '钢球密度', valueKey: 'rhoB', valueType: 'number' },
+  { valueName: '邦德球磨功指数', valueKey: 'wi', valueType: 'number' },
+  { valueName: '磨矿速率', valueKey: 'rate', valueType: 'json' },
+]
 const modelInput_multiple = []
 const modelOutput_single = []
 const modelOutput_multiple = []
@@ -57,13 +69,26 @@ class CustomComp extends Component {
       equipType: config?.type?.value || 'Ball',
       modelType: config?.model?.value || 'PerfectMixing',
       inputParams: {
-        description: '',
-        arrParams: [],
+        diameter: 5.5, //磨机直径，m
+        length: 8.5, //磨机长度，m
+        speed: 11.2, //转速，r/min
+        jt: 0.25, //混合填充率，0~1
+        db: 100, //最大钢球直径，mm
+        jb: 0.1, //钢球填充率，mm，jb<jt
+        rhoB: 7.8, //钢球密度，t/m³
+        wi: 11.2, //邦德球磨功指数，kwh/t
+        rate: [
+          [1, 3],
+          [2, 1],
+          [3, 1],
+          [4, 3],
+        ],
       },
       outputParams: {},
       editingKey: '',
       selectedRowKeys: [],
       getServiceReady: false,
+      isVisible: false,
     }
   }
   componentDidMount() {
@@ -71,6 +96,8 @@ class CustomComp extends Component {
     const { equipType, modelType } = this.state
     if (modelInput_single.length === 0) {
       this.getServiceData(equipType, modelType)
+    } else {
+      this.setState({ getServiceReady: true })
     }
   }
 
@@ -186,6 +213,10 @@ class CustomComp extends Component {
     this.setState({ selectedRowKeys })
   }
 
+  toggleVisibility = () => {
+    this.setState((prevState) => ({ isVisible: !prevState.isVisible }))
+  }
+
   getInputValue = () => {
     return this.state.inputParams
   }
@@ -202,7 +233,7 @@ class CustomComp extends Component {
     const { inputParams } = this.state
 
     return (
-      <div className="renderDiv">
+      <div className="renderDiv" key={list.valueKey}>
         <span className="inputSpan">{list.valueName}</span>
         {list.valueType === 'number' && (
           <InputNumber
@@ -215,7 +246,7 @@ class CustomComp extends Component {
         {list.valueType === 'json' && (
           <TextArea
             rows={2}
-            value={inputParams[list.valueKey]}
+            value={JSON.stringify(inputParams[list.valueKey])}
             onChange={(value) =>
               this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
             }
@@ -252,7 +283,7 @@ class CustomComp extends Component {
       </div>
     )
   }
-  /*********旋流器 输入，输出配置*************/
+
   renderHtml = () => {
     const { inputParams, outputParams, selectedRowKeys, getServiceReady } = this.state
 
@@ -309,7 +340,9 @@ class CustomComp extends Component {
       }
     })
 
-    const dataSource = inputParams.arrParams.map((v, i) => ({ ...v, key: i })) || []
+    const dataSource = inputParams.arrParams
+      ? inputParams.arrParams.map((v, i) => ({ ...v, key: i }))
+      : []
 
     const rowSelection = {
       selectedRowKeys,
@@ -321,18 +354,6 @@ class CustomComp extends Component {
         <h3>输入参数</h3>
         <div style={{ marginBottom: '12px' }}>
           <div className="inputDiv">
-            {/* <div className="renderDiv">
-              <span className="inputSpan">计算描述</span>
-              <Input
-                value={inputParams.description}
-                onChange={(event) =>
-                  this.setState({
-                    inputParams: { ...inputParams, description: event.target.value },
-                  })
-                }
-              ></Input>
-            </div> */}
-
             {modelInput_single.map((mos) => {
               return this.renderInputHtml(mos)
             })}
@@ -376,8 +397,17 @@ class CustomComp extends Component {
     )
   }
   render() {
-    const { getServiceReady } = this.state
-    return <div className="equipModelContent">{getServiceReady && this.renderHtml()}</div>
+    const { getServiceReady, isVisible } = this.state
+    return (
+      <div className="equipModelContent">
+        <Button onClick={this.toggleVisibility}>{`${isVisible ? '隐藏' : '显示'}配置项`}</Button>
+        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'absolute', display: this.state.isVisible ? 'block' : 'none' }}>
+            {getServiceReady && this.renderHtml()}
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'antd/dist/antd.css'
-import Model from './controls/model'
+import Model from './controls/equipmodel'
 const App = () => {
   return (
     <div>
