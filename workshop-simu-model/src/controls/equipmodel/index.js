@@ -83,6 +83,17 @@ class JSONEditor extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.initialValue !== this.props.initialValue) {
+      this.setState({
+        inputValue: JSON.stringify(this.props.initialValue),
+        parsedValue: this.props.initialValue,
+        isValidJSON: true,
+        errorMessage: '',
+      })
+    }
+  }
+
   handleInputChange = (event) => {
     const inputValue = event.target.value
     this.setState({ inputValue }, this.validateAndParseJSON)
