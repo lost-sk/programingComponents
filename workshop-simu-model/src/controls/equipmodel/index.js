@@ -72,6 +72,62 @@ class EditableCell extends React.Component {
   }
 }
 
+class JSONEditor extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      inputValue: JSON.stringify(props.initialValue),
+      parsedValue: props.initialValue,
+      isValidJSON: true,
+      errorMessage: '',
+    }
+  }
+
+  handleInputChange = (event) => {
+    const inputValue = event.target.value
+    this.setState({ inputValue }, this.validateAndParseJSON)
+  }
+
+  validateAndParseJSON() {
+    try {
+      const parsedValue = JSON.parse(this.state.inputValue)
+      this.setState(
+        {
+          parsedValue,
+          isValidJSON: true,
+          errorMessage: '',
+        },
+        () => {
+          if (this.props.onValidInput) {
+            this.props.onValidInput(parsedValue)
+          }
+        }
+      )
+    } catch (error) {
+      this.setState({
+        parsedValue: null,
+        isValidJSON: false,
+        errorMessage: '请输入有效的JSON字符串',
+      })
+    }
+  }
+
+  render() {
+    const { inputValue, isValidJSON, parsedValue, errorMessage } = this.state
+
+    return (
+      <div>
+        <TextArea
+          rows={2}
+          value={inputValue}
+          onChange={this.handleInputChange}
+          placeholder="请输入或编辑JSON字符串"
+        />
+        {!isValidJSON && <div style={{ color: 'red' }}>{errorMessage}</div>}
+      </div>
+    )
+  }
+}
 class CustomComp extends Component {
   constructor(props) {
     super(props)
@@ -269,13 +325,12 @@ class CustomComp extends Component {
           ></InputNumber>
         )}
         {list.valueType === 'json' && (
-          <TextArea
-            rows={2}
-            value={JSON.stringify(inputParams[list.valueKey])}
-            onChange={(value) =>
-              this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
+          <JSONEditor
+            initialValue={inputParams[list.valueKey]}
+            onValidInput={(parsedValue) =>
+              this.setState({ inputParams: { ...inputParams, [list.valueKey]: parsedValue } })
             }
-          ></TextArea>
+          />
         )}
         {list.valueType === 'string' && (
           <Input
@@ -304,12 +359,11 @@ class CustomComp extends Component {
       return (
         <div className="renderDiv" key={pulp.valueKey}>
           <span className="outputSpan">{pulp.valueName}</span>
-          <span className="paramOutput">
-            &nbsp;
-            {pulp.valueType === 'json'
-              ? JSON.stringify(params[pulp.valueKey])
-              : params[pulp.valueKey]}
-          </span>
+          {pulp.valueType === 'json' ? (
+            <TextArea rows={2} value={JSON.stringify(params[pulp.valueKey])} disabled />
+          ) : (
+            <span className="paramOutput">{params[pulp.valueKey]}</span>
+          )}
         </div>
       )
     })
