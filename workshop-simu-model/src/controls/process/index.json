@@ -2,17 +2,5 @@
   {
     "name": "document",
     "resource": "document.js"
-  },
-  {
-    "name": "type",
-    "displayName": "设备类型",
-    "inputType": "BaseInput",
-    "placeholder": "Ball"
-  },
-  {
-    "name": "model",
-    "displayName": "模型类型",
-    "inputType": "BaseInput",
-    "placeholder": "PerfectMixing"
   }
 ]

@@ -15,14 +15,14 @@ const granularity_list = [
 ]
 const process_list = [
   { valueName: '矿石密度', valueKey: 'rho', valueType: 'number' },
-  { valueName: '给矿1', valueKey: 'feed1', valueType: 'feed' },
-  { valueName: '给矿2', valueKey: 'feed2', valueType: 'feed' },
-  { valueName: '给矿3', valueKey: 'feed3', valueType: 'feed' },
   { valueName: '给水量1', valueKey: 'water1', valueType: 'number' },
   { valueName: '给水量2', valueKey: 'water2', valueType: 'number' },
   { valueName: '给水量3', valueKey: 'water3', valueType: 'number' },
+  { valueName: '给矿1', valueKey: 'feed1', valueType: 'feed' },
+  { valueName: '给矿2', valueKey: 'feed2', valueType: 'feed' },
+  { valueName: '给矿3', valueKey: 'feed3', valueType: 'feed' },
 ]
-
+/**@description  JSON编辑组件*/
 class JSONEditor extends Component {
   constructor(props) {
     super(props)
@@ -91,7 +91,7 @@ class JSONEditor extends Component {
     )
   }
 }
-
+/**@description  给矿组件*/
 class Feed extends Component {
   constructor(props) {
     super(props)
@@ -126,14 +126,17 @@ class Feed extends Component {
     return (
       <div>
         <h4>{valueName}</h4>
+        <span>给矿量</span>
         <InputNumber
           value={inputValue.ore}
           onChange={(value) => this.handleInputChange('ore', value)}
         ></InputNumber>
+        <span>含水量</span>
         <InputNumber
           value={inputValue.water}
           onChange={(value) => this.handleInputChange('water', value)}
         ></InputNumber>
+        <span>粒度分布</span>
         <TextArea rows={2} value={JSON.stringify(inputValue.dist)} disabled />
       </div>
     )
@@ -145,8 +148,6 @@ class CustomComp extends Component {
     const config = props?.data?._attrObject.data || {}
     console.log('simu props config', config)
     this.state = {
-      equipType: config?.type?.value || 'Ball',
-      modelType: config?.model?.value || 'PerfectMixing',
       granularityParams: {
         type: 'particleSize',
         particleSize: [2, 1, 0.1],
@@ -185,16 +186,26 @@ class CustomComp extends Component {
     scriptUtil.registerReactDom(this, this.props)
   }
 
-  getInputValue = () => {
-    return this.state.inputParams
+  getGranularityInputValue = () => {
+    return this.state.granularityParams
   }
 
-  setInputValue = (value) => {
-    this.setState({ inputParams: value })
+  setGranularityInputValue = (value) => {
+    const { granularityParams } = this.state
+    this.setState({ granularityParams: { ...granularityParams, ...value } })
   }
 
-  setOutputValue = (value) => {
-    this.setState({ outputParams: value })
+  setGranularityOutputValue = (value) => {
+    this.setState({ granularityOutputParams: value })
+  }
+
+  getProcessInputValue = () => {
+    return this.state.processParams
+  }
+
+  setProcessInputValue = (value) => {
+    const { processParams } = this.state
+    this.setState({ processParams: { ...processParams, ...value } })
   }
 
   renderGranularityHtml = () => {

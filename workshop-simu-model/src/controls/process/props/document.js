@@ -70,25 +70,72 @@ const docList = [
     code: ``,
   },
   {
-    functionName: 'getInputValue',
-    description: '获取输入参数',
+    functionName: 'getGranularityInputValue',
+    description: '获取矿石粒度参数',
     code: `
-			var inputValue = this.getInputValue();
+			var inputValue = this.getGranularityInputValue();
 			console.log(inputValue)
 		`,
   },
   {
-    functionName: 'setInputValue',
-    description: '设置输入参数',
+    functionName: 'setGranularityInputValue',
+    description: '设置矿石粒度参数',
     code: `
-			this.setInputValue(inputParams);
+      const params = {
+        type: 'particleSize',
+        particleSize: [2, 1, 0.1],
+        distribution: [0.8, 0.6, 0.3],
+        maxSize: 4,
+      }
+			this.setGranularityInputValue(params);
 		`,
   },
   {
-    functionName: 'setOutputValue',
-    description: '设置输出参数',
+    functionName: 'setGranularityOutputValue',
+    description: '设置矿石粒度输出',
     code: `
-			this.setOutputValue(outputParams);
+      const params = {
+        stdDist: [], //粒度分布 用于给feed1的dist
+        stdPs: [], //粒级
+      },
+			this.setGranularityOutputValue(params);
+		`,
+  },
+  {
+    functionName: 'getProcessInputValue',
+    description: '获取仿真参数',
+    code: `
+			var inputValue = this.getProcessInputValue();
+			console.log(inputValue)
+		`,
+  },
+  {
+    functionName: 'setProcessInputValue',
+    description: '设置仿真参数',
+    code: `
+      const params = {
+        rho: 2.7, 
+        maxSize: 4, 
+        feed1: {
+          ore: 400, 
+          water: 10, 
+          dist: [],
+        },
+        feed2: {
+          ore: 0,
+          water: 0,
+          dist: [],
+        },
+        feed3: {
+          ore: 0,
+          water: 0,
+          dist: [],
+        },
+        water1: 90, 
+        water2: 0, 
+        water3: 0, 
+      }
+			this.setProcessInputValue(params);
 		`,
   },
 ]
