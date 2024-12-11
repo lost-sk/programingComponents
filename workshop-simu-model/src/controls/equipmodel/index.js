@@ -481,7 +481,7 @@ class CustomComp extends Component {
     return (
       <div className="equipModelContent">
         <Button onClick={this.toggleVisibility}>{`${isVisible ? '隐藏' : '显示'}配置项`}</Button>
-        <div style={{ position: 'relative' }}>
+        <div className='paramContent' style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', display: this.state.isVisible ? 'block' : 'none' }}>
             {getServiceReady && this.renderHtml()}
           </div>
