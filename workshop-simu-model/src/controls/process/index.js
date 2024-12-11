@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Input, InputNumber } from 'antd'
-import _ from 'lodash'
+//import _ from 'lodash'
 import './index.css'
 const { TextArea } = Input
 
-const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
+//const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
 
 const granularity_list = [
   { valueName: '粒级', valueKey: 'particleSize', valueType: 'json' },
@@ -113,19 +113,18 @@ class Feed extends Component {
   }
 
   handleInputChange = (key, value) => {
-    this.setState({ inputValue: { ...inputValue, [key]: value } }, () => {
+    this.setState({ inputValue: { ...this.state.inputValue, [key]: value } }, () => {
       if (this.props.onChange) {
-        this.props.onChange({ ...inputValue, [key]: value })
+        this.props.onChange({ ...this.state.inputValue, [key]: value })
       }
     })
   }
 
   render() {
     const { inputValue } = this.state
-    const { valueName = '' } = this.props
+
     return (
       <div>
-        <h4>{valueName}</h4>
         <span>给矿量</span>
         <InputNumber
           value={inputValue.ore}
@@ -148,38 +147,9 @@ class CustomComp extends Component {
     const config = props?.data?._attrObject.data || {}
     console.log('simu props config', config)
     this.state = {
-      granularityParams: {
-        type: 'particleSize',
-        particleSize: [2, 1, 0.1],
-        distribution: [0.8, 0.6, 0.3],
-        maxSize: 4,
-      },
-      granularityOutputParams: {
-        stdDist: [], //粒度分布 用于给feed1的dist
-        stdPs: [], //粒级
-      },
-      processParams: {
-        rho: 2.7, //密度，t/m³
-        maxSize: 4, //最大粒径，mm 等于granularityParams.maxSize
-        feed1: {
-          ore: 400, //给矿量，t/h
-          water: 10, //给矿中含水量，
-          dist: [],
-        },
-        feed2: {
-          ore: 0,
-          water: 0,
-          dist: [],
-        },
-        feed3: {
-          ore: 0,
-          water: 0,
-          dist: [],
-        },
-        water1: 90, //给水量，m³/h
-        water2: 0, //给水量，m³/h
-        water3: 0, //给水量，m³/h
-      },
+      granularityParams: {},
+      granularityOutputParams: {},
+      processParams: {},
     }
   }
   componentDidMount() {
@@ -223,7 +193,10 @@ class CustomComp extends Component {
                     value={granularityParams[mos.valueKey]}
                     onChange={(value) =>
                       this.setState({
-                        granularityParams: { ...granularityParams, [mos.valueKey]: value },
+                        granularityParams: {
+                          ...granularityParams,
+                          [mos.valueKey]: value ? value : null,
+                        },
                       })
                     }
                   ></InputNumber>

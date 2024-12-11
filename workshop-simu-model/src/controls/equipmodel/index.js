@@ -1,10 +1,10 @@
-import React, { Component, createRef } from 'react'
+import React, { Component } from 'react'
 import { Input, InputNumber, Switch, Table, Form, Button } from 'antd'
-import _ from 'lodash'
+//import _ from 'lodash'
 import './index.css'
 const { TextArea } = Input
 
-const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
+//const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
 
 const pulp_params = [
   { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
@@ -15,22 +15,9 @@ const pulp_params = [
   { valueName: '水量', valueKey: 'water', valueType: 'number' },
 ]
 
-const modelInput_single = [
-  { valueName: '磨机直径', valueKey: 'diameter', valueType: 'number' },
-  { valueName: '磨机长度', valueKey: 'length', valueType: 'number' },
-  { valueName: '转速', valueKey: 'speed', valueType: 'number' },
-  { valueName: '混合填充率', valueKey: 'jt', valueType: 'number' },
-  { valueName: '最大钢球直径', valueKey: 'db', valueType: 'number' },
-  { valueName: '钢球填充率', valueKey: 'jb', valueType: 'number' },
-  { valueName: '钢球密度', valueKey: 'rhoB', valueType: 'number' },
-  { valueName: '邦德球磨功指数', valueKey: 'wi', valueType: 'number' },
-  { valueName: '磨矿速率', valueKey: 'rate', valueType: 'json' },
-]
+const modelInput_single = []
 const modelInput_multiple = []
-const modelOutput_single = [
-  { valueName: '功率', valueKey: 'power', valueType: 'number' },
-  { valueName: '排矿（矿浆参数）', valueKey: 'product', valueType: 'pulp' },
-]
+const modelOutput_single = []
 const modelOutput_multiple = []
 
 const EditableContext = React.createContext()
@@ -147,36 +134,8 @@ class CustomComp extends Component {
     this.state = {
       equipType: config?.type?.value || 'Ball',
       modelType: config?.model?.value || 'PerfectMixing',
-      inputParams: {
-        diameter: 5.5, //磨机直径，m
-        length: 8.5, //磨机长度，m
-        speed: 11.2, //转速，r/min
-        jt: 0.25, //混合填充率，0~1
-        db: 100, //最大钢球直径，mm
-        jb: 0.1, //钢球填充率，mm，jb<jt
-        rhoB: 7.8, //钢球密度，t/m³
-        wi: 11.2, //邦德球磨功指数，kwh/t
-        rate: [
-          [1, 3],
-          [2, 1],
-          [3, 1],
-          [4, 3],
-        ],
-      },
-      outputParams: {
-        power: 320.01940563705534, //功率
-        product: {
-          dist: [
-            0, 0.5566232079608417, 0.5639964704851527, 0.7757341026224694, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0,
-          ], //粒度分布
-          flowRate: 248.14814814814815, //矿浆流量
-          ore: 400, //矿量
-          percent: 0.8, //矿浆浓度
-          rhoP: 2.014925373134328, //矿浆密度
-          water: 100, //水量
-        }, //排矿(矿浆参数）
-      },
+      inputParams: {},
+      outputParams: {},
       editingKey: '',
       selectedRowKeys: [],
       getServiceReady: false,
