@@ -162,7 +162,8 @@ class CustomComp extends Component {
 
   setGranularityInputValue = (value) => {
     const { granularityParams } = this.state
-    this.setState({ granularityParams: { ...granularityParams, ...value } })
+    //this.setState({ granularityParams: { ...granularityParams, ...value } })
+    this.setState({ granularityParams: value })
   }
 
   setGranularityOutputValue = (value) => {
@@ -175,7 +176,8 @@ class CustomComp extends Component {
 
   setProcessInputValue = (value) => {
     const { processParams } = this.state
-    this.setState({ processParams: { ...processParams, ...value } })
+    // this.setState({ processParams: { ...processParams, ...value } })
+    this.setState({ processParams: value })
   }
 
   renderGranularityHtml = () => {
