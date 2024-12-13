@@ -6,20 +6,6 @@ const { TextArea } = Input
 
 //const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
 
-const pulp_params = [
-  { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
-  { valueName: '矿浆流量', valueKey: 'flowRate', valueType: 'number' },
-  { valueName: '矿量', valueKey: 'ore', valueType: 'number' },
-  { valueName: '矿浆浓度', valueKey: 'percent', valueType: 'number' },
-  { valueName: '矿浆密度', valueKey: 'rhoP', valueType: 'number' },
-  { valueName: '水量', valueKey: 'water', valueType: 'number' },
-]
-
-const modelInput_single = []
-const modelInput_multiple = []
-const modelOutput_single = []
-const modelOutput_multiple = []
-
 const EditableContext = React.createContext()
 
 class EditableCell extends React.Component {
@@ -141,11 +127,23 @@ class CustomComp extends Component {
       getServiceReady: false,
       isVisible: false,
     }
+    this.modelInput_single = []
+    this.modelInput_multiple = []
+    this.modelOutput_single = []
+    this.modelOutput_multiple = []
+    this.pulp_params = [
+      { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
+      { valueName: '矿浆流量', valueKey: 'flowRate', valueType: 'number' },
+      { valueName: '矿量', valueKey: 'ore', valueType: 'number' },
+      { valueName: '矿浆浓度', valueKey: 'percent', valueType: 'number' },
+      { valueName: '矿浆密度', valueKey: 'rhoP', valueType: 'number' },
+      { valueName: '水量', valueKey: 'water', valueType: 'number' },
+    ]
   }
   componentDidMount() {
     scriptUtil.registerReactDom(this, this.props)
     const { equipType, modelType } = this.state
-    if (modelInput_single.length === 0) {
+    if (this.modelInput_single.length === 0) {
       this.getServiceData(equipType, modelType)
     } else {
       this.setState({ getServiceReady: true })
@@ -178,16 +176,16 @@ class CustomComp extends Component {
           }
           if (obj['os_simulation.processSimulationEquipModelTable.type'] === 'input') {
             if (obj['os_simulation.processSimulationEquipModelTable.value_isArray']) {
-              modelInput_multiple.push(objTemp)
+              this.modelInput_multiple.push(objTemp)
             } else {
-              modelInput_single.push(objTemp)
+              this.modelInput_single.push(objTemp)
             }
           }
           if (obj['os_simulation.processSimulationEquipModelTable.type'] === 'output') {
             if (obj['os_simulation.processSimulationEquipModelTable.value_isArray']) {
-              modelOutput_multiple.push(objTemp)
+              this.modelOutput_multiple.push(objTemp)
             } else {
-              modelOutput_single.push(objTemp)
+              this.modelOutput_single.push(objTemp)
             }
           }
         })
@@ -195,10 +193,10 @@ class CustomComp extends Component {
         this.setState({ getServiceReady: true })
         console.log(
           'callback res',
-          modelInput_single,
-          modelInput_multiple,
-          modelOutput_single,
-          modelOutput_multiple
+          this.modelInput_single,
+          this.modelInput_multiple,
+          this.modelOutput_single,
+          this.modelOutput_multiple
         )
       },
     })
@@ -244,7 +242,7 @@ class CustomComp extends Component {
     //点击新增 插入一行空数据
     const { inputParams } = this.state
     const newParams = {}
-    modelInput_multiple.forEach((obj) => {
+    this.modelInput_multiple.forEach((obj) => {
       newParams[obj.valueKey] = null
     })
     inputParams.arrParams.push(newParams)
@@ -325,7 +323,7 @@ class CustomComp extends Component {
   }
 
   renderPulpHtml = (params) => {
-    return pulp_params.map((pulp) => {
+    return this.pulp_params.map((pulp) => {
       return (
         <div className="renderDiv" key={pulp.valueKey}>
           <span className="outputSpan">{pulp.valueName}</span>
@@ -366,7 +364,7 @@ class CustomComp extends Component {
   renderHtml = () => {
     const { inputParams, outputParams, selectedRowKeys, getServiceReady } = this.state
 
-    const model_columns = modelInput_multiple.map((obj) => ({
+    const model_columns = this.modelInput_multiple.map((obj) => ({
       title: obj.valueName,
       dataIndex: obj.valueKey,
       editable: true,
@@ -433,11 +431,11 @@ class CustomComp extends Component {
         <h3>输入参数</h3>
         <div style={{ marginBottom: '12px' }}>
           <div className="inputDiv">
-            {modelInput_single.map((mos) => {
+            {this.modelInput_single.map((mos) => {
               return this.renderInputHtml(mos)
             })}
           </div>
-          {modelInput_multiple.length > 0 && (
+          {this.modelInput_multiple.length > 0 && (
             <EditableContext.Provider value={this.props.form}>
               <Button
                 onClick={this.handleAdd}
@@ -471,7 +469,7 @@ class CustomComp extends Component {
         <h3>输出参数</h3>
         <div>
           {Object.keys(outputParams).length > 0 &&
-            modelOutput_single.map((mos) => this.renderOutputHtml(mos))}
+            this.modelOutput_single.map((mos) => this.renderOutputHtml(mos))}
         </div>
       </div>
     )
@@ -481,7 +479,7 @@ class CustomComp extends Component {
     return (
       <div className="equipModelContent">
         <Button onClick={this.toggleVisibility}>{`${isVisible ? '隐藏' : '显示'}配置项`}</Button>
-        <div className='paramContent' style={{ position: 'relative' }}>
+        <div className="paramContent" style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', display: this.state.isVisible ? 'block' : 'none' }}>
             {getServiceReady && this.renderHtml()}
           </div>

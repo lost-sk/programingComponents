@@ -6,22 +6,6 @@ const { TextArea } = Input
 
 //const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
 
-const granularity_list = [
-  { valueName: '粒级', valueKey: 'particleSize', valueType: 'json' },
-  { valueName: '粒度分布', valueKey: 'distribution', valueType: 'json' },
-  { valueName: '最大粒径', valueKey: 'maxSize', valueType: 'number' },
-  { valueName: '粒度分布', valueKey: 'stdDist', valueType: 'json', disabled: true },
-  { valueName: '粒级', valueKey: 'stdPs', valueType: 'json', disabled: true },
-]
-const process_list = [
-  { valueName: '矿石密度', valueKey: 'rho', valueType: 'number' },
-  { valueName: '给水量1', valueKey: 'water1', valueType: 'number' },
-  { valueName: '给水量2', valueKey: 'water2', valueType: 'number' },
-  { valueName: '给水量3', valueKey: 'water3', valueType: 'number' },
-  { valueName: '给矿1', valueKey: 'feed1', valueType: 'feed' },
-  { valueName: '给矿2', valueKey: 'feed2', valueType: 'feed' },
-  { valueName: '给矿3', valueKey: 'feed3', valueType: 'feed' },
-]
 /**@description  JSON编辑组件*/
 class JSONEditor extends Component {
   constructor(props) {
@@ -151,6 +135,22 @@ class CustomComp extends Component {
       granularityOutputParams: {},
       processParams: {},
     }
+    this.granularity_list = [
+      { valueName: '粒级', valueKey: 'particleSize', valueType: 'json' },
+      { valueName: '粒度分布', valueKey: 'distribution', valueType: 'json' },
+      { valueName: '最大粒径', valueKey: 'maxSize', valueType: 'number' },
+      { valueName: '粒度分布', valueKey: 'stdDist', valueType: 'json', disabled: true },
+      { valueName: '粒级', valueKey: 'stdPs', valueType: 'json', disabled: true },
+    ]
+    this.process_list = [
+      { valueName: '矿石密度', valueKey: 'rho', valueType: 'number' },
+      { valueName: '给水量1', valueKey: 'water1', valueType: 'number' },
+      { valueName: '给水量2', valueKey: 'water2', valueType: 'number' },
+      { valueName: '给水量3', valueKey: 'water3', valueType: 'number' },
+      { valueName: '给矿1', valueKey: 'feed1', valueType: 'feed' },
+      { valueName: '给矿2', valueKey: 'feed2', valueType: 'feed' },
+      { valueName: '给矿3', valueKey: 'feed3', valueType: 'feed' },
+    ]
   }
   componentDidMount() {
     scriptUtil.registerReactDom(this, this.props)
@@ -184,7 +184,7 @@ class CustomComp extends Component {
       <div>
         <h4>矿石粒度</h4>
         <div className="inputDiv">
-          {granularity_list.map((mos) => {
+          {this.granularity_list.map((mos) => {
             return (
               <div className="renderDiv" key={mos.valueKey}>
                 <span className="inputSpan">{mos.valueName}</span>
@@ -228,7 +228,7 @@ class CustomComp extends Component {
       <div>
         <h4>流程参数</h4>
         <div className="inputDiv">
-          {process_list.map((mos) => {
+          {this.process_list.map((mos) => {
             return (
               <div className="renderDiv" key={mos.valueKey}>
                 <span className="inputSpan">{mos.valueName}</span>
