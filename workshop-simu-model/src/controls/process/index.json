@@ -2,5 +2,11 @@
   {
     "name": "document",
     "resource": "document.js"
+  },
+  {
+    "name": "process",
+    "displayName": "流程类型",
+    "inputType": "BaseInput",
+    "placeholder": "process1"
   }
 ]

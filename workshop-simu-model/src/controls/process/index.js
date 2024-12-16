@@ -131,6 +131,8 @@ class CustomComp extends Component {
     const config = props?.data?._attrObject.data || {}
     console.log('simu props config', config)
     this.state = {
+      processType: config?.process?.value || 'process1',
+      getServiceReady: false,
       granularityParams: {},
       granularityOutputParams: {},
       processParams: {},
@@ -142,18 +144,49 @@ class CustomComp extends Component {
       { valueName: '粒度分布', valueKey: 'stdDist', valueType: 'json', disabled: true },
       { valueName: '粒级', valueKey: 'stdPs', valueType: 'json', disabled: true },
     ]
-    this.process_list = [
-      { valueName: '矿石密度', valueKey: 'rho', valueType: 'number' },
-      { valueName: '给水量1', valueKey: 'water1', valueType: 'number' },
-      { valueName: '给水量2', valueKey: 'water2', valueType: 'number' },
-      { valueName: '给水量3', valueKey: 'water3', valueType: 'number' },
-      { valueName: '给矿1', valueKey: 'feed1', valueType: 'feed' },
-      { valueName: '给矿2', valueKey: 'feed2', valueType: 'feed' },
-      { valueName: '给矿3', valueKey: 'feed3', valueType: 'feed' },
-    ]
+    this.process_list = []
+    // [
+    //   { valueName: '矿石密度', valueKey: 'rho', valueType: 'number' },
+    //   { valueName: '给矿1', valueKey: 'feed1', valueType: 'feed' },
+    //   { valueName: '给矿2', valueKey: 'feed2', valueType: 'feed' },
+    // ]
   }
   componentDidMount() {
     scriptUtil.registerReactDom(this, this.props)
+    const { processType } = this.state
+    if (this.process_list.length === 0) {
+      this.getServiceData(processType)
+    } else {
+      this.setState({ getServiceReady: true })
+    }
+  }
+
+  getServiceData = (process) => {
+    scriptUtil.executeScriptService({
+      objName: 'os_simulation.Template_process', // 模板 或者 实例
+      serviceName: 'os_simulation.getProcess', // 服务的命名空间+服务别名
+      // 入参
+      params: {
+        process,
+      },
+      version: 'V2',
+      // 回调函数 获取input参数和output参数
+      cb: (res) => {
+        const datalist = res.data.list
+
+        datalist.forEach((obj) => {
+          const objTemp = {
+            valueName: obj['os_simulation.Template_process.value_name'],
+            valueKey: obj['os_simulation.Template_process.value_key'],
+            valueType: obj['os_simulation.Template_process.value_type'],
+          }
+          this.process_list.push(objTemp)
+        })
+
+        this.setState({ getServiceReady: true })
+        console.log('callback res process_list', this.process_list)
+      },
+    })
   }
 
   getGranularityInputValue = () => {
@@ -226,46 +259,51 @@ class CustomComp extends Component {
 
   renderPrecessHtml = () => {
     const { processParams } = this.state
+    const granularity = this.process_list.filter((v) => v.valueType === 'granular')
     return (
-      <div>
+      <div className="paramContent">
+        {granularity.map((v) => {
+          return this.renderGranularityHtml()
+        })}
         <h4>流程参数</h4>
         <div className="inputDiv">
-          {this.process_list.map((mos) => {
-            return (
-              <div className="renderDiv" key={mos.valueKey}>
-                <span className="inputSpan">{mos.valueName}</span>
-                {mos.valueType === 'number' && (
-                  <InputNumber
-                    value={processParams[mos.valueKey]}
-                    onChange={(value) =>
-                      this.setState({
-                        processParams: { ...processParams, [mos.valueKey]: value },
-                      })
-                    }
-                  ></InputNumber>
-                )}
-                {mos.valueType === 'feed' && (
-                  <Feed
-                    initialValue={processParams[mos.valueKey]}
-                    onChange={(parsedValue) =>
-                      this.setState({
-                        processParams: { ...processParams, [mos.valueKey]: parsedValue },
-                      })
-                    }
-                  />
-                )}
-              </div>
-            )
-          })}
+          {this.process_list
+            .filter((v) => v.valueType !== 'granular')
+            .map((mos) => {
+              return (
+                <div className="renderDiv" key={mos.valueKey}>
+                  <span className="inputSpan">{mos.valueName}</span>
+                  {mos.valueType === 'number' && (
+                    <InputNumber
+                      value={processParams[mos.valueKey]}
+                      onChange={(value) =>
+                        this.setState({
+                          processParams: { ...processParams, [mos.valueKey]: value },
+                        })
+                      }
+                    ></InputNumber>
+                  )}
+                  {mos.valueType === 'feed' && (
+                    <Feed
+                      initialValue={processParams[mos.valueKey]}
+                      onChange={(parsedValue) =>
+                        this.setState({
+                          processParams: { ...processParams, [mos.valueKey]: parsedValue },
+                        })
+                      }
+                    />
+                  )}
+                </div>
+              )
+            })}
         </div>
       </div>
     )
   }
   renderHtml = () => {
     return (
-      <div>
+      <div style={{ width: '100%', height: '100%' }}>
         <h3>设置仿真参数</h3>
-        {this.renderGranularityHtml()}
         {this.renderPrecessHtml()}
       </div>
     )
