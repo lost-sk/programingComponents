@@ -173,6 +173,9 @@ class CustomComp extends Component {
             valueName: obj['os_simulation.processSimulationEquipModelTable.value_name'],
             valueKey: obj['os_simulation.processSimulationEquipModelTable.value_key'],
             valueType: obj['os_simulation.processSimulationEquipModelTable.value_type'],
+            valueDefault:
+              obj['os_simulation.processSimulationEquipModelTable.defaultValue'] || null,
+            displayable: obj['os_simulation.processSimulationEquipModelTable.displayable'],
           }
           if (obj['os_simulation.processSimulationEquipModelTable.type'] === 'input') {
             if (obj['os_simulation.processSimulationEquipModelTable.value_isArray']) {
@@ -190,7 +193,13 @@ class CustomComp extends Component {
           }
         })
 
-        this.setState({ getServiceReady: true })
+        const defaultValues = {}
+        this.modelInput_single
+          .filter((v) => v.valueDefault)
+          .forEach((v) => {
+            defaultValues[v.valueKey] = v.valueType === 'number' ? +v.valueDefault : v.valueDefault
+          })
+        this.setState({ getServiceReady: true, inputParams: defaultValues })
         console.log(
           'callback res',
           this.modelInput_single,
@@ -271,7 +280,14 @@ class CustomComp extends Component {
   }
 
   setInputValue = (value) => {
-    this.setState({ inputParams: value })
+    const defaultValues = {}
+    this.modelInput_single
+      .filter((v) => v.valueDefault)
+      .forEach((v) => {
+        defaultValues[v.valueKey] = v.valueType === 'number' ? +v.valueDefault : v.valueDefault
+      })
+    console.log('defaultValues', defaultValues)
+    this.setState({ inputParams: { ...value, ...defaultValues } })
   }
 
   setOutputValue = (value) => {
@@ -282,11 +298,15 @@ class CustomComp extends Component {
     const { inputParams } = this.state
 
     return (
-      <div className="renderDiv" key={list.valueKey}>
+      <div
+        className="renderDiv"
+        key={list.valueKey}
+        style={{ display: list.displayable ? 'block' : 'none' }}
+      >
         <span className="inputSpan">{list.valueName}</span>
         {list.valueType === 'number' && (
           <InputNumber
-            value={inputParams[list.valueKey]}
+            value={inputParams[list.valueKey] || list.valueDefault}
             onChange={(value) =>
               this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
             }
@@ -294,7 +314,7 @@ class CustomComp extends Component {
         )}
         {list.valueType === 'json' && (
           <JSONEditor
-            initialValue={inputParams[list.valueKey]}
+            initialValue={inputParams[list.valueKey] || list.valueDefault}
             onValidInput={(parsedValue) =>
               this.setState({ inputParams: { ...inputParams, [list.valueKey]: parsedValue } })
             }
@@ -302,7 +322,7 @@ class CustomComp extends Component {
         )}
         {list.valueType === 'string' && (
           <Input
-            value={inputParams[list.valueKey]}
+            value={inputParams[list.valueKey] || list.valueDefault}
             onChange={(event) =>
               this.setState({
                 inputParams: { ...inputParams, [list.valueKey]: event.target.value },
@@ -312,9 +332,9 @@ class CustomComp extends Component {
         )}
         {list.valueType === 'switch' && (
           <Switch
-            checked={inputParams.fishhook}
+            checked={inputParams[list.valueKey] || list.valueDefault}
             onChange={(checked) =>
-              this.setState({ inputParams: { ...inputParams, fishhook: checked } })
+              this.setState({ inputParams: { ...inputParams, [list.valueKey]: checked } })
             }
           ></Switch>
         )}
