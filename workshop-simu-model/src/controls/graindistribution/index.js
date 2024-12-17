@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, InputNumber, Table, Form } from 'antd'
+import { Input, InputNumber, Table, Form, Button } from 'antd'
 //import _ from 'lodash'
 import './index.css'
 
@@ -49,7 +49,7 @@ class CustomComp extends Component {
     const config = props?.data?._attrObject.data || {}
     console.log('simu props config', config)
     this.state = {
-      granularityParams: {},
+      granularityParams: { arrParams: [] },
       granularityOutputParams: {},
       editingKey: '',
       selectedRowKeys: [],
@@ -78,7 +78,7 @@ class CustomComp extends Component {
         return
       }
 
-      const newData = this.state.inputParams.arrParams.map((v, i) => ({ ...v, key: i }))
+      const newData = this.state.granularityParams.arrParams.map((v, i) => ({ ...v, key: i }))
       const index = newData.findIndex((item) => key === item.key)
       console.log('save key row index', key, row, index)
       if (index > -1) {
@@ -88,12 +88,12 @@ class CustomComp extends Component {
           ...row,
         })
         this.setState({
-          inputParams: { ...this.state.inputParams, arrParams: newData },
+          granularityParams: { ...this.state.granularityParams, arrParams: newData },
           editingKey: '',
         })
       } else {
         newData.push(row)
-        this.setState({ ...this.state.inputParams, arrParams: newData, editingKey: '' })
+        this.setState({ ...this.state.granularityParams, arrParams: newData, editingKey: '' })
       }
     })
   }
@@ -104,21 +104,22 @@ class CustomComp extends Component {
 
   handleAdd = () => {
     //点击新增 插入一行空数据
-    const { inputParams } = this.state
-    const newParams = {}
-    this.modelInput_multiple.forEach((obj) => {
-      newParams[obj.valueKey] = null
-    })
-    inputParams.arrParams.push(newParams)
-    this.setState({ inputParams })
+    const { granularityParams } = this.state
+    const newParams = { particleSize: null, distribution: null }
+
+    granularityParams.arrParams.push(newParams)
+    this.setState({ granularityParams })
   }
 
   handleDelete = () => {
-    const { selectedRowKeys, inputParams } = this.state
-    const newData = inputParams.arrParams.map((v, i) => ({ ...v, key: i }))
+    const { selectedRowKeys, granularityParams } = this.state
+    const newData = granularityParams.arrParams.map((v, i) => ({ ...v, key: i }))
     const filterData = newData.filter((obj) => !selectedRowKeys.includes(obj.key))
     console.log('handle delete', newData, filterData)
-    this.setState({ inputParams: { ...inputParams, arrParams: filterData }, selectedRowKeys: [] })
+    this.setState({
+      granularityParams: { ...granularityParams, arrParams: filterData },
+      selectedRowKeys: [],
+    })
   }
 
   onSelectChange = (selectedRowKeys) => {
@@ -212,7 +213,6 @@ class CustomComp extends Component {
     }
     return (
       <div>
-        <h4>矿石粒度</h4>
         <div className="inputDiv">
           <span className="inputSpan">最大粒径</span>
           <InputNumber
