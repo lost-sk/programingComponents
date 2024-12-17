@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, InputNumber, Switch, Table, Form, Button } from 'antd'
+import { Input, InputNumber, Switch, Table, Form, Button, Modal } from 'antd'
 //import _ from 'lodash'
 import './index.css'
 const { TextArea } = Input
@@ -121,7 +121,7 @@ class CustomComp extends Component {
       equipType: config?.type?.value || 'Ball',
       modelType: config?.model?.value || 'PerfectMixing',
       inputParams: {},
-      outputParams: {},
+      copyParams: {},
       editingKey: '',
       selectedRowKeys: [],
       getServiceReady: false,
@@ -197,7 +197,16 @@ class CustomComp extends Component {
         this.modelInput_single
           .filter((v) => v.valueDefault)
           .forEach((v) => {
-            defaultValues[v.valueKey] = v.valueType === 'number' ? +v.valueDefault : v.valueDefault
+            switch (v.valueType) {
+              case 'number':
+                defaultValues[v.valueKey] = +v.valueDefault
+                break
+              case 'json':
+                defaultValues[v.valueKey] = JSON.parse(v.valueDefault)
+                break
+              default:
+                defaultValues[v.valueKey] = v.valueDefault
+            }
           })
         this.setState({ getServiceReady: true, inputParams: defaultValues })
         console.log(
@@ -272,7 +281,13 @@ class CustomComp extends Component {
   }
 
   toggleVisibility = () => {
-    this.setState((prevState) => ({ isVisible: !prevState.isVisible }))
+    const { isVisible } = this.state
+    if (!isVisible) {
+      this.setState((prevState) => ({
+        isVisible: !prevState.isVisible,
+        copyParams: prevState.inputParams,
+      }))
+    } else this.setState((prevState) => ({ isVisible: !prevState.isVisible }))
   }
 
   handleOk = (e) => {
@@ -284,6 +299,7 @@ class CustomComp extends Component {
   handleCancel = (e) => {
     this.setState({
       isVisible: false,
+      inputParams: this.state.copyParams,
     })
   }
 
@@ -296,14 +312,19 @@ class CustomComp extends Component {
     this.modelInput_single
       .filter((v) => v.valueDefault)
       .forEach((v) => {
-        defaultValues[v.valueKey] = v.valueType === 'number' ? +v.valueDefault : v.valueDefault
+        switch (v.valueType) {
+          case 'number':
+            defaultValues[v.valueKey] = +v.valueDefault
+            break
+          case 'json':
+            defaultValues[v.valueKey] = JSON.parse(v.valueDefault)
+            break
+          default:
+            defaultValues[v.valueKey] = v.valueDefault
+        }
       })
     console.log('defaultValues', defaultValues)
     this.setState({ inputParams: { ...value, ...defaultValues } })
-  }
-
-  setOutputValue = (value) => {
-    this.setState({ outputParams: value })
   }
 
   renderInputHtml = (list) => {
@@ -313,7 +334,7 @@ class CustomComp extends Component {
       <div
         className="renderDiv"
         key={list.valueKey}
-        style={{ display: list.displayable ? 'block' : 'none' }}
+        style={{ display: list.displayable ? 'flex' : 'none' }}
       >
         <span className="inputSpan">{list.valueName}</span>
         {list.valueType === 'number' && (
@@ -355,7 +376,7 @@ class CustomComp extends Component {
   }
 
   renderHtml = () => {
-    const { inputParams, outputParams, selectedRowKeys, getServiceReady } = this.state
+    const { inputParams, selectedRowKeys } = this.state
 
     const model_columns = this.modelInput_multiple.map((obj) => ({
       title: obj.valueName,
@@ -462,7 +483,7 @@ class CustomComp extends Component {
   render() {
     const { getServiceReady, isVisible, modelType } = this.state
     return (
-      <div className="equipModelContent">
+      <div>
         {/* <Button onClick={this.toggleVisibility}>{`${isVisible ? '隐藏' : '显示'}配置项`}</Button> */}
         <Modal
           title={`${modelType}模型参数`}
@@ -470,11 +491,7 @@ class CustomComp extends Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <div className="paramContent" style={{ position: 'relative' }}>
-            <div style={{ position: 'absolute', display: this.state.isVisible ? 'block' : 'none' }}>
-              {getServiceReady && this.renderHtml()}
-            </div>
-          </div>
+          <div className="equipInputModelContent">{getServiceReady && this.renderHtml()}</div>
         </Modal>
       </div>
     )
