@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, InputNumber, Table, Form, Button } from 'antd'
+import { Input, InputNumber, Table, Form, Button, Modal } from 'antd'
 //import _ from 'lodash'
 import './index.css'
 
@@ -50,9 +50,11 @@ class CustomComp extends Component {
     console.log('simu props config', config)
     this.state = {
       granularityParams: { arrParams: [] },
+      copyParams: {},
       granularityOutputParams: {},
       editingKey: '',
       selectedRowKeys: [],
+      isVisible: false,
     }
     this.granularity_list = [
       { valueName: '粒级', valueKey: 'particleSize', valueType: 'json' },
@@ -125,6 +127,29 @@ class CustomComp extends Component {
   onSelectChange = (selectedRowKeys) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys)
     this.setState({ selectedRowKeys })
+  }
+
+  toggleVisibility = () => {
+    const { isVisible } = this.state
+    if (!isVisible) {
+      this.setState((prevState) => ({
+        isVisible: !prevState.isVisible,
+        copyParams: prevState.granularityParams,
+      }))
+    } else this.setState((prevState) => ({ isVisible: !prevState.isVisible }))
+  }
+
+  handleOk = (e) => {
+    this.setState({
+      isVisible: false,
+    })
+  }
+
+  handleCancel = (e) => {
+    this.setState({
+      isVisible: false,
+      granularityParams: this.state.copyParams,
+    })
   }
 
   getGranularityInputValue = () => {
@@ -213,7 +238,7 @@ class CustomComp extends Component {
     }
     return (
       <div>
-        <div className="inputDiv">
+        <div className="inputDiv" style={{ marginBottom: '12px' }}>
           <span className="inputSpan">最大粒径</span>
           <InputNumber
             value={granularityParams.maxSize}
@@ -259,16 +284,20 @@ class CustomComp extends Component {
     )
   }
 
-  renderHtml = () => {
+  render() {
+    const { isVisible } = this.state
     return (
-      <div style={{ width: '100%', height: '100%' }}>
-        <h3>粒度参数设置</h3>
-        {this.renderGranularityHtml()}
+      <div>
+        <Modal
+          title="粒度参数"
+          visible={isVisible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <div className="processContent">{this.renderGranularityHtml()}</div>
+        </Modal>
       </div>
     )
-  }
-  render() {
-    return <div className="processContent">{this.renderHtml()}</div>
   }
 }
 
