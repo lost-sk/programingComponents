@@ -348,9 +348,9 @@ class CustomComp extends Component {
         <div className="renderDiv" key={pulp.valueKey}>
           <span className="outputSpan">{pulp.valueName}</span>
           {pulp.valueType === 'json' ? (
-            <TextArea rows={2} value={JSON.stringify(params[pulp.valueKey])} disabled />
+            <TextArea rows={2} value={JSON.stringify(params[pulp.valueKey] || '')} disabled />
           ) : (
-            <span className="paramOutput">{params[pulp.valueKey]}</span>
+            <span className="paramOutput">&nbsp;{params[pulp.valueKey] || ''}</span>
           )}
         </div>
       )
@@ -366,8 +366,8 @@ class CustomComp extends Component {
           <span className="paramOutput">
             &nbsp;
             {list.valueType === 'json'
-              ? JSON.stringify(outputParams[list.valueKey])
-              : outputParams[list.valueKey]}
+              ? JSON.stringify(outputParams[list.valueKey]) || null
+              : outputParams[list.valueKey] || null}
           </span>
         </div>
       )
@@ -375,7 +375,7 @@ class CustomComp extends Component {
       return (
         <div key={list.valueKey}>
           <h4>{list.valueName}</h4>
-          {this.renderPulpHtml(outputParams[list.valueKey])}
+          {this.renderPulpHtml(outputParams[list.valueKey] || {})}
         </div>
       )
     }
@@ -449,10 +449,7 @@ class CustomComp extends Component {
     return (
       <div>
         {/* <h3>模型输出</h3> */}
-        <div>
-          {Object.keys(outputParams).length > 0 &&
-            this.modelOutput_single.map((mos) => this.renderOutputHtml(mos))}
-        </div>
+        <div>{this.modelOutput_single.map((mos) => this.renderOutputHtml(mos))}</div>
       </div>
     )
   }
