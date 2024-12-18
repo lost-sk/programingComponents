@@ -132,7 +132,7 @@ class CustomComp extends Component {
     this.modelOutput_single = []
     this.modelOutput_multiple = []
     this.pulp_params = [
-      { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
+      // { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
       { valueName: '矿浆流量', valueKey: 'flowRate', valueType: 'number' },
       { valueName: '矿量', valueKey: 'ore', valueType: 'number' },
       { valueName: '矿浆浓度', valueKey: 'percent', valueType: 'number' },

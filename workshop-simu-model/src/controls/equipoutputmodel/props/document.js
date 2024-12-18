@@ -70,36 +70,6 @@ const docList = [
     code: ``,
   },
   {
-    functionName: 'getInputValue',
-    description: '获取输入参数',
-    code: `
-			var inputValue = this.getInputValue();
-			console.log(inputValue)
-		`,
-  },
-  {
-    functionName: 'setInputValue',
-    description: '设置输入参数',
-    code: `
-    const params = {
-			"name": "Ball",
-			"model": "PerfectMixing",
-			"params": {
-				"diameter": 5.5, 
-				"length": 8.5, 
-				"speed": 11.2, 
-				"jt": 0.25, 
-				"db": 100, 
-				"jb": 0.1, 
-				"rhoB": 7.8, 
-				"wi": 11.2, 
-				"rate": [[1, 3], [2, 1], [3, 1], [4, 3]]
-			}
-		}
-			this.setInputValue(params);
-		`,
-  },
-  {
     functionName: 'setOutputValue',
     description: '设置输出参数',
     code: `
