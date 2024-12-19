@@ -176,6 +176,69 @@
   }
 }
 
+.equipOutModelContent {
+  width: 100%;
+  height: 100%;
+  .paramContent {
+    height: calc(100% - 25px);
+    overflow: auto;
+  }
+  h3 {
+    background: #fafafa;
+    padding: 6px 12px;
+  }
+  .inputDiv {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .renderDiv {
+    display: flex;
+    width: 30%;
+    min-width: 150px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    align-items: center;
+    .ant-input-number {
+      width: 100%;
+    }
+  }
+  .inputSpan {
+    background-color: #fafafa;
+    border: 1px solid #f2f2f2;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+  .paramInput {
+    margin-right: 20px;
+  }
+  .outputSpan {
+    background-color: #00153c;
+    /* border: 1px solid #4e69a1; */
+    color: #33bce7;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+  .paramOutput {
+    display: inline-block;
+    /* margin-right: 20px; */
+    border: 1px solid #4e69a1;
+    padding: 6px 12px;
+    min-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* width: 120px; */
+  }
+  .ant-table thead.ant-table-thead > tr > th {
+    background-color: #abdfbe;
+    color: #2d2f31;
+  }
+  .ant-table-wrapper {
+    min-height: 120px;
+  }
+}
+
 .processContent {
   width: 100%;
   height: 100%;

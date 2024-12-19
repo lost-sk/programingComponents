@@ -374,7 +374,7 @@ class CustomComp extends Component {
     } else {
       return (
         <div key={list.valueKey}>
-          <h4>{list.valueName}</h4>
+          <h4 style={{ color: '#33BCE7' }}>{list.valueName}</h4>
           {this.renderPulpHtml(outputParams[list.valueKey] || {})}
         </div>
       )
@@ -456,7 +456,7 @@ class CustomComp extends Component {
   render() {
     const { getServiceReady, isVisible } = this.state
     return (
-      <div className="equipModelContent">
+      <div className="equipOutModelContent">
         {/* <Button onClick={this.toggleVisibility}>{`${isVisible ? '隐藏' : '显示'}配置项`}</Button> */}
         <div className="paramContent" style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', display: this.state.isVisible ? 'block' : 'none' }}>
