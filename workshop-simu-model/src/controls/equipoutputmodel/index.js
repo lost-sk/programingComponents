@@ -142,6 +142,7 @@ class CustomComp extends Component {
   }
   componentDidMount() {
     scriptUtil.registerReactDom(this, this.props)
+    this.props.setScrollable(true)
     const { equipType, modelType } = this.state
     if (this.modelInput_single.length === 0) {
       this.getServiceData(equipType, modelType)

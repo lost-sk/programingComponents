@@ -182,6 +182,7 @@
   .paramContent {
     height: calc(100% - 25px);
     overflow: auto;
+    scrollbar-color: #121263 #283651;
   }
   h3 {
     background: #fafafa;
