@@ -70,6 +70,13 @@ const docList = [
     code: ``,
   },
   {
+    functionName: 'toggleVisibility',
+    description: '打开组件对话框',
+    code: `
+			this.toggleVisibility();
+		`,
+  },
+  {
     functionName: 'getInputValue',
     description: '获取输入参数',
     code: `
@@ -97,29 +104,6 @@ const docList = [
 			}
 		}
 			this.setInputValue(params);
-		`,
-  },
-  {
-    functionName: 'setOutputValue',
-    description: '设置输出参数',
-    code: `
-    const params = {
-			"power": 320.01940563705534,
-			"product": {
-				"dist": [
-					0,
-					0.5566232079608417,
-					0.5639964704851527,
-					0.7757341026224694,
-				],
-				"flowRate": 248.14814814814815,
-				"ore": 400,
-				"percent": 0.8,
-				"rhoP": 2.014925373134328,
-				"water": 100
-			}
-		}
-			this.setOutputValue(outputParams);
 		`,
   },
 ]

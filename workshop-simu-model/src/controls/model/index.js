@@ -75,7 +75,7 @@ class CustomComp extends Component {
   componentDidUpdate(prevProps, prevState) {}
 
   componentWillUnmount() {}
-
+  //根据模型类型获取模型参数定义
   getServiceData = (model) => {
     scriptUtil.executeScriptService({
       objName: 'os_simulation.simulation_model', // 模板 或者 实例
@@ -128,7 +128,7 @@ class CustomComp extends Component {
   cancel = () => {
     this.setState({ editingKey: '' })
   }
-
+  //处理表格数据保存逻辑
   handleSave(form, key) {
     form.validateFields((error, row) => {
       if (error) {
@@ -158,7 +158,7 @@ class CustomComp extends Component {
   handleEdit(key) {
     this.setState({ editingKey: key })
   }
-
+  //处理表格数据新增逻辑
   handleAdd = () => {
     //点击新增 插入一行空数据
     const { model, inputParams } = this.state
@@ -182,15 +182,15 @@ class CustomComp extends Component {
     console.log('selectedRowKeys changed: ', selectedRowKeys)
     this.setState({ selectedRowKeys })
   }
-
+  //外部调用该方法获取输入参数数据
   getInputValue = () => {
     return this.state.inputParams
   }
-
+  //外部调用该方法设置输入参数数据（用于写入历史参数）
   setInputValue = (value) => {
     this.setState({ inputParams: value })
   }
-
+  //外部调用该方法设置输出参数数据（用于写入历史参数）
   setOutputValue = (value) => {
     this.setState({ outputParams: value })
   }
@@ -240,7 +240,7 @@ class CustomComp extends Component {
       </div>
     )
   }
-  /*********旋流器 输入，输出配置*************/
+
   cycloneHtml = () => {
     const { inputParams, outputParams, selectedRowKeys, getServiceReady } = this.state
 
@@ -363,6 +363,7 @@ class CustomComp extends Component {
       </div>
     )
   }
+
   render() {
     const { getServiceReady } = this.state
     return <div className="modelContent">{getServiceReady && this.cycloneHtml()}</div>
