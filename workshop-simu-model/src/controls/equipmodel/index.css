@@ -1,103 +1,87 @@
-.modelContent {
-  h3 {
-    background: #fafafa;
-    padding: 6px 12px;
-  }
-  .inputDiv {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .renderDiv {
-    display: flex;
-    width: 25%;
-    margin-bottom: 16px;
-    margin-right: 16px;
-    align-items: center;
-    .ant-input-number {
-      width: 100%;
-    }
-  }
-  .inputSpan {
-    background-color: #fafafa;
-    border: 1px solid #f2f2f2;
-    padding: 6px 12px;
-    white-space: nowrap;
-  }
-  .paramInput {
-    margin-right: 20px;
-  }
-  .outputSpan {
-    background-color: #fafafa;
-    border: 1px solid #f2f2f2;
-    padding: 6px 12px;
-    white-space: nowrap;
-  }
-  .paramOutput {
-    display: inline-block;
-    margin-right: 20px;
-    border: 1px solid #f2f2f2;
-    padding: 6px 12px;
-    min-width: 120px;
-    /* width: 120px; */
-  }
-  .ant-table thead.ant-table-thead > tr > th {
-    background-color: #abdfbe;
-    color: #2d2f31;
-  }
-  .ant-table-wrapper {
-    min-height: 120px;
-  }
+/* 整体容器 */
+.param-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
-.equipModelContent {
-  h3 {
-    background: #fafafa;
-    padding: 6px 12px;
-  }
-  .inputDiv {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .renderDiv {
-    display: flex;
-    width: 30%;
-    min-width: 150px;
-    margin-bottom: 16px;
-    margin-right: 16px;
-    align-items: center;
-    .ant-input-number {
-      width: 100%;
-    }
-  }
-  .inputSpan {
-    background-color: #fafafa;
-    border: 1px solid #f2f2f2;
-    padding: 6px 12px;
-    white-space: nowrap;
-  }
-  .paramInput {
-    margin-right: 20px;
-  }
-  .outputSpan {
-    background-color: #fafafa;
-    border: 1px solid #f2f2f2;
-    padding: 6px 12px;
-    white-space: nowrap;
-  }
-  .paramOutput {
-    display: inline-block;
-    margin-right: 20px;
-    border: 1px solid #f2f2f2;
-    padding: 6px 12px;
-    min-width: 120px;
-    /* width: 120px; */
-  }
-  .ant-table thead.ant-table-thead > tr > th {
-    background-color: #abdfbe;
-    color: #2d2f31;
-  }
-  .ant-table-wrapper {
-    min-height: 120px;
-  }
+
+/* 参数区块 */
+.param-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.param-title {
+  color: #1677ff;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+  padding: 8px 16px;
+  background: #f0f8ff;
+  border-radius: 8px 8px 0 0;
+}
+
+/* 参数内容区域 */
+.param-content {
+  padding: 0 16px 16px;
+}
+
+/* 参数组（两列布局） */
+.param-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+  margin-bottom: 24px;
+}
+
+/* 参数行 */
+.param-row {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+.param-label {
+  width: 120px;
+  margin-right: 12px;
+  color: #666;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* 表格容器 */
+.param-table {
+  margin-top: 16px;
+  /* border: 1px solid #e8e8e8; */
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* 操作按钮 */
+.param-table .ant-btn {
+  margin-right: 8px;
+}
+
+/* 输出值样式 */
+.param-output {
+  background: #f8f8f8;
+  padding: 6px 12px;
+  border-radius: 4px;
+  min-height: 32px;
+}
+
+/* 矿浆参数 */
+.pulp-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  background: #f5f8fb;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.pulp-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
 }

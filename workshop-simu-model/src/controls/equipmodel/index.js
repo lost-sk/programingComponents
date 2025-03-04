@@ -1,10 +1,131 @@
 import React, { Component } from 'react'
-import { Input, InputNumber, Switch, Table, Form, Button } from 'antd'
-//import _ from 'lodash'
+import { Input, InputNumber, Switch, Table, Form, Button, Modal } from 'antd'
+// import _ from 'lodash'
 import './index.css'
 const { TextArea } = Input
 
-//const scriptUtil = { registerReactDom: () => {}, executeScriptService: () => {} }
+// const scriptUtil = {
+//   registerReactDom: () => {},
+//   executeScriptService: ({ objName, serviceName, params, version, cb }) => {
+//     cb({
+//       data: {
+//         list: [
+//           {
+//             'os_simulation.processSimulationEquipModelTable.created_time': '2024-12-04T06:15:16Z',
+//             'os_simulation.processSimulationEquipModelTable.defaultValue': null,
+//             'os_simulation.processSimulationEquipModelTable.value_name': '混合填充率',
+//             'os_simulation.processSimulationEquipModelTable.id': 207133,
+//             'os_simulation.processSimulationEquipModelTable.equipType': 'Ball',
+//             'os_simulation.processSimulationEquipModelTable.displayable': 1,
+//             'os_simulation.processSimulationEquipModelTable.description': null,
+//             'os_simulation.processSimulationEquipModelTable.last_modifier_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_isArray': 0,
+//             'os_simulation.processSimulationEquipModelTable.app_name': 'system',
+//             'os_simulation.processSimulationEquipModelTable.value_type': 'number',
+//             'os_simulation.processSimulationEquipModelTable.type': 'input',
+//             'os_simulation.processSimulationEquipModelTable.creator_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_key': 'jt',
+//             'os_simulation.processSimulationEquipModelTable.last_modified_time':
+//               '2024-12-04T06:15:16Z',
+//             'os_simulation.processSimulationEquipModelTable.modelType': 'PerfectMixing',
+//             'os_simulation.processSimulationEquipModelTable.app_access_mode': 'PRIVATE',
+//             'os_simulation.processSimulationEquipModelTable.array_key': '1_defaut',
+//           },
+//           {
+//             'os_simulation.processSimulationEquipModelTable.created_time': '2024-12-04T06:15:16Z',
+//             'os_simulation.processSimulationEquipModelTable.defaultValue': null,
+//             'os_simulation.processSimulationEquipModelTable.value_name': '最大钢球直径',
+//             'os_simulation.processSimulationEquipModelTable.id': 207134,
+//             'os_simulation.processSimulationEquipModelTable.equipType': 'Ball',
+//             'os_simulation.processSimulationEquipModelTable.displayable': 1,
+//             'os_simulation.processSimulationEquipModelTable.description': null,
+//             'os_simulation.processSimulationEquipModelTable.last_modifier_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_isArray': 0,
+//             'os_simulation.processSimulationEquipModelTable.app_name': 'system',
+//             'os_simulation.processSimulationEquipModelTable.value_type': 'number',
+//             'os_simulation.processSimulationEquipModelTable.type': 'input',
+//             'os_simulation.processSimulationEquipModelTable.creator_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_key': 'db',
+//             'os_simulation.processSimulationEquipModelTable.last_modified_time':
+//               '2024-12-04T06:15:16Z',
+//             'os_simulation.processSimulationEquipModelTable.modelType': 'PerfectMixing',
+//             'os_simulation.processSimulationEquipModelTable.app_access_mode': 'PRIVATE',
+//             'os_simulation.processSimulationEquipModelTable.array_key': '1_defaut',
+//           },
+//           {
+//             'os_simulation.processSimulationEquipModelTable.created_time': '2024-12-04T06:15:16Z',
+//             'os_simulation.processSimulationEquipModelTable.defaultValue': null,
+//             'os_simulation.processSimulationEquipModelTable.value_name': '钢球填充率',
+//             'os_simulation.processSimulationEquipModelTable.id': 207135,
+//             'os_simulation.processSimulationEquipModelTable.equipType': 'Ball',
+//             'os_simulation.processSimulationEquipModelTable.displayable': 1,
+//             'os_simulation.processSimulationEquipModelTable.description': null,
+//             'os_simulation.processSimulationEquipModelTable.last_modifier_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_isArray': 0,
+//             'os_simulation.processSimulationEquipModelTable.app_name': 'system',
+//             'os_simulation.processSimulationEquipModelTable.value_type': 'number',
+//             'os_simulation.processSimulationEquipModelTable.type': 'input',
+//             'os_simulation.processSimulationEquipModelTable.creator_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_key': 'jb',
+//             'os_simulation.processSimulationEquipModelTable.last_modified_time':
+//               '2024-12-04T06:15:16Z',
+//             'os_simulation.processSimulationEquipModelTable.modelType': 'PerfectMixing',
+//             'os_simulation.processSimulationEquipModelTable.app_access_mode': 'PRIVATE',
+//             'os_simulation.processSimulationEquipModelTable.array_key': '1_defaut',
+//           },
+//           {
+//             'os_simulation.processSimulationEquipModelTable.created_time': '2024-12-04T06:15:16Z',
+//             'os_simulation.processSimulationEquipModelTable.defaultValue':
+//               '[[1, 3], [2, 1], [3, 1], [4, 3]]',
+//             'os_simulation.processSimulationEquipModelTable.value_name': '磨矿速率',
+//             'os_simulation.processSimulationEquipModelTable.id': 207138,
+//             'os_simulation.processSimulationEquipModelTable.equipType': 'Ball',
+//             'os_simulation.processSimulationEquipModelTable.displayable': 0,
+//             'os_simulation.processSimulationEquipModelTable.description': null,
+//             'os_simulation.processSimulationEquipModelTable.last_modifier_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_isArray': 0,
+//             'os_simulation.processSimulationEquipModelTable.app_name': 'system',
+//             'os_simulation.processSimulationEquipModelTable.value_type': 'json',
+//             'os_simulation.processSimulationEquipModelTable.type': 'input',
+//             'os_simulation.processSimulationEquipModelTable.creator_id': '1',
+//             'os_simulation.processSimulationEquipModelTable.value_key': 'rate',
+//             'os_simulation.processSimulationEquipModelTable.last_modified_time':
+//               '2024-12-17T02:43:11Z',
+//             'os_simulation.processSimulationEquipModelTable.modelType': 'PerfectMixing',
+//             'os_simulation.processSimulationEquipModelTable.app_access_mode': 'PRIVATE',
+//             'os_simulation.processSimulationEquipModelTable.array_key': '1_defaut',
+//           },
+//           {
+//             'os_simulation.processSimulationEquipModelTable.defaultValue': null,
+//             'os_simulation.processSimulationEquipModelTable.value_name': '粒度分布',
+//             'os_simulation.processSimulationEquipModelTable.equipType': 'Ball',
+//             'os_simulation.processSimulationEquipModelTable.displayable': 1,
+//             'os_simulation.processSimulationEquipModelTable.description': '',
+//             'os_simulation.processSimulationEquipModelTable.value_isArray': 1,
+//             'os_simulation.processSimulationEquipModelTable.value_type': 'number',
+//             'os_simulation.processSimulationEquipModelTable.type': 'input',
+//             'os_simulation.processSimulationEquipModelTable.value_key': 'distribution',
+//             'os_simulation.processSimulationEquipModelTable.modelType': 'PerfectMixing',
+//             'os_simulation.processSimulationEquipModelTable.array_key': '1_default',
+//           },
+//           {
+//             'os_simulation.processSimulationEquipModelTable.defaultValue': null,
+//             'os_simulation.processSimulationEquipModelTable.value_name': '粒级',
+//             'os_simulation.processSimulationEquipModelTable.equipType': 'Ball',
+//             'os_simulation.processSimulationEquipModelTable.displayable': 1,
+//             'os_simulation.processSimulationEquipModelTable.description': '',
+//             'os_simulation.processSimulationEquipModelTable.value_isArray': 1,
+//             'os_simulation.processSimulationEquipModelTable.value_type': 'number',
+//             'os_simulation.processSimulationEquipModelTable.type': 'input',
+//             'os_simulation.processSimulationEquipModelTable.value_key': 'particleSize',
+//             'os_simulation.processSimulationEquipModelTable.modelType': 'PerfectMixing',
+//             'os_simulation.processSimulationEquipModelTable.array_key': '1_default',
+//           },
+//         ],
+//       },
+//     })
+//   },
+// }
 
 const EditableContext = React.createContext()
 
@@ -49,7 +170,7 @@ class JSONEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputValue: JSON.stringify(props.initialValue),
+      inputValue: JSON.stringify(props.initialValue || ''),
       parsedValue: props.initialValue,
       isValidJSON: true,
       errorMessage: '',
@@ -59,7 +180,7 @@ class JSONEditor extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.initialValue !== this.props.initialValue) {
       this.setState({
-        inputValue: JSON.stringify(this.props.initialValue),
+        inputValue: JSON.stringify(this.props.initialValue || ''),
         parsedValue: this.props.initialValue,
         isValidJSON: true,
         errorMessage: '',
@@ -122,17 +243,20 @@ class CustomComp extends Component {
       modelType: config?.model?.value || 'PerfectMixing',
       inputParams: {},
       outputParams: {},
-      editingKey: '',
-      selectedRowKeys: [],
+      copyParams: {},
+      // 改为对象存储不同array_key的编辑状态
+      editingKeys: {},
+      // 存储不同表格选中的行
+      selectedRowKeysMap: {},
       getServiceReady: false,
       isVisible: false,
     }
     this.modelInput_single = []
-    this.modelInput_multiple = []
+    this.modelInput_multiple = {} // 改为对象结构 {arrayKey: [...]}
     this.modelOutput_single = []
-    this.modelOutput_multiple = []
+    this.modelOutput_multiple = {} // 改为对象结构 {arrayKey: [...]}
     this.pulp_params = [
-      { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
+      // { valueName: '粒度分布', valueKey: 'dist', valueType: 'json' },
       { valueName: '矿浆流量', valueKey: 'flowRate', valueType: 'number' },
       { valueName: '矿量', valueKey: 'ore', valueType: 'number' },
       { valueName: '矿浆浓度', valueKey: 'percent', valueType: 'number' },
@@ -150,10 +274,6 @@ class CustomComp extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {}
-
-  componentWillUnmount() {}
-
   getServiceData = (equipType, modelType) => {
     scriptUtil.executeScriptService({
       objName: 'os_simulation.processSimulationEquipModelTable', // 模板 或者 实例
@@ -168,27 +288,43 @@ class CustomComp extends Component {
       cb: (res) => {
         const datalist = res.data.list
 
+        // 重置数据结构
+        this.modelInput_single = []
+        this.modelInput_multiple = {}
+        this.modelOutput_single = []
+        this.modelOutput_multiple = {}
+
         datalist.forEach((obj) => {
-          const objTemp = {
+          const item = {
             valueName: obj['os_simulation.processSimulationEquipModelTable.value_name'],
             valueKey: obj['os_simulation.processSimulationEquipModelTable.value_key'],
             valueType: obj['os_simulation.processSimulationEquipModelTable.value_type'],
             valueDefault:
               obj['os_simulation.processSimulationEquipModelTable.defaultValue'] || null,
             displayable: obj['os_simulation.processSimulationEquipModelTable.displayable'],
+            arrayKey:
+              obj['os_simulation.processSimulationEquipModelTable.array_key'] || '1_default',
           }
-          if (obj['os_simulation.processSimulationEquipModelTable.type'] === 'input') {
-            if (obj['os_simulation.processSimulationEquipModelTable.value_isArray']) {
-              this.modelInput_multiple.push(objTemp)
+          const type = obj['os_simulation.processSimulationEquipModelTable.type']
+          const isArray = obj['os_simulation.processSimulationEquipModelTable.value_isArray']
+
+          if (type === 'input') {
+            if (isArray) {
+              if (!this.modelInput_multiple[item.arrayKey]) {
+                this.modelInput_multiple[item.arrayKey] = []
+              }
+              this.modelInput_multiple[item.arrayKey].push(item)
             } else {
-              this.modelInput_single.push(objTemp)
+              this.modelInput_single.push(item)
             }
-          }
-          if (obj['os_simulation.processSimulationEquipModelTable.type'] === 'output') {
-            if (obj['os_simulation.processSimulationEquipModelTable.value_isArray']) {
-              this.modelOutput_multiple.push(objTemp)
+          } else if (type === 'output') {
+            if (isArray) {
+              if (!this.modelOutput_multiple[item.arrayKey]) {
+                this.modelOutput_multiple[item.arrayKey] = []
+              }
+              this.modelOutput_multiple[item.arrayKey].push(item)
             } else {
-              this.modelOutput_single.push(objTemp)
+              this.modelOutput_single.push(item)
             }
           }
         })
@@ -199,7 +335,31 @@ class CustomComp extends Component {
           .forEach((v) => {
             defaultValues[v.valueKey] = v.valueType === 'number' ? +v.valueDefault : v.valueDefault
           })
-        this.setState({ getServiceReady: true, inputParams: defaultValues })
+
+        // 初始化数组参数
+        const arrParamsMap = {}
+        Object.keys(this.modelInput_multiple).forEach((arrayKey) => {
+          arrParamsMap[arrayKey] = []
+        })
+
+        this.setState(
+          {
+            getServiceReady: true,
+            inputParams: { ...defaultValues, arrParamsMap },
+            // 初始化编辑状态
+            editingKeys: Object.keys(this.modelInput_multiple).reduce((acc, cur) => {
+              acc[cur] = ''
+              return acc
+            }, {}),
+            selectedRowKeysMap: Object.keys(this.modelInput_multiple).reduce((acc, cur) => {
+              acc[cur] = []
+              return acc
+            }, {}),
+          },
+          () => {
+            console.log('init state', this.state)
+          }
+        )
         console.log(
           'callback res',
           this.modelInput_single,
@@ -211,70 +371,121 @@ class CustomComp extends Component {
     })
   }
 
-  isEditing = (record) => record.key === this.state.editingKey
-
-  cancel = () => {
-    this.setState({ editingKey: '' })
+  isEditing = (record, arrayKey) => record.key === this.state.editingKeys[arrayKey]
+  handleEdit = (key, arrayKey) => {
+    this.setState(({ editingKeys }) => ({
+      editingKeys: { ...editingKeys, [arrayKey]: key },
+    }))
   }
 
-  handleSave(form, key) {
-    form.validateFields((error, row) => {
-      if (error) {
-        return
-      }
-
-      const newData = this.state.inputParams.arrParams.map((v, i) => ({ ...v, key: i }))
-      const index = newData.findIndex((item) => key === item.key)
-      console.log('save key row index', key, row, index)
-      if (index > -1) {
-        const item = newData[index]
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        })
-        this.setState({
-          inputParams: { ...this.state.inputParams, arrParams: newData },
-          editingKey: '',
-        })
-      } else {
-        newData.push(row)
-        this.setState({ ...this.state.inputParams, arrParams: newData, editingKey: '' })
-      }
-    })
+  cancel = (arrayKey) => {
+    this.setState(({ editingKeys }) => ({
+      editingKeys: { ...editingKeys, [arrayKey]: '' },
+    }))
   }
 
-  handleEdit(key) {
-    this.setState({ editingKey: key })
-  }
-
-  handleAdd = () => {
-    //点击新增 插入一行空数据
+  handleInputChange = (key, value) => {
     const { inputParams } = this.state
-    const newParams = {}
-    this.modelInput_multiple.forEach((obj) => {
-      newParams[obj.valueKey] = null
+    this.setState({ inputParams: { ...inputParams, [key]: value } })
+  }
+
+  handleSave = (form, key, arrayKey) => {
+    console.log('key arraykey', key, arrayKey)
+    form.validateFields((error, row) => {
+      if (error) return
+
+      const newData = this.state.inputParams.arrParamsMap[arrayKey].map((v, i) => ({
+        ...v,
+        key: i,
+      }))
+      const index = newData.findIndex((item) => key === item.key)
+      console.log('key newData', index, newData, row)
+      if (index > -1) {
+        newData.splice(index, 1, { ...newData[index], ...row })
+      } else {
+        newData.push({ ...row, key: newData.length })
+      }
+
+      this.setState(({ inputParams, editingKeys }) => ({
+        inputParams: {
+          ...inputParams,
+          arrParamsMap: {
+            ...inputParams.arrParamsMap,
+            [arrayKey]: newData,
+          },
+        },
+        editingKeys: { ...editingKeys, [arrayKey]: '' },
+      }))
     })
-    inputParams.arrParams.push(newParams)
-    this.setState({ inputParams })
   }
 
-  handleDelete = () => {
-    const { selectedRowKeys, inputParams } = this.state
-    const newData = inputParams.arrParams.map((v, i) => ({ ...v, key: i }))
-    const filterData = newData.filter((obj) => !selectedRowKeys.includes(obj.key))
-    console.log('handle delete', newData, filterData)
-    this.setState({ inputParams: { ...inputParams, arrParams: filterData }, selectedRowKeys: [] })
+  handleAdd = (arrayKey) => {
+    this.setState(({ inputParams }) => {
+      const newData = [...inputParams.arrParamsMap[arrayKey], {}]
+      return {
+        inputParams: {
+          ...inputParams,
+          arrParamsMap: {
+            ...inputParams.arrParamsMap,
+            [arrayKey]: newData,
+          },
+        },
+      }
+    })
   }
 
-  onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys)
-    this.setState({ selectedRowKeys })
+  handleDelete = (arrayKey) => {
+    this.setState(({ inputParams, selectedRowKeysMap }) => {
+      const newData = inputParams.arrParamsMap[arrayKey].filter(
+        (_, index) => !selectedRowKeysMap[arrayKey].includes(index)
+      )
+      return {
+        inputParams: {
+          ...inputParams,
+          arrParamsMap: {
+            ...inputParams.arrParamsMap,
+            [arrayKey]: newData,
+          },
+        },
+        selectedRowKeysMap: {
+          ...selectedRowKeysMap,
+          [arrayKey]: [],
+        },
+      }
+    })
+  }
+
+  onSelectChange = (selectedRowKeys, arrayKey) => {
+    this.setState(({ selectedRowKeysMap }) => ({
+      selectedRowKeysMap: {
+        ...selectedRowKeysMap,
+        [arrayKey]: selectedRowKeys,
+      },
+    }))
   }
 
   toggleVisibility = () => {
-    this.setState((prevState) => ({ isVisible: !prevState.isVisible }))
+    const { isVisible } = this.state
+    if (!isVisible) {
+      this.setState((prevState) => ({
+        isVisible: !prevState.isVisible,
+        copyParams: prevState.inputParams,
+      }))
+    } else this.setState((prevState) => ({ isVisible: !prevState.isVisible }))
   }
 
+  handleOk = (e) => {
+    this.setState({
+      isVisible: false,
+    })
+  }
+
+  handleCancel = (e) => {
+    this.setState({
+      isVisible: false,
+      inputParams: this.state.copyParams,
+    })
+  }
   getInputValue = () => {
     return this.state.inputParams
   }
@@ -293,51 +504,155 @@ class CustomComp extends Component {
   setOutputValue = (value) => {
     this.setState({ outputParams: value })
   }
+  // 生成表格列
+  generateInputColumns = (arrayKey) => {
+    const columns = this.modelInput_multiple[arrayKey].map((obj) => ({
+      title: obj.valueName,
+      dataIndex: obj.valueKey,
+      editable: true,
+    }))
 
-  renderInputHtml = (list) => {
+    columns.push({
+      title: '操作',
+      dataIndex: 'operation',
+      render: (text, record) => {
+        const editable = this.isEditing(record, arrayKey)
+        return editable ? (
+          <span>
+            <EditableContext.Consumer>
+              {(form) => <a onClick={() => this.handleSave(form, record.key, arrayKey)}>保存</a>}
+            </EditableContext.Consumer>
+            <a onClick={() => this.cancel(arrayKey)} style={{ marginLeft: 8 }}>
+              取消
+            </a>
+          </span>
+        ) : (
+          <a onClick={() => this.handleEdit(record.key, arrayKey)}>编辑</a>
+        )
+      },
+    })
+
+    return columns.map((col) => {
+      if (!col.editable) return col
+      return {
+        ...col,
+        onCell: (record) => ({
+          record,
+          inputType: 'number',
+          dataIndex: col.dataIndex,
+          title: col.title,
+          editing: this.isEditing(record, arrayKey),
+        }),
+      }
+    })
+  }
+
+  // 渲染输入表格
+  renderInputTables() {
+    const { inputParams, selectedRowKeysMap } = this.state
+    return Object.keys(this.modelInput_multiple).map((arrayKey) => (
+      <div key={arrayKey} className="param-table">
+        <div style={{ margin: '12px 0' }}>
+          <Button
+            onClick={() => this.handleAdd(arrayKey)}
+            type="primary"
+            icon="plus"
+            style={{ marginRight: 8 }}
+          >
+            新增
+          </Button>
+          <Button
+            onClick={() => this.handleDelete(arrayKey)}
+            type="danger"
+            icon="delete"
+            disabled={selectedRowKeysMap[arrayKey]?.length === 0}
+          >
+            删除
+          </Button>
+        </div>
+        <EditableContext.Provider value={this.props.form}>
+          <Table
+            components={{
+              body: {
+                cell: EditableCell,
+              },
+            }}
+            bordered
+            dataSource={inputParams.arrParamsMap[arrayKey].map((v, i) => ({ ...v, key: i }))}
+            columns={this.generateInputColumns(arrayKey)}
+            rowSelection={{
+              selectedRowKeys: selectedRowKeysMap[arrayKey] || [],
+              onChange: (keys) => this.onSelectChange(keys, arrayKey),
+            }}
+            pagination={false}
+          />
+        </EditableContext.Provider>
+      </div>
+    ))
+  }
+
+  // 生成输出表格列
+  generateOutputColumns = (arrayKey) => {
+    const columns = this.modelOutput_multiple[arrayKey].map((obj) => ({
+      title: obj.valueName,
+      dataIndex: obj.valueKey,
+      editable: true,
+    }))
+
+    return columns
+  }
+
+  // 渲染输出表格
+  renderOutputTables() {
+    const { outputParams } = this.state
+
+    return Object.keys(this.modelOutput_multiple).map((arrayKey) => (
+      <div key={arrayKey} className="param-table">
+        <Table
+          bordered
+          dataSource={outputParams.arrParamsMap?.[arrayKey].map((v, i) => ({ ...v, key: i })) || []}
+          columns={this.generateOutputColumns(arrayKey)}
+          pagination={false}
+        />
+      </div>
+    ))
+  }
+
+  renderInputItem = (item) => {
     const { inputParams } = this.state
-
     return (
       <div
-        className="renderDiv"
-        key={list.valueKey}
-        style={{ display: list.displayable ? 'block' : 'none' }}
+        className="param-row"
+        key={item.valueKey}
+        style={{ display: item.displayable ? 'flex' : 'none' }}
       >
-        <span className="inputSpan">{list.valueName}</span>
-        {list.valueType === 'number' && (
-          <InputNumber
-            value={inputParams[list.valueKey] || list.valueDefault}
-            onChange={(value) =>
-              this.setState({ inputParams: { ...inputParams, [list.valueKey]: value } })
-            }
-          ></InputNumber>
-        )}
-        {list.valueType === 'json' && (
-          <JSONEditor
-            initialValue={inputParams[list.valueKey] || list.valueDefault}
-            onValidInput={(parsedValue) =>
-              this.setState({ inputParams: { ...inputParams, [list.valueKey]: parsedValue } })
-            }
-          />
-        )}
-        {list.valueType === 'string' && (
-          <Input
-            value={inputParams[list.valueKey] || list.valueDefault}
-            onChange={(event) =>
-              this.setState({
-                inputParams: { ...inputParams, [list.valueKey]: event.target.value },
-              })
-            }
-          ></Input>
-        )}
-        {list.valueType === 'switch' && (
-          <Switch
-            checked={inputParams[list.valueKey] || list.valueDefault}
-            onChange={(checked) =>
-              this.setState({ inputParams: { ...inputParams, [list.valueKey]: checked } })
-            }
-          ></Switch>
-        )}
+        <label className="param-label">{item.valueName}</label>
+        <div className="param-control">
+          {item.valueType === 'number' && (
+            <InputNumber
+              value={inputParams[item.valueKey]}
+              onChange={(v) => this.handleInputChange(item.valueKey, v)}
+            />
+          )}
+          {item.valueType === 'json' && (
+            <JSONEditor
+              initialValue={inputParams[item.valueKey]}
+              onValidInput={(v) => this.handleInputChange(item.valueKey, v)}
+            />
+          )}
+          {item.valueType === 'string' && (
+            <Input
+              value={inputParams[item.valueKey]}
+              onChange={(e) => this.handleInputChange(item.valueKey, e.target.value)}
+            />
+          )}
+          {item.valueType === 'switch' && (
+            <Switch
+              checked={inputParams[item.valueKey]}
+              onChange={(v) => this.handleInputChange(item.valueKey, v)}
+            />
+          )}
+        </div>
       </div>
     )
   }
@@ -348,7 +663,7 @@ class CustomComp extends Component {
         <div className="renderDiv" key={pulp.valueKey}>
           <span className="outputSpan">{pulp.valueName}</span>
           {pulp.valueType === 'json' ? (
-            <TextArea rows={2} value={JSON.stringify(params[pulp.valueKey])} disabled />
+            <TextArea rows={2} value={JSON.stringify(params[pulp.valueKey] || '')} disabled />
           ) : (
             <span className="paramOutput">{params[pulp.valueKey]}</span>
           )}
@@ -357,153 +672,69 @@ class CustomComp extends Component {
     })
   }
 
-  renderOutputHtml = (list) => {
+  renderOutputItem = (item) => {
     const { outputParams } = this.state
-    if (list.valueType !== 'pulp') {
-      return (
-        <div className="renderDiv" key={list.valueKey}>
-          <span className="outputSpan">{list.valueName}</span>
-          <span className="paramOutput">
-            &nbsp;
-            {list.valueType === 'json'
-              ? JSON.stringify(outputParams[list.valueKey])
-              : outputParams[list.valueKey]}
-          </span>
-        </div>
-      )
-    } else {
-      return (
-        <div key={list.valueKey}>
-          <h4>{list.valueName}</h4>
-          {this.renderPulpHtml(outputParams[list.valueKey])}
-        </div>
-      )
-    }
-  }
-
-  renderHtml = () => {
-    const { inputParams, outputParams, selectedRowKeys, getServiceReady } = this.state
-
-    const model_columns = this.modelInput_multiple.map((obj) => ({
-      title: obj.valueName,
-      dataIndex: obj.valueKey,
-      editable: true,
-    }))
-    model_columns.push({
-      title: '操作',
-      dataIndex: 'operation',
-      render: (text, record) => {
-        const { editingKey } = this.state
-        const editable = this.isEditing(record)
-        return editable ? (
-          <span>
-            <EditableContext.Consumer>
-              {(form) => (
-                <a onClick={() => this.handleSave(form, record.key)} style={{ marginRight: 8 }}>
-                  确定
-                </a>
-              )}
-            </EditableContext.Consumer>
-
-            <a onClick={() => this.cancel(record.key)}>取消</a>
-          </span>
-        ) : (
-          <a disabled={editingKey !== ''} onClick={() => this.handleEdit(record.key)}>
-            编辑
-          </a>
-        )
-      },
-    })
-
-    const components = {
-      body: {
-        cell: EditableCell,
-      },
-    }
-
-    const columns = model_columns.map((col) => {
-      if (!col.editable) {
-        return col
-      }
-      return {
-        ...col,
-        onCell: (record) => ({
-          record,
-          inputType: 'number',
-          dataIndex: col.dataIndex,
-          title: col.title,
-          editing: this.isEditing(record),
-        }),
-      }
-    })
-
-    const dataSource = inputParams.arrParams
-      ? inputParams.arrParams.map((v, i) => ({ ...v, key: i }))
-      : []
-
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-    }
+    const value = outputParams[item.valueKey]
 
     return (
-      <div>
-        <h3>输入参数</h3>
-        <div style={{ marginBottom: '12px' }}>
-          <div className="inputDiv">
-            {this.modelInput_single.map((mos) => {
-              return this.renderInputHtml(mos)
-            })}
-          </div>
-          {this.modelInput_multiple.length > 0 && (
-            <EditableContext.Provider value={this.props.form}>
-              <Button
-                onClick={this.handleAdd}
-                type="primary"
-                icon="plus"
-                style={{ marginBottom: 6, marginRight: 10 }}
-              >
-                新增
-              </Button>
-              <Button
-                type="danger"
-                onClick={this.handleDelete}
-                style={{ marginBottom: 6 }}
-                icon="delete"
-                disabled={selectedRowKeys.length === 0}
-              >
-                删除
-              </Button>
-              <Table
-                components={components}
-                bordered
-                dataSource={dataSource}
-                columns={columns}
-                rowSelection={rowSelection}
-                rowClassName="editable-row"
-                pagination={false}
-              />
-            </EditableContext.Provider>
+      <div className="param-row" key={item.valueKey}>
+        <label className="param-label">{item.valueName}</label>
+        <div className="param-output">
+          {item.valueType === 'json' ? (
+            <pre>{JSON.stringify(value, null, 2)}</pre>
+          ) : item.valueType === 'pulp' ? (
+            <div className="pulp-container">{this.renderPulpHtml(item)}</div>
+          ) : (
+            <span>{value || '-'}</span>
           )}
-        </div>
-        <h3>输出参数</h3>
-        <div>
-          {Object.keys(outputParams).length > 0 &&
-            this.modelOutput_single.map((mos) => this.renderOutputHtml(mos))}
         </div>
       </div>
     )
   }
+
   render() {
-    const { getServiceReady, isVisible } = this.state
+    const { isVisible, modelType } = this.state
     return (
       <div className="equipModelContent">
-        <Button onClick={this.toggleVisibility}>{`${isVisible ? '隐藏' : '显示'}配置项`}</Button>
-        <div className="paramContent" style={{ position: 'relative' }}>
-          <div style={{ position: 'absolute', display: this.state.isVisible ? 'block' : 'none' }}>
-            {getServiceReady && this.renderHtml()}
+        <button onClick={this.toggleVisibility}>visable</button>
+        <Modal
+          className="param-modal"
+          width={600}
+          bodyStyle={{
+            height: 450,
+            overflowY: 'auto',
+            padding: '16px 24px',
+          }}
+          footer={null}
+          title={`${modelType}模型参数`}
+          visible={isVisible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <div className="param-container">
+            {/* 输入参数列 */}
+            <div className="param-section">
+              <h3 className="param-title">输入参数</h3>
+              <div className="param-content">
+                <div className="param-group">
+                  {this.modelInput_single.map(this.renderInputItem)}
+                </div>
+                {this.renderInputTables()}
+              </div>
+            </div>
+
+            {/* 输出参数列 */}
+            <div className="param-section">
+              <h3 className="param-title">输出参数</h3>
+              <div className="param-content">
+                <div className="param-group">
+                  {this.modelOutput_single.map(this.renderOutputItem)}
+                </div>
+                {this.renderOutputTables()}
+              </div>
+            </div>
           </div>
-        </div>
+        </Modal>
       </div>
     )
   }

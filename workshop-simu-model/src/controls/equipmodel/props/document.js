@@ -70,6 +70,13 @@ const docList = [
     code: ``,
   },
   {
+    functionName: 'toggleVisibility',
+    description: '打开组件对话框',
+    code: `
+			this.toggleVisibility();
+		`,
+  },
+  {
     functionName: 'getInputValue',
     description: '获取输入参数',
     code: `
@@ -82,9 +89,6 @@ const docList = [
     description: '设置输入参数',
     code: `
     const params = {
-			"name": "Ball",
-			"model": "PerfectMixing",
-			"params": {
 				"diameter": 5.5, 
 				"length": 8.5, 
 				"speed": 11.2, 
@@ -93,8 +97,19 @@ const docList = [
 				"jb": 0.1, 
 				"rhoB": 7.8, 
 				"wi": 11.2, 
-				"rate": [[1, 3], [2, 1], [3, 1], [4, 3]]
-			}
+				"rate": [[1, 3], [2, 1], [3, 1], [4, 3]],
+        "arrParamsMap": {
+          "1_default": {
+            "particleSize": [
+              0,
+              0.5566232079608417,
+              0.5639964704851527,
+              0.7757341026224694,
+            ],
+          },
+        },
+      };
+        }
 		}
 			this.setInputValue(params);
 		`,
@@ -105,19 +120,22 @@ const docList = [
     code: `
     const params = {
 			"power": 320.01940563705534,
-			"product": {
-				"dist": [
-					0,
-					0.5566232079608417,
-					0.5639964704851527,
-					0.7757341026224694,
-				],
-				"flowRate": 248.14814814814815,
-				"ore": 400,
-				"percent": 0.8,
-				"rhoP": 2.014925373134328,
-				"water": 100
-			}
+      "flowRate": 248.14814814814815,
+      "ore": 400,
+      "percent": 0.8,
+      "rhoP": 2.014925373134328,
+      "water": 100,
+      "arrParamsMap":{
+       "1_default": {
+        "dist": [
+          0,
+          0.5566232079608417,
+          0.5639964704851527,
+          0.7757341026224694,
+        ],
+        }
+      }
+      }
 		}
 			this.setOutputValue(outputParams);
 		`,
