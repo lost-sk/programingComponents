@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Input, InputNumber, Switch, Table, Form, Button, Modal } from 'antd'
-// import _ from 'lodash'
+//import _ from 'lodash'
 import './index.css'
 const { TextArea } = Input
 
@@ -696,7 +696,6 @@ class CustomComp extends Component {
     const { isVisible, modelType } = this.state
     return (
       <div className="equipModelContent">
-        <button onClick={this.toggleVisibility}>visable</button>
         <Modal
           className="param-modal"
           width={600}
@@ -705,32 +704,35 @@ class CustomComp extends Component {
             overflowY: 'auto',
             padding: '16px 24px',
           }}
-          footer={null}
           title={`${modelType}模型参数`}
           visible={isVisible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+          cancelText="取消"
+          okText="确定"
         >
-          <div className="param-container">
-            {/* 输入参数列 */}
-            <div className="param-section">
-              <h3 className="param-title">输入参数</h3>
-              <div className="param-content">
-                <div className="param-group">
-                  {this.modelInput_single.map(this.renderInputItem)}
+          <div className="equipModelContent">
+            <div className="param-container">
+              {/* 输入参数列 */}
+              <div className="param-section">
+                <h3 className="param-title">输入参数</h3>
+                <div className="param-content">
+                  <div className="param-group">
+                    {this.modelInput_single.map(this.renderInputItem)}
+                  </div>
+                  {this.renderInputTables()}
                 </div>
-                {this.renderInputTables()}
               </div>
-            </div>
 
-            {/* 输出参数列 */}
-            <div className="param-section">
-              <h3 className="param-title">输出参数</h3>
-              <div className="param-content">
-                <div className="param-group">
-                  {this.modelOutput_single.map(this.renderOutputItem)}
+              {/* 输出参数列 */}
+              <div className="param-section">
+                <h3 className="param-title">输出参数</h3>
+                <div className="param-content">
+                  <div className="param-group">
+                    {this.modelOutput_single.map(this.renderOutputItem)}
+                  </div>
+                  {this.renderOutputTables()}
                 </div>
-                {this.renderOutputTables()}
               </div>
             </div>
           </div>
