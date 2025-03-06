@@ -251,8 +251,16 @@ class CustomComp extends Component {
       selectedRowKeysMap: {},
       getServiceReady: false,
       isVisible: false,
+      x: 0, // Modal的X坐标
+      y: 0, // Modal的Y坐标
+      dragging: false, // 是否正在拖动
+      initialized: false, // 是否完成初始化定位
+      startX: 0, // 拖动起始鼠标X
+      startY: 0, // 拖动起始鼠标Y
+      modalWidth: 0, // Modal宽度
+      modalHeight: 0, // Modal高度
     }
-
+    this.modalRef = React.createRef() // Modal容器引用
     this.modelInput_single = []
     this.modelInput_multiple = {} // 改为对象结构 {arrayKey: [...]}
     this.modelOutput_single = []
@@ -268,6 +276,10 @@ class CustomComp extends Component {
   }
   componentDidMount() {
     scriptUtil.registerReactDom(this, this.props)
+
+    // 初始化定位（延迟确保Modal渲染完成）
+    setTimeout(() => this.initPosition(), 0)
+
     const { equipType, modelType } = this.state
 
     if (this.modelInput_single.length === 0) {
@@ -277,7 +289,68 @@ class CustomComp extends Component {
     }
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    // 清理事件监听
+    document.removeEventListener('mousemove', this.handleMouseMove)
+    document.removeEventListener('mouseup', this.handleMouseUp)
+  }
+
+  initPosition = () => {
+    const modalNode = this.modalRef.current
+    if (!modalNode) return
+
+    // 获取Modal尺寸
+    const rect = modalNode.getBoundingClientRect()
+    const { width, height } = rect
+
+    // 计算居中坐标
+    const x = (window.innerWidth - width) / 2
+    const y = 200
+
+    this.setState({
+      x,
+      y,
+      modalWidth: width,
+      modalHeight: height,
+      initialized: true,
+    })
+  }
+
+  handleMouseDown = (e) => {
+    // 只在标题栏触发拖动
+    if (e.target.closest('.ant-modal-header')) {
+      this.setState({
+        dragging: true,
+        startX: e.clientX - this.state.x,
+        startY: e.clientY - this.state.y,
+      })
+      document.addEventListener('mousemove', this.handleMouseMove)
+      document.addEventListener('mouseup', this.handleMouseUp)
+    }
+  }
+
+  handleMouseMove = (e) => {
+    if (!this.state.dragging) return
+
+    // 计算新坐标
+    let newX = e.clientX - this.state.startX
+    let newY = e.clientY - this.state.startY
+
+    // 限制在视口范围内
+    const maxX = window.innerWidth - this.state.modalWidth
+    const maxY = window.innerHeight - this.state.modalHeight
+    newX = Math.max(0, Math.min(newX, maxX))
+    newY = Math.max(0, Math.min(newY, maxY))
+
+    this.setState({ x: newX, y: newY })
+  }
+
+  handleMouseUp = () => {
+    this.setState({ dragging: false })
+    document.removeEventListener('mousemove', this.handleMouseMove)
+    document.removeEventListener('mouseup', this.handleMouseUp)
+  }
+
   getServiceData = (equipType, modelType) => {
     scriptUtil.executeScriptService({
       objName: 'os_simulation.processSimulationEquipModelTable', // 模板 或者 实例
@@ -703,9 +776,14 @@ class CustomComp extends Component {
   }
 
   render() {
-    const { isVisible, modelType } = this.state
+    const { isVisible, modelType, x, y, initialized } = this.state
     return (
-      <div className="equipModelContent">
+      <div
+        className="equipModelContent"
+        ref={this.modalRef}
+        onMouseDown={this.handleMouseDown}
+        style={{ display: initialized ? 'block' : 'none' }}
+      >
         <Modal
           className="param-modal"
           width={600}
@@ -714,6 +792,14 @@ class CustomComp extends Component {
             overflowY: 'auto',
             padding: '6px',
           }}
+          style={{
+            position: 'absolute',
+            left: x,
+            top: y,
+            margin: 0,
+            transform: 'none', // 禁用AntD默认动画
+          }}
+          wrapClassName="draggable-modal-wrap"
           title={`${modelType}模型参数`}
           visible={isVisible}
           onOk={this.handleOk}

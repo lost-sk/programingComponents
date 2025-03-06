@@ -83,11 +83,28 @@
     font-size: 16px;
     background: #f0f8ff;
   }
-  .custom-draggable-modal .ant-modal {
+  .draggable-modal-wrap .ant-modal {
     position: absolute !important;
+    transform: none !important;
   }
+
+  /* 拖动手柄样式 */
   .ant-modal-header {
     cursor: move;
+    user-select: none;
+  }
+
+  /* 防止内容区域文本被选中 */
+  .draggable-modal-wrap {
+    user-select: none;
+  }
+
+  /* 禁用遮罩层点击穿透 */
+  .ant-modal-mask {
+    pointer-events: none;
+  }
+  .ant-modal-content {
+    pointer-events: auto;
   }
   /* 参数内容区域 */
   .param-content {
