@@ -21,6 +21,11 @@
   border-radius: 8px 8px 0 0;
 }
 
+.ant-collapse-header {
+  color: #1677ff;
+  font-size: 16px;
+  background: #f0f8ff;
+}
 /* 参数内容区域 */
 .param-content {
   padding: 0 16px 16px;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Input, InputNumber, Switch, Table, Form, Button, Modal } from 'antd'
+
+import { Input, InputNumber, Switch, Table, Form, Button, Modal, Collapse } from 'antd'
 //import _ from 'lodash'
 import './index.css'
 const { TextArea } = Input
@@ -126,7 +127,7 @@ const { TextArea } = Input
 //     })
 //   },
 // }
-
+const { Panel } = Collapse
 const EditableContext = React.createContext()
 
 class EditableCell extends React.Component {
@@ -251,6 +252,7 @@ class CustomComp extends Component {
       getServiceReady: false,
       isVisible: false,
     }
+
     this.modelInput_single = []
     this.modelInput_multiple = {} // 改为对象结构 {arrayKey: [...]}
     this.modelOutput_single = []
@@ -267,6 +269,7 @@ class CustomComp extends Component {
   componentDidMount() {
     scriptUtil.registerReactDom(this, this.props)
     const { equipType, modelType } = this.state
+
     if (this.modelInput_single.length === 0) {
       this.getServiceData(equipType, modelType)
     } else {
@@ -274,6 +277,7 @@ class CustomComp extends Component {
     }
   }
 
+  componentWillUnmount() {}
   getServiceData = (equipType, modelType) => {
     scriptUtil.executeScriptService({
       objName: 'os_simulation.processSimulationEquipModelTable', // 模板 或者 实例
@@ -486,6 +490,7 @@ class CustomComp extends Component {
       inputParams: this.state.copyParams,
     })
   }
+
   getInputValue = () => {
     return this.state.inputParams
   }
@@ -693,7 +698,7 @@ class CustomComp extends Component {
   }
 
   render() {
-    const { isVisible, modelType } = this.state
+    const { isVisible, modelType, position, bounds, mounted } = this.state
     return (
       <div className="equipModelContent">
         <Modal
@@ -702,7 +707,7 @@ class CustomComp extends Component {
           bodyStyle={{
             height: 450,
             overflowY: 'auto',
-            padding: '16px 24px',
+            padding: '6px',
           }}
           title={`${modelType}模型参数`}
           visible={isVisible}
@@ -713,27 +718,28 @@ class CustomComp extends Component {
         >
           <div className="equipModelContent">
             <div className="param-container">
-              {/* 输入参数列 */}
-              <div className="param-section">
-                <h3 className="param-title">输入参数</h3>
-                <div className="param-content">
-                  <div className="param-group">
-                    {this.modelInput_single.map(this.renderInputItem)}
+              <Collapse defaultActiveKey={['1']}>
+                <Panel header="输入参数" key="1">
+                  <div className="param-section">
+                    <div className="param-content">
+                      <div className="param-group">
+                        {this.modelInput_single.map(this.renderInputItem)}
+                      </div>
+                      {this.renderInputTables()}
+                    </div>
                   </div>
-                  {this.renderInputTables()}
-                </div>
-              </div>
-
-              {/* 输出参数列 */}
-              <div className="param-section">
-                <h3 className="param-title">输出参数</h3>
-                <div className="param-content">
-                  <div className="param-group">
-                    {this.modelOutput_single.map(this.renderOutputItem)}
+                </Panel>
+                <Panel header="输出参数" key="2">
+                  <div className="param-section">
+                    <div className="param-content">
+                      <div className="param-group">
+                        {this.modelOutput_single.map(this.renderOutputItem)}
+                      </div>
+                      {this.renderOutputTables()}
+                    </div>
                   </div>
-                  {this.renderOutputTables()}
-                </div>
-              </div>
+                </Panel>
+              </Collapse>
             </div>
           </div>
         </Modal>
