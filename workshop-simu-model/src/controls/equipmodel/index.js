@@ -300,6 +300,7 @@ class CustomComp extends Component {
 
         datalist.forEach((obj) => {
           const item = {
+            decimalPlaces: obj['os_simulation.processSimulationEquipModelTable.decimal_places'],
             valueName: obj['os_simulation.processSimulationEquipModelTable.value_name'],
             valueKey: obj['os_simulation.processSimulationEquipModelTable.value_key'],
             valueType: obj['os_simulation.processSimulationEquipModelTable.value_type'],
@@ -679,7 +680,11 @@ class CustomComp extends Component {
 
   renderOutputItem = (item) => {
     const { outputParams } = this.state
-    const value = outputParams[item.valueKey]
+
+    const value =
+      item.valueType === 'number'
+        ? outputParams[item.valueKey]?.toFixed(item.decimalPlaces)
+        : outputParams[item.valueKey]
 
     return (
       <div className="param-row" key={item.valueKey}>
@@ -690,7 +695,7 @@ class CustomComp extends Component {
           ) : item.valueType === 'pulp' ? (
             <div className="pulp-container">{this.renderPulpHtml(item)}</div>
           ) : (
-            <span>{value || '-'}</span>
+            <span>{value ?? '-'}</span>
           )}
         </div>
       </div>
@@ -698,7 +703,7 @@ class CustomComp extends Component {
   }
 
   render() {
-    const { isVisible, modelType, position, bounds, mounted } = this.state
+    const { isVisible, modelType } = this.state
     return (
       <div className="equipModelContent">
         <Modal
